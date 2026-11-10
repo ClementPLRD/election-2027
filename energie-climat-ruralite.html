@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Énergie, climat, ruralité 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  /* Concept : fiche de lecture. L'état actuel est rappelé en tête de chaque sujet et sur chaque graphique. */
+  :root {
+    --bg: #f3f5f7; --panel: #fcfdfd; --fg: #0f1b26; --muted: #52606d; --faint: #7b8794;
+    --line: #dde3e8; --grid: #e6eaee; --accent: #0b5c6b; --pill: #e6eef1; --ring: #fcfdfd;
+    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300;
+    --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-title: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
+      --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
+      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
+    --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
+    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg); font-family: var(--font-ui); font-size: 15px; line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 28px 56px;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, .hit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  h1, h2, h3 { font-family: var(--font-title); font-weight: 600; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
+  h1 { font-size: clamp(30px, 5.2vw, 46px); line-height: 1.08; }
+  h2 { font-size: clamp(22px, 3.4vw, 28px); line-height: 1.15; }
+  h3 { font-size: 18px; line-height: 1.25; }
+  p { margin: 0; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .muted { color: var(--muted); }
+  header.top { display: flex; flex-direction: column; gap: 14px; }
+  .lede { max-width: 72ch; font-size: 17px; }
+  .stamp { font-size: 13px; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chips .lbl { font-size: 13px; color: var(--muted); margin-right: 4px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font: inherit; font-size: 13px; color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px 6px 10px; }
+  .chip .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
+  .chip b { font-weight: 600; }
+  .chip[aria-pressed="false"] { opacity: 0.5; text-decoration: line-through; text-decoration-color: var(--faint); }
+  .chip[aria-pressed="false"] .dot { background: transparent; box-shadow: inset 0 0 0 2px var(--c); }
+  section { display: flex; flex-direction: column; gap: 16px; }
+  .sec-head { display: flex; flex-direction: column; gap: 6px; }
+  .sec-head p { color: var(--muted); max-width: 74ch; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .kpi .k { font-size: 13px; color: var(--muted); }
+  .kpi .v { font-family: var(--font-title); font-size: 32px; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .kpi .v small { font-size: 15px; font-family: var(--font-ui); color: var(--muted); font-weight: 400; margin-left: 2px; }
+  .kpi .v.v-sm { font-size: 20px; line-height: 1.3; }
+  .kpi .s { font-size: 12px; color: var(--faint); }
+  .kpi .s a { color: var(--muted); }
+  .themes { display: flex; flex-direction: column; gap: 14px; }
+  .theme { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .theme-head { padding: 14px 18px; border-bottom: 1px solid var(--line); display: grid; gap: 4px 24px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 900px) { .theme-head { grid-template-columns: minmax(220px, 300px) minmax(0, 1fr); align-items: baseline; } }
+  .theme-head .hint { font-size: 12.5px; color: var(--faint); font-family: var(--font-ui); font-weight: 400; display: block; margin-top: 2px; }
+  .theme-head .now { font-size: 14px; color: var(--muted); }
+  .theme-head .now b { color: var(--fg); font-weight: 600; }
+  .theme-head .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-right: 6px; }
+  .cells { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .cells { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1100px) { .cells { grid-template-columns: repeat(6, 1fr); } }
+  .cell { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin-top: -1px; margin-left: -1px; min-width: 0; }
+  .cell .who { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; }
+  .cell .who .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
+  .cell p { font-size: 13.5px; line-height: 1.45; }
+  .cell b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .cell .src { font-size: 11.5px; color: var(--faint); margin-top: auto; }
+  .pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; background: var(--pill); border-radius: 999px; padding: 2px 9px; width: fit-content; }
+  .pill i { font-style: normal; font-size: 10px; }
+  .legend-dir { font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .legend-dir span { white-space: nowrap; }
+  .panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 14px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; margin: 0; }
+  .panel .sub { font-size: 13px; color: var(--muted); }
+  .chart { position: relative; width: 100%; margin-top: 4px; }
+  .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .chart text { font-family: var(--font-ui); }
+  .panel .note { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; margin-top: 4px; }
+  .tip { position: absolute; z-index: 5; max-width: 260px; pointer-events: none; background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; line-height: 1.4; box-shadow: 0 6px 20px rgba(15, 27, 38, 0.18); }
+  .tip small { display: block; color: var(--faint); margin-top: 4px; }
+  .empty { font-size: 13px; color: var(--muted); padding: 18px 0; }
+  .tbl-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+  table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 13.5px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  td .who { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; white-space: nowrap; }
+  td .who .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+  .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px 28px; margin: 0; padding-left: 18px; }
+  .notes li { font-size: 14px; color: var(--muted); }
+  .notes li b { color: var(--fg); font-weight: 600; }
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 16px; }
+  summary { cursor: pointer; font-weight: 500; }
+  details ul { margin: 10px 0 2px; padding-left: 18px; font-size: 13.5px; color: var(--muted); }
+  details li { margin: 3px 0; }
+  footer { font-size: 12.5px; color: var(--faint); }
+  [data-p][hidden] { display: none !important; }
+  @media (prefers-reduced-motion: no-preference) { .chip { transition: opacity 0.15s ease; } }
+
+  .back { display: inline-block; align-self: flex-start; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; }
+  .back:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+  .theme-toggle { position: absolute; top: 12px; right: max(16px, env(safe-area-inset-right, 0px)); z-index: 5; width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
+  .theme-toggle:hover { border-color: var(--accent); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .theme-toggle svg { width: 18px; height: 18px; display: block; }
+  .theme-toggle .i-sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .i-sun { display: block; }
+  :root[data-theme="dark"] .theme-toggle .i-moon { display: none; }
+
+  .trends { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+  .trend { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .trend .k { font-size: 13px; color: var(--muted); }
+  .trend .v { font-family: var(--font-title); font-size: 28px; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .trend .v small { font-size: 14px; font-family: var(--font-ui); color: var(--muted); font-weight: 400; margin-left: 2px; }
+  .trend .s { font-size: 12px; color: var(--faint); }
+  .trend svg { width: 100%; height: auto; display: block; margin-top: 6px; }
+  .trend .axis { display: flex; justify-content: space-between; font-size: 11px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .trend.wide { grid-column: 1 / -1; }
+  @media (min-width: 560px) { .trend.wide { grid-column: span 2; } }
+  .hb { display: grid; grid-template-columns: minmax(0, 120px) minmax(0, 1fr) auto; gap: 6px 10px; align-items: center; font-size: 13px; margin-top: 6px; }
+  .hb .lab { color: var(--muted); }
+  .hb .trk { height: 12px; border-radius: 6px; background: var(--pill); overflow: hidden; }
+  .hb .bar { height: 100%; border-radius: 6px; background: var(--accent); }
+  .hb .num { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .trends.two { grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); }
+  .trends.two .hb { grid-template-columns: minmax(0, 150px) minmax(0, 1fr) auto; }
+</style>
+<script>
+(function () {
+  var r = document.documentElement, v = null;
+  try { v = localStorage.getItem('e27-theme'); } catch (e) {}
+  if (v !== 'light' && v !== 'dark') v = r.getAttribute('data-theme');
+  if (v !== 'light' && v !== 'dark') v = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  r.setAttribute('data-theme', v);
+})();
+</script>
+</head>
+<body>
+<button type="button" class="theme-toggle" id="theme-toggle" aria-label="Passer au thème sombre" title="Changer de thème"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+
+
+<div class="wrap">
+  <a class="back" href="index.html">← Sommaire</a>
+  <header class="top">
+    <p class="eyebrow">Présidentielle 2027 · Énergie, climat, ruralité</p>
+    <h1 id="titre">Énergie, climat, ruralité 2027</h1>
+    <p class="lede">Électricité : FH, LR, NE et le RN misent sur le nucléaire (LR vise 80 ans pour les réacteurs actuels), LR et le RN coupent aussi les aides aux renouvelables, LFI sort du nucléaire pour du 100 % renouvelable en 2060, le PS combine les deux. Climat : LFI vise −65 % d'émissions en 2033, FH et NE un prix du carbone, le RN refuse « l'écologie punitive ». Campagnes : LFI, FH et NE promettent services publics et transports, LR abroge le ZAN, le RN supprime les zones à faibles émissions.</p>
+    <p class="stamp">Situation au 10/11/2026 · positions tirées des documents des partis, souvent sans chiffrage. LR n'a pas de fiche climat ni ruralité ; le RN n'a pas de document sur les services publics en zone rurale.</p>
+    <div class="chips" id="filtre" role="group" aria-label="Partis affichés"><span class="lbl">Partis affichés</span></div>
+  </header>
+
+  <section id="reperes" aria-labelledby="h-reperes">
+    <div class="sec-head">
+      <h2 id="h-reperes">Où en est la France</h2>
+      <p>Les repères auxquels chaque proposition est comparée plus bas. Chaque chiffre porte son année et sa source.</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span class="k">Production d'électricité</span><span class="v">547,5<small>TWh</small></span><span class="s">2025, métropole (+1,5 %) · 95,2 % décarbonée · RTE, bilan électrique 2025</span></div>
+      <div class="kpi"><span class="k">Nucléaire</span><span class="v">373,0<small>TWh</small></span><span class="s">2025 (+11,3 TWh), soit 68 % de la production (calcul) · 63,0 GW installés · RTE</span></div>
+      <div class="kpi"><span class="k">Solaire</span><span class="v">+33<small>%</small></span><span class="s">production 2025 (+8,1 TWh) · 30,4 GW installés (+5,9 GW) · RTE</span></div>
+      <div class="kpi"><span class="k">Solde exportateur</span><span class="v">92,3<small>TWh</small></span><span class="s">2025, record pour la 2e année · 17 % de la production · RTE</span></div>
+      <div class="kpi"><span class="k">Prix à terme de l'électricité</span><span class="v">61<small>€/MWh</small></span><span class="s">livraison 2026, vu en 2025 · 77 €/MWh un an plus tôt · RTE</span></div>
+      <div class="kpi"><span class="k">Énergies fossiles</span><span class="v">56<small>%</small></span><span class="s">de l'énergie finale consommée en 2024 · l'électricité n'en fait que 27 % · RTE</span></div>
+      <div class="kpi"><span class="k">Facture fossile importée</span><span class="v">63<small>Md€</small></span><span class="s">2025 · pic à plus de 119 Md€ en 2022 · Trésor, RESF 2027</span></div>
+      <div class="kpi"><span class="k">Part des transports</span><span class="v">34<small>%</small></span><span class="s">des émissions brutes de gaz à effet de serre en 2025 · industrie : 62,4 MtCO₂e en 2024 · Trésor, RESF 2027</span></div>
+      <div class="kpi"><span class="k">Passoires thermiques</span><span class="v">3,9<small>M</small></span><span class="s">logements F ou G, 12,7 % des résidences principales, au 1er janvier 2025 · <a href="https://www.insee.fr/fr/statistiques/8996946?sommaire=8996963">Insee</a></span></div>
+      <div class="kpi"><span class="k">Communes rurales</span><span class="v">88<small>%</small></span><span class="s">des communes, un tiers de la population · +0,2 % par an de 2017 à 2023, contre +0,5 % en ville · <a href="https://www.insee.fr/fr/statistiques/8996946?sommaire=8996963">Insee</a></span></div>
+      <div class="kpi"><span class="k">Sols artificialisés</span><span class="v">9<small>%</small></span><span class="s">en 2021 : 6 % dans les communes rurales, 56 % dans les grands centres urbains · <a href="https://www.insee.fr/fr/statistiques/8996946?sommaire=8996963">Insee</a></span></div>
+      <div class="kpi"><span class="k">Agriculture et agroalimentaire</span><span class="v">3,5<small>% du PIB</small></span><span class="s">près de 5 % de l'emploi (1,4 M ETP) · environ 350 000 exploitations en 2023 · <a href="https://www.insee.fr/fr/statistiques/9080401?sommaire=8996963">Insee</a></span></div>
+    </div>
+  </section>
+
+  <section id="tendances" aria-labelledby="h-tend">
+    <div class="sec-head">
+      <h2 id="h-tend">Le système électrique en 2025</h2>
+      <p>D'où vient l'électricité française et avec quelles capacités. Bilan physique de RTE : il ne dit rien des prix payés ni des coûts.</p>
+    </div>
+    <div class="trends two" id="trends"></div>
+  </section>
+
+  <section id="caps" aria-labelledby="h-caps">
+    <div class="sec-head">
+      <h2 id="h-caps">Le cap de chaque parti, face à la situation actuelle</h2>
+      <p>Pour chaque sujet, l'état actuel est rappelé en tête, puis ce que propose chaque parti. Le pictogramme résume l'axe principal de la position : il n'est ni une intensité ni un jugement.</p>
+      <div class="legend-dir"><span>▲ renforce</span><span>▼ réduit ou allège</span><span>◆ axe indiqué</span><span>— non traité dans les documents</span></div>
+    </div>
+    <div class="themes" id="themes"></div>
+  </section>
+
+  <section id="cibles" aria-labelledby="h-cibles">
+    <div class="sec-head">
+      <h2 id="h-cibles">De l'état actuel aux cibles chiffrées</h2>
+      <p>Seuls les partis qui donnent un chiffre y figurent. Le trait relie la situation d'aujourd'hui (cercle vide) à la cible proposée (cercle plein). Survolez ou touchez une ligne pour le détail.</p>
+    </div>
+    <div class="panels" id="panels"></div>
+  </section>
+
+  <section id="efforts" aria-labelledby="h-efforts">
+    <div class="sec-head">
+      <h2 id="h-efforts">Ce que cela coûte ou rapporte, selon les partis</h2>
+      <p>Les montants annoncés, tels quels : horizons et périmètres diffèrent, ils ne s'additionnent pas.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Parti</th><th>Montants annoncés</th><th>Horizon</th><th>Nature</th><th>Source</th></tr></thead>
+        <tbody id="efforts-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="lecture" aria-labelledby="h-lecture">
+    <div class="sec-head"><h2 id="h-lecture">À lire avant de comparer</h2></div>
+    <ul class="notes">
+      <li><b>Électricité : un bilan physique.</b> Le bilan de RTE (février 2026) compte des TWh et des GW, pas des prix : un solde exportateur record n'est pas un gain financier automatique. Pour les prix, seuls les prix à terme de RTE et la comparaison européenne du Trésor figurent ici.</li>
+      <li><b>Climat : source officielle unique.</b> Le thème « Écologie, climat, transition » de l'Insee est annoncé « à venir » et le dossier n'a pas de série d'émissions. Les chiffres viennent du rapport économique du Trésor (annexe du PLF 2027), c'est-à-dire de l'État : objectifs et constats à lire comme tels.</li>
+      <li><b>Chiffres calculés.</b> Marqués « calcul » : la part du nucléaire (373,0 sur 547,5 TWh), la production de solaire, éolien et bioénergies (547,5 − 373,0 − 62,4 − fossile) et le prix du RN après TVA à 5,5 % (1,055 ÷ 1,20, soit environ −12 %).</li>
+      <li><b>Textes de dates différentes.</b> Les mesures d'énergie et de climat du RN viennent des 22 mesures de 2022, de son livret Écologie et de son programme de 2024 ; LR (fiches Électricité, Agriculture, Logement) et LFI (plan ruralité) datent de 2026.</li>
+      <li><b>LR.</b> Pas de fiche climat ni ruralité : seules l'électricité, l'agriculture, le logement (ZAN, DPE) sont traités. <b>RN</b> : aucun document sur les campagnes ni les services publics, mais un livret Agriculture et un livret Écologie.</li>
+      <li><b>Ruralité.</b> Seuls LFI (plan ruralité), FH (maillage territorial) et NE (schéma Province / bloc communal) ont un volet dédié. Les chiffres de communes sans commerce (62 %) viennent du PS.</li>
+      <li><b>Non couvert.</b> Mer et littoraux, déchets et économie circulaire, eau, biodiversité en détail, outre-mer, transports hors rail et voiture.</li>
+      <li><b>Aucun chiffrage vérifié</b> par un organisme indépendant.</li>
+    </ul>
+    <details>
+      <summary>Sources des repères et documents des partis</summary>
+      <ul>
+        <li>Électricité : RTE, <i>Bilan électrique 2025, principaux résultats</i> (février 2026).</li>
+        <li>Climat, importations fossiles, émissions : Direction générale du Trésor, <i>Rapport économique, social et financier</i>, annexe du PLF 2027 (06/10/2026).</li>
+        <li>Territoires et logement : <a href="https://www.insee.fr/fr/statistiques/8996946?sommaire=8996963">Insee, « Territoires : vivre, travailler, habiter »</a> ; agriculture : <a href="https://www.insee.fr/fr/statistiques/9080401?sommaire=8996963">Insee, « Tissu productif, industrie, culture, agriculture »</a> (15/10/2026).</li>
+        <li>Partis : FH, <i>France 2027</i> et chroniques · LFI, <i>L'Avenir en commun</i>, plan ruralité, budget rectificatif du 14/10/2026 · LR, fiches Électricité, Agriculture, Logement · NE, programme web (axes 2 et 3), page Agriculture · PS, <i>Le Projet socialiste</i> · RN, 22 mesures pour 2022, livrets Écologie et Agriculture, programme des législatives 2024, contre-budget 2026.</li>
+      </ul>
+    </details>
+  </section>
+
+<footer>Synthèse établie à partir des documents réunis dans le dossier Election_2027.</footer>
+</div>
+
+<script>
+(function () {
+  var P = [
+    { code: 'FH', name: 'France Humaniste' }, { code: 'LFI', name: 'La France insoumise' }, { code: 'LR', name: 'Les Républicains' },
+    { code: 'NE', name: 'Nouvelle Énergie' }, { code: 'PS', name: 'Parti socialiste' }, { code: 'RN', name: 'Rassemblement national' }
+  ];
+  var NAME = {}; P.forEach(function (p) { NAME[p.code] = p.name; });
+  var state = {}; P.forEach(function (p) { state[p.code] = true; });
+  var DIR = { up: ['▲', 'Augmente'], down: ['▼', 'Diminue'], mix: ['◆', 'Effets mêlés'], nc: ['○', 'Non chiffré'], none: ['—', 'Non traité'], off: ['▼', 'Supprimé'] };
+
+  /* ---------- Positions par sujet ---------- */
+  var THEMES = [
+    { id: 't-mix', title: 'Mix électrique : nucléaire et renouvelables', hint: 'Sens : choix des filières',
+      now: `Production <b>547,5 TWh</b> en 2025, dont <b>373,0 TWh</b> de nucléaire (+11,3 TWh) et 62,4 TWh d'hydraulique ; solaire <b>+33 %</b> et éolien +6 % sur un an ; fossile au plus bas depuis près de 75 ans. Électricité décarbonée à <b>95,2 %</b>, renouvelable à 27,0 %. Programme officiel : <b>6 EPR2</b> (premier vers 2038), 8 de plus à l'étude, réacteurs actuels exploités jusqu'à 60 ans « voire au-delà » (PPE3).`,
+      c: [
+        ['FH', ['◆', 'Nucléaire et éolien en mer'], `<b>6 EPR2</b> et un <b>éolien en mer</b> industrialisé, électrification massive des usages pour les ménages et l'industrie ; décarbonation de l'énergie comme « clé » de la transition ; planification inscrite dans la Constitution.`, 'Proposition 16 ; texte socle'],
+        ['LFI', ['▼', 'Sortie du nucléaire'], `<b>100 % renouvelable</b> au plus tard en <b>2060</b>, sortie des fossiles avant 2050 ; réacteurs fermés progressivement sans dépasser <b>60 ans</b>, programme <b>EPR2 arrêté</b>, enfouissement des déchets abandonné ; pôle public de l'énergie, barrages non privatisés, Engie renationalisée.`, 'Avenir en commun'],
+        ['LR', ['▲', 'Nucléaire et hydraulique'], `Réacteurs actuels exploités <b>80 ans</b>, <b>EPR2 confirmés</b>, hydroélectricité relancée ; <b>fin des subventions</b> aux nouvelles capacités éoliennes et photovoltaïques en métropole ; réacteurs à neutrons rapides de 4e génération ; blocage de l'European Grid Package.`, 'LR, fiche Électricité'],
+        ['NE', ['▲', 'Nucléaire'], `Priorité au nucléaire décarboné : réacteurs prolongés <b>jusqu'à 60 ans</b>, EPR de nouvelle génération, <b>mini-réacteurs</b> ; renouvelables ramenées au droit commun (fin des prix et des règles d'urbanisme dérogatoires), les économies réinvesties dans le nucléaire.`, 'NE, axe 3'],
+        ['PS', ['◆', 'Nucléaire et renouvelables'], `« Le nucléaire autant que nécessaire, les énergies renouvelables autant que possible » : mix <b>100 % décarboné en 2050</b> planifié par le Parlement, parc électronucléaire modernisé, renouvelables planifiées ; data centers tenus de produire de l'électricité renouvelable locale.`, 'Projet socialiste, énergie'],
+        ['RN', ['▲', "Nucléaire, fin de l'éolien"], `Plan « Marie Curie » : EPR, mini-réacteurs et réacteurs à neutrons rapides ; hydroélectricité développée ; <b>projets éoliens arrêtés</b> et parcs démantelés progressivement, 5 Md€ de subventions rendus aux ménages (2022) ; sortie du charbon par la biomasse, hydrogène et géothermie.`, '22 mesures ; législatives 2024']
+      ] },
+    { id: 't-prix', title: 'Prix de l\'électricité et marché de l\'énergie', hint: 'Sens : facture et organisation du marché',
+      now: `Prix à terme de l'électricité <b>61 €/MWh</b> (livraison 2026, vu en 2025), contre 77 €/MWh un an plus tôt ; prix français très inférieurs aux prix allemands et italiens (RTE). Prix pour les ménages <b>13 %</b> sous la moyenne européenne en 2025 (Trésor). Importations d'énergies fossiles : <b>63 Md€</b> en 2025.`,
+      c: [
+        ['FH', ['▼', 'Baisse de la facture'], `<b>−15 %</b> sur la facture d'électricité : contrats universels au coût réel de production, fin des « quasi-taxes » ; tarification du carbone ; mécanisme de protection des ménages précaires pour chaque instrument.`, 'Proposition 3 ; texte socle'],
+        ['LFI', ['◆', 'Tarifs réglementés, public'], `<b>Tarifs réglementés</b> calculés sur les coûts de production, premières quantités <b>gratuites</b> ; libéralisation du marché de l'électricité et du gaz annulée, hausses du prix du gaz annulées ; pôle public de l'énergie avec les coopératives locales et EDF.`, 'Avenir en commun'],
+        ['LR', ['▼', 'Baisse de la facture'], `<b>−5 %</b> tout de suite (suppression des certificats d'économies d'énergie sur l'électricité), puis <b>−5 à −10 %</b> à partir de 2030 ; industriels et consommateurs font profiter du parc nucléaire ; freins à l'électrification levés à coût budgétaire nul.`, 'LR, fiche Électricité'],
+        ['NE', ['◆', 'Prix du carbone, droit commun'], `Fiscalité environnementale à <b>taxation totale constante</b> (pollueur-payeur, produit redistribué aux « perdants »), prix du carbone sous réciprocité internationale ; renouvelables sans prix dérogatoires. Pas d'objectif de prix.`, 'NE, axe 3'],
+        ['PS', ['◆', 'Tarifs réglementés'], `Électricité <b>sortie de la logique de marché</b> : tarifs réglementés étendus aux particuliers, services publics et entreprises ; réseaux (RTE, Enedis, GRDF…) regroupés dans un pôle public ; « chèques-soleil » pour les panneaux solaires ; énergie encadrée pour les artisans-commerçants.`, 'Projet socialiste, énergie'],
+        ['RN', ['▼', 'Baisse des taxes et du prix'], `<b>TVA de 20 % à 5,5 %</b> sur carburants, fioul, gaz et électricité ; <b>sortie du marché européen de l'électricité</b> et de ses règles de fixation des prix ; barrages protégés de la mise en concurrence ; tarifs de rachat préférentiels supprimés au contre-budget.`, '22 mesures ; législatives 2024 ; contre-budget']
+      ] },
+    { id: 't-climat', title: 'Climat et transition écologique', hint: 'Sens : cadre, objectifs et instruments',
+      now: `Objectif officiel : neutralité carbone en <b>2050</b>, <b>−50 %</b> d'émissions brutes en 2030 par rapport à 1990 ; il faudrait baisser d'environ <b>5 %</b> par an de 2024 à 2030, contre 3 % en moyenne de 2017 à 2023. Émissions par habitant <b>−22 %</b> de 2017 à 2024 (UE : −21 %). Transports : 34 % des émissions brutes ; combustion d'énergie : environ 60 % (2023). Source : Trésor.`,
+      c: [
+        ['FH', ['◆', 'Prix du carbone, planification'], `« Écologie de vérité » : <b>tarification du carbone</b> nationale, européenne et mondiale, planification inscrite dans la Constitution ; transition portée par les choix individuels plus que par les interdits, avec protection des ménages précaires ; <b>dividende climatique</b> ; adaptation du territoire.`, 'Texte socle ; chroniques'],
+        ['LFI', ['▲', 'Planification et règle verte'], `<b>−65 %</b> d'émissions de gaz à effet de serre d'ici <b>2033</b>, bilan annuel incluant les émissions importées ; « règle verte » dans la Constitution ; moratoire sur les grands projets « écocidaires » ; comptabilité carbone certifiée pour les entreprises ; conseil à la planification écologique.`, 'Avenir en commun'],
+        ['LR', ['◆', 'Réciprocité, moins de normes'], `Pas de fiche climat dans le dossier. Dans les autres fiches : mécanisme d'ajustement carbone aux frontières renforcé et étendu, principe de précaution retiré de la Charte de l'environnement, Office français de la biodiversité (OFB) <b>supprimé</b>.`, 'LR, Produire plus ; Agriculture'],
+        ['NE', ['◆', 'Prix du carbone, innovation'], `« France leader bas carbone du G20 », sans décroissance ni « écologie punitive » ; prix du carbone et fiscalité verte à <b>taxation constante</b> ; recherche énergétique accélérée. Pas de chiffre de réduction des émissions.`, 'NE, axe 3'],
+        ['PS', ['◆', 'Sécurité écologique, adaptation'], `Pollutions de l'air, de l'eau et des sols traitées, <b>fonds de sécurité climatique</b> financé par une fiscalité carbone progressive qui exclut les ménages modestes ; adaptation planifiée par territoire (bâti, villes, eau, risques) ; subventions aux fossiles interdites.`, 'Projet socialiste, chapitre 7'],
+        ['RN', ['◆', 'Écologie « sans punition »'], `Sortie du Pacte vert, trajectoire carbone appréciée chaque année selon la volonté des Français ; <b>interdiction des moteurs thermiques en 2035 écartée</b>, <b>zones à faibles émissions supprimées</b> ; relocalisations, plan de rénovation du réseau d'eau, biodiversité suivie par des espèces témoins.`, 'Livret Écologie ; législatives 2024']
+      ] },
+    { id: 't-renov', title: 'Rénovation des logements et mobilité', hint: 'Sens : logement et déplacements',
+      now: `<b>3,9 millions</b> de logements classés F ou G (passoires thermiques), soit <b>12,7 %</b> des résidences principales au 1er janvier 2025 ; 1,1 million dans le parc locatif privé (13,8 %), environ 300 000 dans le parc social (5,8 %). Transports : première source d'émissions (34 %).`,
+      c: [
+        ['FH', ['▲', 'Équipement des ménages'], `<b>1 million</b> de pompes à chaleur et <b>1 million</b> de voitures électriques en leasing social ; une liaison par heure entre chaque préfecture et ses sous-préfectures à prix unique ; train du quotidien prioritaire (chronique).`, 'Propositions 4 et 17 ; chronique'],
+        ['LFI', ['▲', 'Rénovation publique'], `<b>700 000</b> logements isolés par an, service public de la rénovation, location des passoires thermiques interdite, chauffages au fioul et au gaz remplacés (pompes à chaleur, géothermie) ; <b>pôle public des transports</b>, lignes de train du quotidien rouvertes.`, 'Avenir en commun ; plan ruralité'],
+        ['LR', ['▼', 'Moins de contraintes'], `Interdictions de louer liées au DPE <b>supprimées</b> (≈ 450 000 logements préservés) ; ZAN abrogé. Pas de plan de rénovation ni de mobilité dans le dossier.`, 'LR, fiche Logement'],
+        ['NE', ['◆', 'Infrastructures'], `Pas de mesure de rénovation thermique dans les documents lus ; <b>plan d'investissement</b> dans les infrastructures routières et ferroviaires contre l'enclavement, fibre ou internet par satellite.`, 'NE, axe 2'],
+        ['PS', ['▲', 'Rénovation et rail'], `Fin des passoires thermiques par un <b>grand emprunt</b> remboursé par les économies d'énergie, TVA à 5,5 % maintenue sur les travaux ; <b>1 million</b> de voitures électriques à 100 €/mois pour les ménages modestes ou ruraux ; petites lignes de train rouvertes, plan vélo ; passeport carbone sur l'avion.`, 'Projet socialiste, chapitre 2'],
+        ['RN', ['▼', 'Moins de contraintes'], `Obligations et interdictions liées au <b>DPE abrogées</b> (travaux, mise en location), accompagnement des rénovations par les professionnels ; zones à faibles émissions supprimées ; TVA à 5,5 % sur les carburants ; plan national de circulation rail, air, route.`, 'Législatives 2024 ; livret Écologie']
+      ] },
+    { id: 't-agri', title: 'Agriculture et alimentation', hint: 'Sens : production, normes et revenus',
+      now: `Agriculture et agroalimentaire : <b>3,5 %</b> du PIB et près de 5 % de l'emploi. Emploi agricole passé de plus de 8 % de l'emploi total au début des années 1980 à moins de 3 %. Environ <b>350 000</b> exploitations en 2023 (664 000 en 2000), plus grandes (69 ha en moyenne contre 42). Niveau de vie médian des ménages agricoles <b>24 700 €</b> en 2021, contre 23 000 € pour l'ensemble de la population.`,
+      c: [
+        ['FH', ['◆', 'Revenus, installation, carbone'], `Objectif de <b>500 000 exploitations</b> en 2035 à taille humaine ; aides concentrées sur l'installation, foncières publiques d'achat de terres ; usage des phytosanitaires <b>réduit de moitié</b> d'ici 2030, haies restaurées ; producteurs organisés face à la grande distribution ; commande publique de produits français ; neutralité carbone agricole.`, 'Texte socle, chantier Agriculture'],
+        ['LFI', ['▲', 'Agriculture paysanne'], `<b>500 000 emplois agricoles</b> créés, prix planchers garantis, dettes des exploitants passés au 100 % bio reprises, PAC réorientée vers la production écologique, réforme agraire (préemption pour les installations), clause de sauvegarde à l'import ; marges de l'agroalimentaire et de la distribution encadrées ; fermes-usines interdites.`, 'Avenir en commun'],
+        ['LR', ['▲', 'Production, moins de normes'], `Agriculture « intérêt fondamental de la Nation » dans la Constitution, <b>principe de précaution retiré</b> de la Charte de l'environnement, <b>OFB supprimé</b> ; fin des surtranspositions, réciprocité à l'import ; stockage d'eau d'intérêt général ; objectif Ecophyto de −50 % abandonné.`, 'LR, fiche Agriculture'],
+        ['NE', ['▲', 'Liberté de produire'], `Fin des surtranspositions, clauses miroirs, PAC recentrée sur la production ; nouvelles techniques génomiques autorisées, phytosanitaires encadrés « sur base scientifique » ; statut unique d'exploitation simplifié, charges transférées en partie vers la valeur ajoutée ; <b>compte-épargne aléas climatiques</b> pour les agriculteurs.`, 'NE, Agriculture ; axe 2'],
+        ['PS', ['◆', 'Agroécologie'], `Engrais et phytosanitaires de synthèse <b>remplacés en 15 ans</b> par l'agroécologie ; moratoire sur les nouveaux méga-centres logistiques de e-commerce pour préserver les terres agricoles. Pas de volet prix ni PAC dans les documents lus.`, 'Projet socialiste, chapitres 7 et 1'],
+        ['RN', ['▲', 'Prix et souveraineté'], `Prix rémunérateurs (loi Egalim modifiée, intervention de l'État sur les indices), marges de la grande distribution encadrées ; opposition au Pacte vert et aux accords avec l'Australie, la Nouvelle-Zélande et le Mercosur ; plan de soutien de 5 ans à l'agriculture bio ; <b>80 %</b> de produits français en cantine à l'horizon 2027.`, 'Livret Agriculture ; législatives 2024']
+      ] },
+    { id: 't-rural', title: 'Campagnes, services publics et aménagement', hint: 'Sens : services, liaisons et urbanisme',
+      now: `Les territoires ruraux représentent <b>88 %</b> des communes et un tiers de la population ; la population rurale progresse de <b>0,2 %</b> par an (2017-2023), contre 0,5 % en ville. <b>9 %</b> des sols sont artificialisés (6 % dans les communes rurales, 56 % dans les grands centres urbains). Objectif de <b>zéro artificialisation nette</b> en 2050, rythme de consommation d'espace divisé par deux entre 2021 et 2031.`,
+      c: [
+        ['FH', ['▲', 'Maillage territorial'], `« Promesse unique, moyens variables » : <b>sous-préfectures</b> comme maillage de base, <b>une liaison par heure</b> entre préfecture et sous-préfectures à prix unique, assemblée annuelle des maires et conseil des territoires auprès du Président ; train du quotidien et adaptation du territoire au climat.`, 'Texte socle ; chronique'],
+        ['LFI', ['▲', 'Services publics partout'], `<b>États généraux des espaces ruraux</b>, fermetures de services publics stoppées (poste, gares, hôpitaux, écoles, tribunaux), guichets physiques rouverts, bus des services publics ; DGF rééquilibrée et indexée sur l'inflation, métropoles supprimées ; plan de protection du foncier pour le <b>ZAN</b>.`, 'Plan ruralité ; Avenir en commun'],
+        ['LR', ['▼', 'Libérer la construction'], `<b>ZAN abrogé</b> : une commune rurale « qui n'a pas bétonné » ne peut plus se développer ; liberté de bâtir rendue aux maires, avec une part de la TVA des logements neufs. Pas de fiche ruralité ni services publics dans le dossier.`, 'LR, fiche Logement'],
+        ['NE', ['◆', 'Provinces et désenclavement'], `Schéma <b>État / Province / bloc communal</b> (référendum constitutionnel) ; chaque zone rurale à moins de <b>20 minutes</b> d'une ville moyenne, chaque ville moyenne à moins d'1 h 30 d'une métropole ; plan routier et ferroviaire, fibre ou satellite ; loi SRU supprimée.`, 'NE, axes 2 et 3'],
+        ['PS', ['◆', 'Commerces et rail'], `Plan contre la <b>vacance commerciale</b> (foncières locales, droit de préemption) : 62 % des communes n'ont plus de commerce, selon le PS ; petites lignes de train rouvertes ; centres de santé dans les territoires sous-dotés. Pas de plan ruralité dédié.`, 'Projet socialiste, chapitres 1, 2 et 6'],
+        ['RN', 'none', `Pas de document sur les campagnes ni les services publics dans le dossier (agriculture et zones à faibles émissions : voir ci-dessus).`, '—']
+      ] }
+  ];
+  var themesEl = document.getElementById('themes');
+  THEMES.forEach(function (t) {
+    var sec = document.createElement('article'); sec.className = 'theme'; sec.id = t.id;
+    var head = '<div class="theme-head"><h3>' + t.title + '<span class="hint">' + t.hint + '</span></h3><p class="now"><span class="tag">Aujourd\'hui</span>' + t.now + '</p></div>';
+    var cells = t.c.map(function (c) {
+      var d = Array.isArray(c[1]) ? c[1] : DIR[c[1]];
+      return '<div class="cell" data-p="' + c[0] + '" style="--c:var(--p-' + c[0] + ')"><div class="who"><span class="dot"></span>' + c[0] + '</div>' +
+        '<span class="pill"><i aria-hidden="true">' + d[0] + '</i>' + d[1] + '</span><p>' + c[2] + '</p><span class="src">' + c[3] + '</span></div>';
+    }).join('');
+    sec.innerHTML = head + '<div class="cells">' + cells + '</div>';
+    themesEl.appendChild(sec);
+  });
+
+  /* ---------- Graphiques « aujourd'hui → cible » ---------- */
+  var fr = function (v, d) { return v.toLocaleString('fr-FR', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); };
+  var PANELS = [
+    { id: 'epr2', title: 'Nouveaux réacteurs EPR2', sub: 'Nombre de réacteurs à construire',
+      min: 0, max: 8, ticks: [0, 2, 4, 6, 8], tick: function (v) { return String(v); },
+      today: { v: 0, label: '0 en service' },
+      rows: [
+        { p: 'FH', v: 6, label: '6', sub: 'comme le programme officiel', tip: `6 EPR2, comme le programme lancé à Belfort en 2022 et repris dans la PPE3 ; éolien en mer industrialisé et électrification massive.`, src: `France Humaniste, proposition 16` },
+        { p: 'LFI', v: 0, label: '0', sub: 'programme arrêté', tip: `Arrêt du programme de nouveau nucléaire (EPR2) et fermeture progressive des centrales existantes.`, src: `L'Avenir en commun 2027` }
+      ],
+      note: `Programme officiel (Trésor, RESF 2027) : 6 EPR2, premier couplage attendu vers 2038, et un second palier d'au moins 13 GW (8 EPR2) à l'étude. LR, NE et le RN relancent le nucléaire (EPR, mini-réacteurs) sans donner de nombre ; le PS : « le nucléaire autant que nécessaire ».` },
+    { id: 'duree', title: 'Durée d\'exploitation des réacteurs actuels', sub: 'Années',
+      min: 50, max: 85, ticks: [50, 60, 70, 80], tick: function (v) { return v + ' ans'; },
+      today: { v: 60, label: '60 ans ou plus' },
+      rows: [
+        { p: 'LR', v: 80, label: '80 ans', sub: 'trajectoire « 80 ans »', tip: `Inscrire le parc nucléaire dans une trajectoire d'exploitation à 80 ans : « nos centrales sont à la moitié de leur vie ».`, src: `LR, fiche Électricité` },
+        { p: 'LFI', v: 60, label: '60 ans', sub: 'pas au-delà, fermeture progressive', tip: `Fermeture progressive des centrales, sans prolonger leur durée de vie au-delà de 60 ans.`, src: `L'Avenir en commun 2027` },
+        { p: 'NE', v: 60, label: '60 ans', sub: 'prolongation jusqu\'à 60 ans', tip: `Prolongation de la durée de vie des réacteurs jusqu'à 60 ans, construction d'EPR de nouvelle génération et de mini-réacteurs.`, src: `Nouvelle Énergie, axe 3` }
+      ],
+      note: `Aujourd'hui : la PPE3 prévoit de poursuivre le fonctionnement des réacteurs existants jusqu'à 60 ans « voire au-delà », sous réserve de sûreté (Trésor, RESF 2027). FH, PS et le RN ne donnent pas de durée.` },
+    { id: 'echeance', title: 'Échéance annoncée pour sortir des énergies fossiles', sub: 'Année',
+      min: 2026, max: 2063, ticks: [2030, 2040, 2050, 2060], tick: function (v) { return String(v); },
+      today: { v: 2026, label: '2026' },
+      rows: [
+        { p: 'FH', v: 2050, label: '2050', sub: 'neutralité carbone', tip: `Le « net zéro en 2050 » est l'horizon de l'écologie de FH ; pas d'échéance propre pour les fossiles.`, src: `France Humaniste, texte socle` },
+        { p: 'PS', v: 2050, label: '2050', sub: 'mix 100 % décarboné', tip: `Planifier la sortie des énergies fossiles et la transition vers un mix énergétique 100 % décarboné en 2050.`, src: `Le Projet socialiste, énergie` },
+        { p: 'LFI', v: 2050, label: '2050', sub: 'fin des fossiles', tip: `Organiser la sortie des énergies fossiles avant 2050.`, src: `L'Avenir en commun 2027` },
+        { p: 'LFI', v: 2060, label: '2060', sub: '100 % renouvelable', tip: `Atteindre le 100 % d'énergies renouvelables au plus tard en 2060.`, src: `L'Avenir en commun 2027` }
+      ],
+      note: `L'objectif officiel est la neutralité carbone en 2050 (Trésor, RESF 2027). LR, NE et le RN ne fixent pas d'échéance ; le RN estime la trajectoire carbone chaque année « selon la volonté des Français ».` },
+    { id: 'facture', title: 'Baisse annoncée du prix de l\'électricité', sub: 'Pour les ménages, en %',
+      min: 0, max: 20, ticks: [0, 5, 10, 15, 20], tick: function (v) { return v + ' %'; },
+      today: { v: 0, label: 'prix actuel' },
+      rows: [
+        { p: 'RN', v: 12.1, label: '≈ −12 %', sub: 'TVA 20 % à 5,5 % (calcul)', tip: `Baisser la TVA de 20 % à 5,5 % sur l'électricité, le gaz, le fioul et les carburants. Calcul : 1,055 ÷ 1,20 = 0,879, soit environ −12 % du prix TTC, sans effet éventuel de la sortie du marché européen.`, src: `RN, 22 mesures (2022)` },
+        { p: 'LR', v: 12.5, label: '−10 à −15 %', sub: 'dès 2030, dont −5 % tout de suite', tip: `−5 % immédiatement par la suppression des CEE sur l'électricité, puis encore −5 à −10 % à partir de 2030.`, src: `LR, fiche Électricité` },
+        { p: 'FH', v: 15, label: '−15 %', sub: 'coût réel, fin des quasi-taxes', tip: `Électricité au prix du nucléaire français : contrats universels au coût réel de production, fin des quasi-taxes, −15 % sur la facture.`, src: `France Humaniste, proposition 3` }
+      ],
+      note: `Les périmètres diffèrent : le RN baisse une taxe (électricité, gaz, fioul, carburants), LR et FH annoncent une baisse de la facture d'électricité. LFI et le PS rétablissent des tarifs réglementés sans pourcentage ; NE ne fixe pas d'objectif de prix.` },
+    { id: 'exploitations', title: 'Exploitations agricoles', sub: 'Nombre d\'exploitations',
+      min: 300000, max: 520000, ticks: [300000, 400000, 500000], tick: function (v) { return fr(v / 1000) + ' 000'; },
+      today: { v: 350000, label: '≈ 350 000 (2023)' },
+      rows: [
+        { p: 'FH', v: 500000, label: '500 000', sub: 'en 2035 (+43 %)', tip: `Redresser la barre et viser 500 000 exploitations agricoles en 2035, à taille humaine et direction familiale, contre environ 350 000 en 2023.`, src: `France Humaniste, chantier Agriculture` }
+      ],
+      note: `Insee : 664 000 exploitations en 2000, 390 000 en 2020, près de 350 000 en 2023. LFI vise 500 000 emplois agricoles, une autre mesure (emplois, pas exploitations) ; LR, NE, PS et le RN ne fixent pas de nombre.` }
+  ];
+  var panelsEl = document.getElementById('panels');
+  PANELS.forEach(function (pn) {
+    var fig = document.createElement('figure'); fig.className = 'panel'; fig.id = 'pan-' + pn.id;
+    fig.innerHTML = '<h3>' + pn.title + '</h3><p class="sub">' + pn.sub + '</p><div class="chart"></div><p class="note">' + pn.note + '</p>';
+    panelsEl.appendChild(fig); pn.el = fig.querySelector('.chart');
+  });
+  var NS = 'http://www.w3.org/2000/svg';
+  function mk(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function tipFor(el, W) {
+    var tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; el.appendChild(tip);
+    return {
+      show: function (html, cx, cy) {
+        tip.innerHTML = html; tip.hidden = false;
+        var w = tip.offsetWidth, h = tip.offsetHeight;
+        tip.style.left = Math.min(Math.max(cx - w / 2, 0), W - w) + 'px';
+        tip.style.top = (cy - h - 10 < 0 ? cy + 24 : cy - h - 10) + 'px';
+      },
+      hide: function () { tip.hidden = true; }
+    };
+  }
+  function drawPanel(pn) {
+    var el = pn.el; el.innerHTML = '';
+    var rows = pn.rows.filter(function (r) { return state[r.p]; });
+    if (!rows.length) { el.innerHTML = '<p class="empty">Aucun des partis affichés ne donne de chiffre ici.</p>'; return; }
+    var W = Math.max(el.clientWidth, 240), small = W < 420;
+    var leftW = 44, padR = small ? 8 : 12, top = 40, rowH = 62, bottom = 28, x0 = leftW + 6, x1 = W - padR;
+    var H = top + rowH * rows.length + bottom;
+    var sx = function (v) { return x0 + (v - pn.min) / (pn.max - pn.min) * (x1 - x0); };
+    var cw = small ? 6.2 : 6.8;
+    var svg = mk('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img',
+      'aria-label': pn.title + ' : aujourd\'hui ' + pn.today.label + ' ; ' + rows.map(function (r) { return r.p + ' ' + r.label; }).join(' ; ') });
+    pn.ticks.forEach(function (t, i) {
+      var x = sx(t);
+      mk('line', { x1: x, x2: x, y1: top - 6, y2: H - bottom, stroke: 'var(--grid)', 'stroke-width': 1 }, svg);
+      if (small && pn.ticks.length > 5 && i % 2 === 1) return;
+      mk('text', { x: x, y: H - 8, 'text-anchor': x < x0 + 14 ? 'start' : (x > x1 - 14 ? 'end' : 'middle'), 'font-size': 11, fill: 'var(--faint)' }, svg).textContent = pn.tick(t);
+    });
+    var tdx = sx(pn.today.v);
+    mk('line', { x1: tdx, x2: tdx, y1: top - 16, y2: H - bottom, stroke: 'var(--muted)', 'stroke-width': 1.5, 'stroke-dasharray': '4 3' }, svg);
+    mk('text', { x: tdx + (tdx < W * 0.6 ? 6 : -6), y: 14, 'text-anchor': tdx < W * 0.6 ? 'start' : 'end', 'font-size': 12, fill: 'var(--fg)', 'font-weight': 600 }, svg).textContent = 'Aujourd\'hui · ' + pn.today.label;
+    el.appendChild(svg);
+    var tip = tipFor(el, W);
+    rows.forEach(function (r, i) {
+      var yc = top + i * rowH + 30, tx = sx(r.v), c = 'var(--p-' + r.p + ')';
+      var g = mk('g', { 'data-p': r.p }, svg);
+      mk('circle', { cx: 8, cy: yc, r: 5, fill: c }, g);
+      mk('text', { x: 19, y: yc + 4, 'font-size': 12, 'font-weight': 600, fill: 'var(--fg)' }, g).textContent = r.p;
+      mk('line', { x1: tdx, x2: tx, y1: yc, y2: yc, stroke: c, 'stroke-width': 3, 'stroke-linecap': 'round', opacity: 0.55 }, g);
+      mk('circle', { cx: tdx, cy: yc, r: 4.5, fill: 'var(--ring)', stroke: 'var(--muted)', 'stroke-width': 2 }, g);
+      mk('circle', { cx: tx, cy: yc, r: 6.5, fill: c, stroke: 'var(--ring)', 'stroke-width': 2 }, g);
+      var lw = r.label.length * cw, sw = r.sub.length * (cw - 0.9);
+      var place = function (len) { return Math.min(Math.max(tx, x0 + len / 2), x1 - len / 2 + padR - 2); };
+      mk('text', { x: place(lw), y: yc - 14, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: 'var(--fg)' }, g).textContent = r.label;
+      mk('text', { x: place(sw), y: yc + 25, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--muted)' }, g).textContent = r.sub;
+      var hit = mk('rect', { x: 0, y: yc - 28, width: W, height: rowH - 2, fill: 'transparent', class: 'hit', tabindex: 0, role: 'img', 'aria-label': NAME[r.p] + ' : ' + r.label + '. ' + r.tip }, g);
+      hit.style.cursor = 'pointer';
+      var open = function () { tip.show('<b>' + NAME[r.p] + '</b> · ' + r.label + '<br>' + r.tip + '<small>' + r.src + '</small>', tx, yc - 28); };
+      hit.addEventListener('mouseenter', open); hit.addEventListener('focus', open); hit.addEventListener('click', open);
+      hit.addEventListener('mouseleave', tip.hide); hit.addEventListener('blur', tip.hide);
+    });
+  }
+
+
+
+  /* ---------- Système électrique en 2025 ---------- */
+  var TRENDS = [
+    { k: 'Production d\'électricité par filière', v: '547,5<small>TWh en 2025</small>', s: 'France métropolitaine · fossile et solaire-éolien-bioénergies calculés à partir de RTE', unit: 'TWh', rows: [['Nucléaire', 373.0, '373,0'], ['Hydraulique', 62.4, '62,4'], ['Solaire, éolien, bioénergies (calcul)', 85.7, '≈ 85,7'], ['Fossile (calcul)', 26.4, '≈ 26,4']] },
+    { k: 'Parc installé fin 2025', v: '164,5<small>GW</small>', s: 'Toutes filières · évolution sur un an : solaire +5,9 GW, nucléaire +1,6 GW (Flamanville 3), éolien terrestre +0,9 GW', unit: 'GW', rows: [['Nucléaire', 63.0, '63,0'], ['Solaire', 30.4, '30,4'], ['Hydraulique', 25.7, '25,7'], ['Éolien terrestre', 23.9, '23,9'], ['Gaz', 12.4, '12,4'], ['Fioul', 3.0, '3,0'], ['Thermique renouvelable et déchets', 2.3, '2,3'], ['Éolien en mer', 1.9, '1,9'], ['Charbon', 1.8, '1,8']] }
+  ];
+  var trendsEl = document.getElementById('trends');
+  TRENDS.forEach(function (d) {
+    var max = Math.max.apply(null, d.rows.map(function (r) { return r[1]; }));
+    var el = document.createElement('div'); el.className = 'trend';
+    el.innerHTML = '<span class="k">' + d.k + '</span><span class="v">' + d.v + '</span><span class="s">' + d.s + '</span>' +
+      '<div class="hb" role="img" aria-label="' + d.k + ' : ' + d.rows.map(function (r) { return r[0] + ' ' + r[2] + ' ' + d.unit; }).join(', ') + '">' +
+      d.rows.map(function (r) { return '<span class="lab">' + r[0] + '</span><span class="trk"><span class="bar" style="display:block;width:' + (r[1] / max * 100).toFixed(1) + '%"></span></span><span class="num">' + r[2] + '</span>'; }).join('') + '</div>';
+    trendsEl.appendChild(el);
+  });
+
+  /* ---------- Coûts annoncés ---------- */
+  var EFFORTS = [
+    ['FH', 'Facture d\'électricité −15 % ; 6 EPR2 ; 1 million de pompes à chaleur et 1 million de voitures électriques en leasing social ; pas de montant en euros dans le dossier', '—', 'Propositions sans chiffrage', 'France 2027'],
+    ['LFI', 'Budget d\'urgence 2027 : services publics, pouvoir d\'achat et planification écologique, un peu plus de 80 Md€ pour l\'ensemble ; isolation de 700 000 logements par an sans montant isolé', '2027, première année', 'Dépenses nouvelles', 'Budget rectificatif, 14/10/2026'],
+    ['LR', 'Électricité −5 % tout de suite (suppression des CEE) puis −5 à −10 % dès 2030 ; aides aux nouvelles capacités éoliennes et photovoltaïques supprimées ; « pas d\'impôt nouveau »', 'Jusqu\'en 2032', 'Baisse de prix, économies', 'LR, fiche Électricité ; 12/10/2026'],
+    ['NE', 'Fiscalité environnementale à taxation totale constante ; économies sur les renouvelables réinvesties dans le nucléaire ; aucun montant', '—', 'Non chiffré', 'NE, axe 3'],
+    ['PS', 'Grand emprunt de rénovation des logements remboursé par les économies d\'énergie ; fonds de sécurité climatique financé par une fiscalité carbone progressive ; aucun montant', '—', 'Non chiffré', 'Projet socialiste'],
+    ['RN', 'Subventions aux éoliennes : 5 Md€ rendus aux ménages ; TVA de 20 % à 5,5 % sur l\'énergie (coût non repris ici) ; contre-budget 2026 : tarifs de rachat préférentiels supprimés, « Ma Prim\'Rénov » remplacée par « 100 % Rénov », sans montant isolé', '2022 ; 2026', 'Économies et baisses de taxes', '22 mesures ; contre-budget 2026']
+  ];
+  var tb = document.getElementById('efforts-body');
+  EFFORTS.forEach(function (e) {
+    var tr = document.createElement('tr'); tr.setAttribute('data-p', e[0]);
+    tr.innerHTML = '<td><span class="who" style="--c:var(--p-' + e[0] + ')"><span class="dot"></span>' + e[0] + '</span></td><td>' + e[1] + '</td><td>' + e[2] + '</td><td>' + e[3] + '</td><td class="muted">' + e[4] + '</td>';
+    tb.appendChild(tr);
+  });
+
+  /* ---------- Filtre des partis ---------- */
+  var filtre = document.getElementById('filtre');
+  P.forEach(function (p) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.id = 'chip-' + p.code;
+    b.style.setProperty('--c', 'var(--p-' + p.code + ')'); b.setAttribute('aria-pressed', 'true');
+    b.innerHTML = '<span class="dot"></span><b>' + p.code + '</b><span class="muted">' + p.name + '</span>';
+    b.addEventListener('click', function () {
+      var on = !state[p.code];
+      if (!on && Object.keys(state).filter(function (k) { return state[k]; }).length === 1) return;
+      state[p.code] = on; b.setAttribute('aria-pressed', String(on)); apply();
+    });
+    filtre.appendChild(b);
+  });
+  function apply() {
+    document.querySelectorAll('[data-p]').forEach(function (n) {
+      if (n.closest('svg')) return;
+      n.hidden = !state[n.getAttribute('data-p')];
+    });
+    PANELS.forEach(drawPanel);
+  }
+  apply();
+  var lastW = 0;
+  if (window.ResizeObserver) {
+    new ResizeObserver(function () { var w = panelsEl.clientWidth; if (Math.abs(w - lastW) > 1) { lastW = w; PANELS.forEach(drawPanel); } }).observe(panelsEl);
+  } else { window.addEventListener('resize', function () { PANELS.forEach(drawPanel); }); }
+})();
+</script>
+<script>
+(function () {
+  var b = document.getElementById('theme-toggle'), r = document.documentElement;
+  function label() { b.setAttribute('aria-label', r.getAttribute('data-theme') === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre'); }
+  b.addEventListener('click', function () {
+    var n = r.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', n);
+    try { localStorage.setItem('e27-theme', n); } catch (e) {}
+    label();
+  });
+  label();
+})();
+</script>
+</body>
+</html>
