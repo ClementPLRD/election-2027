@@ -12,7 +12,7 @@
   :root {
     --bg: #f3f5f7; --panel: #fcfdfd; --fg: #0f1b26; --muted: #52606d; --faint: #7b8794;
     --line: #dde3e8; --grid: #e6eaee; --accent: #0b5c6b; --pill: #e6eef1; --ring: #fcfdfd;
-    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300; --p-LE: #7c4dce;
+    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PP: #e87ba4; --p-RN: #008300; --p-LE: #7c4dce; --p-HO: #0a93a8;
     --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-title: "Newsreader", Georgia, "Times New Roman", serif;
   }
@@ -20,14 +20,14 @@
     :root:not([data-theme="light"]) {
       --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
       --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
+      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PP: #d55181; --p-RN: #008300; --p-LE: #9b7be0; --p-HO: #33bcd1;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
     --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
+    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PP: #d55181; --p-RN: #008300; --p-LE: #9b7be0; --p-HO: #33bcd1;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -157,7 +157,7 @@
   <header class="top">
     <p class="eyebrow">Présidentielle 2027 · Programmes sociaux</p>
     <h1 id="titre">Orientations sociales 2027</h1>
-    <p class="lede">Retraites : LFI, PS et RN reviennent sur la réforme de 2023, NE relève l'âge à 65 ans et FH le remplace par une durée de cotisation. Santé : LFI et PS étendent la couverture publique, NE et RN misent sur moins d'administration. Famille : LFI et PS créent un service public de la petite enfance, LR remplace les allocations familiales et le quotient familial par un revenu familial. Aides : LR, NE et RN les plafonnent ou les conditionnent, LFI, PS et LE les relèvent (LE : garantie d'autonomie à 50 % du Smic net, retraite à 62 ans, 2 000 centres de santé).</p>
+    <p class="lede">Retraites : LFI, LE, PP et RN reviennent sur la réforme de 2023, NE relève l'âge à 65 ans et FH le remplace par une durée de cotisation. Santé : LFI, LE et PP renforcent l'offre et la couverture publiques, NE et RN misent sur moins d'administration. Famille : LFI, LE et PP renforcent le service public de la petite enfance, LR remplace les allocations familiales et le quotient familial par un revenu familial. Aides : LR, NE et RN les plafonnent ou les conditionnent, LFI, LE et PP les relèvent ou les unifient (LE : garantie d'autonomie à 50 % du Smic net, retraite à 62 ans ; PP : minimum social unique, Smic à 1 600 € net).</p>
     <p class="stamp">Situation au 10/11/2026 · positions tirées des documents des partis, souvent sans chiffrage. Immigration, sécurité et emploi ne sont pas traitées ici.</p>
     <div class="chips" id="filtre" role="group" aria-label="Partis affichés"><span class="lbl">Partis affichés</span></div>
   </header>
@@ -219,7 +219,7 @@
       <li><b>Chiffres de contexte.</b> Plusieurs constats (200 000 places d'accueil manquantes, moins de 100 000 logements publics par an, 2,9 M de ménages en attente) viennent des partis eux-mêmes et sont marqués « selon ».</li>
       <li><b>LE.</b> Programme de juillet 2026 et dossiers de presse (budget du 26/08/2026, rentrée) : montants peu nombreux, hors le budget 2027 et les recettes.</li>
       <li><b>LR.</b> Pas de fiche santé ni grand âge dans le dossier ; le plan du 12/10/2026 annonce 42 Md€ d'économies sur les retraites sans en détailler les moyens.</li>
-      <li><b>Éducation : périmètre.</b> Seuls l'école, la rémunération des enseignants et l'université (places) sont traités ; programmes scolaires, orientation et enseignement privé figurent dans le texte des cellules. Les hausses de salaire ne sont pas comparables entre elles (en % pour NE, RN et FH, en euros pour LR, sans chiffre pour LFI et le PS).</li>
+      <li><b>Éducation : périmètre.</b> Seuls l'école, la rémunération des enseignants et l'université (places) sont traités ; programmes scolaires, orientation et enseignement privé figurent dans le texte des cellules. Les hausses de salaire ne sont pas comparables entre elles (en % pour NE, RN, FH et LE, en euros pour LR, sans chiffre pour LFI et PP).</li>
       <li><b>Non couvert.</b> Immigration, sécurité, chômage et emploi (voir le <a href="economiques.html">dashboard économique</a> pour l'assurance chômage).</li>
       <li><b>Aucun chiffrage vérifié</b> par un organisme indépendant.</li>
     </ul>
@@ -231,7 +231,7 @@
         <li>Retraites : COR, rapport annuel 2026 ; <a href="https://www.lassuranceretraite.fr/portail-info/hors-menu/actualites-nationales/actif/2026/carriere-longue-quels-changement.html">Assurance retraite</a> (suspension de la réforme). Minima : <a href="https://www.caf.fr/professionnels/offres-et-services/accompagnement-des-allocataires/bareme-revenu-de-solidarite-active">Caf</a> (RSA, AAH), <a href="https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2025_29_22122025.pdf">Cnav</a> (ASPA).</li>
         <li>Santé : <a href="https://drees.solidarites-sante.gouv.fr/actualites-evenements/combien-coute-la-sante-en-france-qui-paie">DREES</a>, comptes de la santé (édition 2026) ; Insee, dossier « 2027 : la statistique publique au service des débats » (reste à charge, perte d'autonomie) ; Sénat, avis n° 139 sur le PLFSS 2027.</li>
         <li>Éducation : DEPP, <i>Repères et références statistiques</i> (RERS 2026) : dépense intérieure d'éducation, effectifs, taille des classes.</li>
-        <li>Partis : FH, <i>France 2027</i> · LFI, <i>L'Avenir en commun</i>, plans Santé et BTP-logement, budget rectificatif du 14/10/2026 · LR, fiches Famille, Logement et École, brochure, plan du 12/10/2026 · NE, pages Santé, Éducation, programme et FAQ · LE, <i>Pour une prospérité écologique</i> (programme de juillet 2026), dossiers de presse budget 2027 et rentrée · PS, <i>Le Projet socialiste</i> · RN, 22 mesures pour 2022, livrets (dont École), programme des législatives 2024, contre-budget 2026.</li>
+        <li>Partis : FH, <i>France 2027</i> · LFI, <i>L'Avenir en commun</i>, plans Santé et BTP-logement, budget rectificatif du 14/10/2026 · LR, fiches Famille, Logement et École, brochure, plan du 12/10/2026 · NE, pages Santé, Éducation, programme et FAQ · LE, <i>Pour une prospérité écologique</i> (programme de juillet 2026), dossiers de presse budget 2027 et rentrée · PP, <i>Les chantiers de Place publique</i> · RN, 22 mesures pour 2022, livrets (dont École), programme des législatives 2024, contre-budget 2026.</li>
       </ul>
     </details>
   </section>
@@ -243,8 +243,9 @@
 (function () {
   var P = [
     { code: 'FH', name: 'France Humaniste' },
+    { code: 'HO', name: 'Horizons' },
     { code: 'LE', name: 'Les Écologistes' }, { code: 'LFI', name: 'La France insoumise' }, { code: 'LR', name: 'Les Républicains' },
-    { code: 'NE', name: 'Nouvelle Énergie' }, { code: 'PS', name: 'Parti socialiste' }, { code: 'RN', name: 'Rassemblement national' }
+    { code: 'NE', name: 'Nouvelle Énergie' }, { code: 'PP', name: 'Place publique' }, { code: 'RN', name: 'Rassemblement national' }
   ];
   var NAME = {}; P.forEach(function (p) { NAME[p.code] = p.name; });
   var state = {}; P.forEach(function (p) { state[p.code] = true; });
@@ -256,77 +257,84 @@
       now: `Dépense de santé <b>11,8 % du PIB</b>, reste à charge <b>495 € par habitant</b> (2025). Déficit de la Sécurité sociale <b>21,8 Md€</b> en 2026 ; hausse de l'Ondam limitée à <b>2 %</b> dans le projet 2027.`,
       c: [
         ['FH', 'none', `Aucune mesure de santé dans le projet.`, '—'],
+        ['HO', 'nc',`Pas de plan de santé. Note n°01 : état des lieux des mesures contre les déserts médicaux (fin du numerus clausus, Ségur, assistants médicaux, groupements hospitaliers). Note n°19 (A. Robinet) sur la <b>santé mentale</b> : prévention, pédopsychiatrie (la moitié des spécialistes perdue en dix ans), équipes mobiles, réinsertion, recherche, numérique ; les troubles mentaux sont le 1<sup>er</sup> poste de dépenses de l'Assurance maladie (23 Md€). Manifeste européen 2024 : stratégie pharmaceutique européenne, harmonisation des compétences des soignants.`, `Notes n°01 (sept. 2022) et n°19 (févr. 2025), note de réflexion, non officielle ; manifeste européen`],
         ['LE', 'up', `<b>2 000 centres de santé</b> d'ici 2030 (zones rurales, quartiers prioritaires), installation des médecins libéraux régulée, dépassements d'honoraires limités à <b>50 %</b> du tarif de la Sécurité sociale, soins essentiels remboursés à <b>100 %</b>, prévention renforcée, pôle public du médicament ; CSG rendue progressive et relevée d'un point pour équilibrer l'assurance maladie.`, 'Programme 2027 (juillet 2026), chapitres 17, 29, 30'],
         ['LFI', 'up', `<b>100 % Sécu</b> : remboursement à 100 %, intégration des complémentaires, fin des franchises et des dépassements d'honoraires, arrêt maladie à 100 %. 1re année : <b>+3 Md€</b> pour les hôpitaux et 10 000 postes de soignants.`, 'Plan santé ; budget 14/10/2026'],
         ['LR', 'nc', `Pas de fiche santé dans le dossier. Plan du 12/10/2026 : <b>−4 Md€</b> sur les arrêts maladie ; la santé n'est pas chiffrée.`, 'LR, 12/10/2026 (LCP)'],
         ['NE', 'mix', `Remboursement plus élevé en zones sous-dotées, maisons de santé par canton, <b>suppression des ARS</b>, <b>doubler</b> les étudiants en médecine d'ici 2030. Pas de chiffrage.`, 'NE, page Santé'],
-        ['PS', 'up', `Prévention de <b>4 % à 8 %</b> des dépenses de santé, installation des médecins régulée, centres de santé, rachats d'établissements par des fonds interdits.`, 'Projet socialiste, santé'],
+        ['PP', 'up', `Modèle <b>coopératif</b> de santé piloté localement (projet territorial de santé), <b>fin de la tarification à l'acte</b> à l'hôpital au profit d'un financement global et pluriannuel ; centres et maisons de santé, permanences mobiles en zones rurales ; soignants mieux rémunérés ; <b>plan de prévention</b> hors de l'Ondam annuel, fonds territorial de prévention ; Sécurité sociale unique et simplifiée.`, 'Programme PP, p. 49-53'],
         ['RN', 'mix', `22 mesures (2022) : plan d'urgence de <b>20 Md€</b>, fin des fermetures de lits et de maternités, <b>suppression des ARS</b>. 2024 : fin du numerus apertus. Contre-budget 2026 : médicaments à l'unité, contrôle des ALD.`, '22 mesures ; législatives 2024']
       ] },
     { id: 't-retraites', group: 'Retraites et pauvreté', title: 'Retraites', hint: 'Sens : âge de départ',
       now: `<b>64 ans</b> pour les générations 1969 et suivantes (172 trimestres) ; réforme suspendue : 62 ans 9 mois pour la génération 1964. Dépenses <b>14,1 % du PIB</b> (422 Md€).`,
       c: [
         ['FH', 'off', `Suppression de l'âge légal au profit d'une durée de cotisation, pénibilité prise en compte.`, 'Texte socle'],
+        ['HO', 'nc',`L'édito de la note n°14 écarte la « retraite à 60 ans » et une nouvelle réduction du temps de travail, admet des départs anticipés pour les carrières pénibles et propose accompagnement, formation et <b>fin de carrière flexible</b>. Pas de position sur l'âge légal de 64 ans.`, `Note n°14, sept. 2024 (note de réflexion, non officielle)`],
         ['LE', 'down', `Abrogation de l'âge légal à 64 ans : <b>retour immédiat à 62 ans</b>, objectif de <b>60 ans</b>, et 60 ans pour les carrières longues et pénibles ; conférence travail-retraite pour l'équilibre en 2050, refus de la capitalisation et de la retraite à points ; pénibilité rétablie (4 critères), minimum contributif et ASPA relevés.`, 'Programme 2027 (juillet 2026), chapitre 31'],
         ['LFI', 'down', `Abrogation de la réforme de 2023, puis retour à <b>60 ans</b> à taux plein pour 40 annuités ; pension de carrière complète au moins au niveau du Smic.`, 'Avenir en commun'],
         ['LR', 'mix', `Pas de changement d'âge dans les documents lus ; seniors sans cotisations (≈ <b>+300 €</b>/mois net). Plan du 12/10/2026 : <b>−42 Md€</b> sur les retraites, moyens non précisés.`, 'Brochure ; LR, 12/10/2026'],
         ['NE', 'up', `Âge légal à <b>65 ans</b>, puis socle par répartition et capitalisation pour les autres régimes (≈ 116 Md€).`, 'NE, axe 2'],
-        ['PS', 'down', `Abrogation de la réforme Borne ; <b>43 annuités</b> réductibles selon la pénibilité ; âge légal ramené à <b>62 ans</b>.`, 'Projet socialiste, retraites'],
+        ['PP', 'mix', `Abrogation de la réforme de 2023, puis réforme d'ampleur avec les partenaires sociaux : fin de la focalisation sur l'âge légal, « certains doivent pouvoir partir à <b>60 ans</b>, d'autres devront travailler davantage » ; <b>Haut Conseil du pilotage des retraites</b> à majorité syndicale ; carrières pénibles et parcours hachés mieux pris en compte ; plus de cotisants (seniors, immigration de travail).`, 'Programme PP, p. 43'],
         ['RN', 'down', `Abrogation de la réforme de 2023, système « progressif » tenant compte de la pénibilité. En 2022 : <b>60 ans</b> après 40 annuités pour les carrières longues.`, 'Législatives 2024 ; 22 mesures']
       ] },
     { id: 't-grandage', group: 'Santé et grand âge', title: 'Dépendance et grand âge', hint: 'Sens : effort public',
       now: `<b>1,3 million</b> de personnes de 60 ans et plus à domicile en perte d'autonomie (8 %) ; ≈ <b>+700 000</b> seniors concernés d'ici 2050. Minimum vieillesse : <b>1 043,59 €</b> par mois.`,
       c: [
         ['FH', 'none', `Aucune mesure dans le projet.`, '—'],
+        ['HO', 'none', `Aucune position dans les documents du dossier.`, `—`],
         ['LE', 'up', `<b>Service public de la dépendance</b> et établissements publics d'accueil ; Ehpad : cahier des charges strict et taux d'encadrement relevé ; APA à domicile revalorisée, <b>statut des aidants familiaux</b>, habitats alternatifs et intergénérationnels, pass activités pour les personnes âgées.`, 'Programme 2027 (juillet 2026), chapitre 36'],
         ['LFI', 'up', `Service public de la dépendance : <b>10 000 places</b> d'EHPAD publics par an pendant 5 ans, EHPAD privés lucratifs collectivisés, soins à domicile pris en charge par la Sécurité sociale, statut d'aidant rémunéré.`, 'Avenir en commun'],
         ['LR', 'none', `Aucune mesure sur le grand âge dans les documents lus.`, '—'],
         ['NE', 'nc', `Minimum vieillesse à <b>1 000 €</b> par mois, montant déjà inférieur à l'ASPA actuelle. Pas de mesure sur la dépendance.`, 'NE, axe 2'],
-        ['PS', 'up', `Service public universel de l'autonomie : APA et soins en une prestation de Sécurité sociale, sans barrière d'âge ni de ressources ; aidants indemnisés <b>365 jours</b> au lieu de 66.`, 'Projet socialiste, grand âge'],
+        ['PP', 'up', `<b>Statut et droits des aidants</b>, service de relais et de répit, indemnité d'aidant familial à l'étude ; repérage des personnes fragiles, aide à domicile et accompagnement garantis ; EHPAD recentrés sur les personnes très dépendantes, résidences autonomie, béguinage, colocation médicalisée ; fin de la logique de profit dans l'hébergement.`, 'Programme PP, p. 56'],
         ['RN', 'up', `Droit opposable aux visites en EHPAD, plus de personnel médical, urgences gériatriques ; minimum vieillesse à <b>1 000 €</b> (texte de 2022).`, '22 mesures (2022)']
       ] },
     { id: 't-famille', group: 'Famille et éducation', title: 'Famille et petite enfance', hint: 'Sens : soutien aux familles',
-      now: `Fécondité <b>1,56</b> enfant par femme en 2025 (1,61 en 2024), <b>643 905</b> naissances, plus de décès que de naissances. Selon le PS, il manque <b>200 000</b> solutions d'accueil du jeune enfant.`,
+      now: `Fécondité <b>1,56</b> enfant par femme en 2025 (1,61 en 2024), <b>643 905</b> naissances, plus de décès que de naissances.`,
       c: [
         ['FH', 'nc', `Assises de la famille ; répartir « plus justement » les avantages familiaux et concentrer les moyens sur la petite enfance ; quotient familial maintenu.`, 'Texte socle ; Fiscalité'],
+        ['HO', 'none', `Aucune position sur la petite enfance. Seul le manifeste européen 2024 demande une <b>majorité numérique</b> en Europe pour protéger les enfants.`, `Manifeste européen, avr. 2024`],
         ['LE', 'up', `Allocations familiales au <b>même montant dès le premier enfant</b>, statut de famille monoparentale, congés de parentalité égalisés et rendus obligatoires, <b>service public de la petite enfance</b> avec une garde à proximité, égalité du travail domestique.`, 'Programme 2027 (juillet 2026), chapitre 34'],
         ['LFI', 'up', `Service public de la petite enfance : <b>500 000 places</b>, crèches publiques gratuites, fin des aides aux crèches lucratives ; crédit d'impôt par enfant, fin du quotient conjugal ; cantine gratuite (3,6 Md€).`, 'Avenir en commun ; budget 2027'],
         ['LR', 'mix', `« Revenu familial » de <b>240 €</b> par enfant mineur (480 € pour le 3e) à la place des allocations familiales et du quotient (<b>41 Md€</b> supprimés, 40,3 Md€ de coût) ; congé de naissance étendu à 6 mois (≈ 0,7 Md€).`, 'LR, fiche Famille'],
         ['NE', 'up', `Relance de la politique familiale : <b>déplafonnement du quotient familial</b>, investissements dans l'accueil, politique du logement familial. Pas de chiffrage.`, 'NE, axe 2'],
-        ['PS', 'up', `Service public de la petite enfance de 3 mois à 3 ans (crèches publiques et associatives, privé lucratif encadré), ministère de l'Enfance, accueil gratuit sur les 1 000 premiers jours.`, 'Projet socialiste, petite enfance'],
+        ['PP', 'up', `<b>Droit opposable à la garde</b>, service public de la petite enfance et crèches ouvertes aux mères éloignées de l'emploi ; <b>encadrement strict des crèches privées</b> (statut de crèches « sous contrat ») ; congé parental réformé pour plus d'égalité, contraception gratuite, congé menstruel.`, 'Programme PP, p. 57, 78'],
         ['RN', 'up', `Part fiscale complète dès le 2e enfant, prêt à 0 % transformé en subvention au 3e enfant, soutien doublé aux mères isolées, 100 000 logements étudiants.`, '22 mesures ; législatives 2024']
       ] },
     { id: 't-logement', group: 'Logement', title: 'Logement', hint: 'Sens : offre et encadrement',
       now: `<b>379 222</b> logements autorisés en 2025, ≈ <b>265 000</b> mis en chantier (estimation). Selon LFI, moins de 100 000 logements publics financés par an ; selon LR, 2,9 millions de ménages attendent un logement social.`,
       c: [
         ['FH', 'up', `<b>500 000</b> logements par an, coopératives de logement social et banque publique du logement, garantie locative universelle ; taxe sur le foncier nu.`, 'Proposition 5 et 10'],
+        ['HO', 'nc', `Pas de position nationale. Manifeste européen 2024 : orienter les fonds européens versés aux collectivités vers la construction ou la réhabilitation de logements. La note n°18 compte les aides au logement parmi les écarts de dépense avec la zone euro (+0,7 pt de PIB).`, `Manifeste européen, avr. 2024 ; note n°18 (note de réflexion, non officielle)`],
         ['LE', 'up', `<b>Encadrement des loyers</b> généralisé, relance du logement social (sanctions SRU renforcées), <b>500 000 rénovations</b> performantes par an, fin des chaudières au fioul en 2032, réquisition des logements vacants, meublés touristiques alignés sur l'hôtellerie ; 150 000 places de logements étudiants.`, 'Programme 2027 (juillet 2026), chapitres 2 et 35'],
         ['LFI', 'up', `<b>400 000</b> logements abordables par an dont <b>200 000</b> publics, 700 000 rénovations par an, « zéro sans-abri », 100 % de logements neufs accessibles.`, 'Plan BTP-logement ; Avenir en commun'],
         ['LR', 'mix', `« Choc d'offre » : fin du ZAN, fin des interdictions de louer liées au DPE (≈ 450 000 logements), <b>fin de l'encadrement des loyers</b>, 150 000 logements par reconversion de bureaux ; plafond de 30 % de logement social pour les nouvelles aides.`, 'LR, fiche Logement'],
         ['NE', 'down', `<b>Suppression de l'article 55 de la loi SRU</b> (20 à 25 % de logements sociaux), marché libéré, objectif de flux plafonné.`, 'NE, axe 2'],
-        ['PS', 'up', `Construction ambitieuse dont <b>un tiers de logements sociaux</b>, loyers encadrés, aides au logement maintenues, taxe anti-rente dès le 4e logement, plan de logement d'urgence.`, 'Projet socialiste, logement'],
+        ['PP', 'up', `« <b>Plan Marshall pour le logement</b> » : fonds national d'aide aux collectivités pour acquérir du foncier, objectifs annuels de logements sociaux relevés, <b>loyers encadrés</b> en zone très tendue, bail réel solidaire en offre de masse, « logement d'abord » ; lutte contre la vacance (préemption, taxe progressive), meublés touristiques régulés, loi Kasbarian remplacée par un dispositif équilibré ; passoires thermiques rénovées.`, 'Programme PP, p. 64'],
         ['RN', 'up', `<b>100 000</b> logements sociaux par an dont 20 000 pour étudiants et jeunes travailleurs, priorité nationale d'accès, fonds de garantie des loyers.`, '22 mesures (2022)']
       ] },
     { id: 't-pauvrete', group: 'Retraites et pauvreté', title: 'Pauvreté, handicap et minima sociaux', hint: 'Sens : niveau des aides',
       now: `Taux de pauvreté <b>15,4 %</b> (2023, seuil de 1 288 €/mois). Pour une personne seule : RSA <b>651,69 €</b>, AAH <b>1 041,59 €</b> par mois (2026).`,
       c: [
         ['FH', 'none', `Aucune mesure ciblée ; une CSG à taux unique finance les cotisations famille, santé et handicap.`, 'Fiscalité, 28/08/2026'],
+        ['HO', 'none', `Aucune position sur les minima sociaux ou le handicap dans le dossier.`, `—`],
         ['LE', 'up', `<b>Garantie d'autonomie</b> à <b>50 % du Smic net</b> en remplacement du RSA, dès 18 ans, sans les 15 heures d'activité ; APL +10 % ; droit opposable à l'accompagnement social, aides versées automatiquement ; Smic à 2 000 € brut dès 2027.`, 'Programme 2027 (juillet 2026), chapitres 13 et 32'],
         ['LFI', 'up', `<b>Garantie d'autonomie</b> : revenu au niveau du seuil de pauvreté (<b>1 337 €</b> pour une personne seule), AAH au niveau du Smic, automatisation des prestations, première tranche d'énergie gratuite.`, 'Avenir en commun'],
         ['LR', 'down', `Cumul des aides plafonné à <b>70 % du Smic net</b> par adulte, RSA, prime d'activité et ASS fusionnés (socle de <b>300 €</b>/mois), assurance chômage resserrée : <b>−13 Md€</b>/an.`, 'Brochure, p. 14-15'],
         ['NE', 'down', `<b>5 ans de résidence</b> pour les allocations non contributives (<b>−8 Md€</b>/an) ; réforme de l'État-providence (34 % du PIB, contre 29 % en Europe).`, 'NE, axe 2 ; FAQ'],
-        ['PS', 'up', `<b>Revenu d'autonomie</b> 18-25 ans, RSA refondé (inconditionnel, automatique), accompagnement opposable, effacement de dettes, lutte contre le non-recours.`, 'Projet socialiste, grande pauvreté'],
+        ['PP', 'up', `<b>Minimum social unique</b> à l'issue d'une conférence sociale, ouvert aux moins de 25 ans ; dossier social unique, accès aux droits automatisé ; réforme Macron de l'assurance chômage <b>abrogée</b> ; <b>Smic à 1 600 € net</b> dans les deux ans ; « logement d'abord » contre le sans-abrisme.`, 'Programme PP, p. 40, 53, 64'],
         ['RN', 'mix', `Prestations de solidarité conditionnées à <b>5 ans</b> de travail pour les étrangers (<b>−11,9 Md€</b> au contre-budget) ; AAH déconjugalisée et revalorisée, aidants soutenus.`, 'Contre-budget ; 22 mesures']
       ] },
     { id: 't-education', group: 'Famille et éducation', title: 'Éducation', hint: 'Sens : moyens et organisation de l\'école',
       now: `Dépense intérieure d'éducation <b>197,1 Md€</b>, soit <b>6,8 % du PIB</b> (2024) ; <b>12,5 millions</b> d'élèves et d'apprentis (−1,0 % en un an). Élèves par classe : ≈ <b>21</b> dans le primaire public, <b>24,7</b> au collège public, <b>30,5</b> en lycée général et technologique public (2025).`,
       c: [
         ['FH', 'up', `Budget de l'Éducation nationale hors pensions <b>revalorisé chaque année de l'inflation</b> (+ croissance une fois le déficit sous 3 %) : <b>+20 %</b> de dépense réelle par élève à 10 ans. Salaires <b>+10 % au moins</b> ; coordinateur de protection dans chaque établissement ; après-midi consacrés aux savoirs appliqués.`, 'Texte socle, chantier Éducation'],
+        ['HO', 'mix',`L'éducation est « l'objectif prioritaire de l'effort national » (manifeste 2021). Note n°04 : poursuivre la revalorisation des enseignants, <b>classes plus réduites</b> en collège et lycée, pré-professionnalisation, établissements plus autonomes et <b>part au mérite</b> dans les carrières. Note n°12 : <b>acte II de l'autonomie des universités</b> (gouvernance, ressources propres, patrimoine immobilier). Note n°13 (Jeunes Horizons) : orientation plus individualisée, avec plus de moyens.`, `Manifeste 2021 ; notes n°04 (janv. 2023), n°12 et n°13 (2024), note de réflexion, non officielle`],
         ['LE', 'up', `Classes à <b>19 élèves</b> en 2032 et <b>12 en éducation prioritaire</b> ; salaires des enseignants <b>+15 % en cinq ans</b> en plus de l'inflation ; collège unique ; privé intégré au service public (financement public ramené à 50 %) ; <b>2 Md€ par an</b> pour isoler les écoles ; plateforme d'orientation à la place de Parcoursup.`, 'Programme 2027 (juillet 2026), chapitre 23 ; dossier rentrée'],
         ['LFI', 'up', `Gratuité réelle (cantine, transport, fournitures), classes sous <b>19 élèves</b> (priorité maternelle et REP), 15 M d'heures de cours non assurées à résorber, scolarité obligatoire à <b>18 ans</b>, rattrapage du point d'indice gelé depuis 2010. 1re année : <b>10 000 postes</b> (0,5 Md€), cantine gratuite (3,6 Md€), <b>250 000 places</b> à l'université (3,5 Md€).`, 'Avenir en commun ; budget 14/10/2026'],
         ['LR', 'mix', `<b>+135 € nets/mois</b> en début de carrière, jusqu'à <b>+300 €</b> en milieu, sur le traitement, financés sans impôt nouveau par la baisse des effectifs (<b>−1,7 M d'élèves</b> en dix ans, plus de 3 Md€/an). Primaire recentré sur lire-écrire-compter, <b>1 000 établissements publics innovants</b> d'ici 2032, contrats de mission de 5 ans, liberté de choix de l'école.`, 'LR, fiche École'],
         ['NE', 'mix', `Salaires <b>+20 % en cinq ans</b>, conditionnés à plus d'autonomie et de présence ; <b>fin de la carte scolaire</b>, libre choix, <b>chèque-éducation</b>, recrutement par les chefs d'établissement, corps unique contractuel, certificat de fin de primaire. Pas de chiffrage global.`, 'NE, Éducation ; axe 3'],
-        ['PS', 'up', `Classes de <b>19 élèves maximum</b> (de 22,4 à 18,2 en dix ans à effectifs d'enseignants constants), rémunération alignée sur la <b>moyenne de l'OCDE</b>, mixité sociale conditionnant les contrats du privé, RASED reconstruits, convention citoyenne. Pas de montant.`, 'Projet socialiste, éducation'],
+        ['PP', 'up', `Moins d'élèves par enseignant en primaire (expérimenté dans le second degré), tutorat sur temps scolaire ; salaires des enseignants <b>revalorisés sur 5 ans</b> ; établissements privés sous contrat <b>intégrés à la carte scolaire</b> ; plan de rénovation des écoles (chaleur, climat) ; fermetures d'écoles rurales freinées ; Parcoursup repensé, capital formation universel.`, 'Programme PP, p. 25, 68'],
         ['RN', 'mix', `Classes de GS et CP à <b>20 élèves</b> au plus, plafond de <b>30</b> dans le secondaire ; salaires <b>+3 % par an pendant 5 ans</b> (plus de 15 %) ; <b>uniforme</b> à l'école et au collège ; primaire recentré sur français, maths, histoire ; collège unique remis en cause.`, 'Livret École (2022)']
       ] }
   ];
@@ -361,10 +369,9 @@
       rows: [
         { p: 'LFI', v: 60, label: '60 ans', sub: 'taux plein, 40 annuités', tip: `Abroger la réforme de 2023, puis restaurer la retraite à 60 ans à taux plein pour 40 annuités.`, src: `L'Avenir en commun 2027` },
         { p: 'LE', v: 62, label: '62 ans', sub: 'retour immédiat, objectif 60', tip: `Abroger l'âge légal de 64 ans pour revenir immédiatement à 62 ans et viser 60 ans, en priorité pour les carrières longues et pénibles.`, src: `Les Écologistes, programme 2027` },
-        { p: 'PS', v: 62, label: '62 ans', sub: '43 annuités', tip: `Âge légal ramené à 62 ans ; durée de 43 annuités, réductible selon la pénibilité.`, src: `Le Projet socialiste` },
         { p: 'NE', v: 65, label: '65 ans', sub: '+ capitalisation', tip: `Âge légal de 65 ans, puis socle par répartition et capitalisation.`, src: `Nouvelle Énergie, axe 2` }
       ],
-      note: `Sans âge chiffré : FH (supprime l'âge légal), RN (abroge la réforme de 2023 ; 60 ans après 40 annuités en 2022), LR (n'y touche pas dans les documents).` },
+      note: `Sans âge chiffré : FH (supprime l'âge légal), RN (abroge la réforme de 2023 ; 60 ans après 40 annuités en 2022), LR (n'y touche pas dans les documents), PP (fin de la focalisation sur l'âge légal ; certains partiraient à 60 ans).` },
     { id: 'aspa', title: 'Minimum vieillesse et garantie de ressources', sub: 'Euros par mois, personne seule',
       min: 900, max: 1400, ticks: [900, 1000, 1100, 1200, 1300, 1400], tick: function (v) { return fr(v) + ' €'; },
       today: { v: 1043.59, label: '1 043,59 €' },
@@ -373,7 +380,7 @@
         { p: 'RN', v: 1000, label: '1 000 €', sub: 'texte de 2022', tip: `Minimum vieillesse à 1 000 € par mois dans les 22 mesures de 2022 : déjà dépassé par l'ASPA actuelle.`, src: `22 mesures pour 2022` },
         { p: 'LFI', v: 1337, label: '1 337 €', sub: 'seuil de pauvreté (+28 %)', tip: `Garantie d'autonomie pour tous : le revenu atteint le seuil de pauvreté, 1 337 € pour une personne seule ; le minimum vieillesse est porté à ce niveau.`, src: `L'Avenir en commun 2027` }
       ],
-      note: `FH, LR et PS ne donnent pas de montant de minimum vieillesse. Pour les adultes handicapés, LFI porte l'AAH (1 041,59 €) au niveau du Smic (1 700 € net) ; le RN la revalorise sans montant.` },
+      note: `FH, LR et PP ne donnent pas de montant de minimum vieillesse. Pour les adultes handicapés, LFI porte l'AAH (1 041,59 €) au niveau du Smic (1 700 € net) ; le RN la revalorise sans montant.` },
     { id: 'logements', title: 'Logements neufs par an', sub: 'Nombre de logements',
       min: 200000, max: 520000, ticks: [200000, 300000, 400000, 500000], tick: function (v) { return fr(v / 1000) + ' 000'; },
       today: { v: 265000, label: '≈ 265 000' },
@@ -381,39 +388,30 @@
         { p: 'LFI', v: 400000, label: '400 000', sub: 'dont 200 000 publics (+51 %)', tip: `400 000 logements abordables par an, dont 200 000 logements publics, sur 5 ans (contre ≈ 270 000 en moyenne et moins de 100 000 logements publics financés par an, selon le plan).`, src: `LFI, plan BTP-logement` },
         { p: 'FH', v: 500000, label: '500 000', sub: '+89 %', tip: `500 000 logements par an, avec coopératives de logement social, banque publique du logement et garantie locative universelle.`, src: `France Humaniste, proposition 5` }
       ],
-      note: `Aujourd'hui : mises en chantier 2025 (estimation SDES) ; les autorisations sont à 379 222. Autres : RN 100 000 logements sociaux par an ; LR 150 000 logements par reconversion de bureaux sur le quinquennat ; PS un tiers de logements sociaux, sans total ; NE supprime le quota de la loi SRU.` },
+      note: `Aujourd'hui : mises en chantier 2025 (estimation SDES) ; les autorisations sont à 379 222. Autres : RN 100 000 logements sociaux par an ; LR 150 000 logements par reconversion de bureaux sur le quinquennat ; PP « plan Marshall pour le logement », sans total ; NE supprime le quota de la loi SRU.` },
     { id: 'accueil', title: 'Places d\'accueil du jeune enfant à créer', sub: 'Places supplémentaires',
       min: 0, max: 550000, ticks: [0, 100000, 200000, 300000, 400000, 500000], tick: function (v) { return v === 0 ? '0' : fr(v / 1000) + ' 000'; },
       today: { v: 0, label: '0 (création nette)' },
       rows: [
-        { p: 'PS', v: 200000, label: '200 000', sub: 'comble le déficit', tip: `Service public de la petite enfance, face à un déficit estimé à 200 000 solutions d'accueil.`, src: `Le Projet socialiste` },
         { p: 'LFI', v: 500000, label: '500 000', sub: 'ouverture progressive, crèches publiques gratuites', tip: `Ouverture progressive de 500 000 places (crèches publiques, associatives, assistantes maternelles) ; gratuité des crèches publiques.`, src: `L'Avenir en commun 2027` }
       ],
       note: `Le nombre de places existantes n'est pas repris ici : la barre mesure la création nette annoncée. FH, LR, NE et RN ne chiffrent pas de création de places.` },
-    { id: 'prevention', title: 'Prévention dans les dépenses de santé', sub: '% des dépenses de santé',
-      min: 0, max: 10, ticks: [0, 2, 4, 6, 8, 10], tick: function (v) { return v + ' %'; },
-      today: { v: 4, label: '4 %' },
-      rows: [
-        { p: 'PS', v: 8, label: '8 %', sub: 'doublement', tip: `Faire passer les dépenses de prévention de 4 % à 8 % des dépenses globales de santé, avec un pilotage interministériel.`, src: `Le Projet socialiste, santé` }
-      ],
-      note: `Le « 4 % » aujourd'hui est le chiffre donné par le PS dans son projet. Les autres partis ne fixent pas de cible comparable.` },
     { id: 'rac', title: 'Reste à charge des ménages en santé', sub: 'Euros par habitant et par an',
       min: 0, max: 600, ticks: [0, 100, 200, 300, 400, 500, 600], tick: function (v) { return fr(v) + ' €'; },
       today: { v: 495, label: '495 €' },
       rows: [
         { p: 'LFI', v: 0, label: 'Zéro', sub: '100 % Sécu', tip: `Zéro reste à charge : remboursement à 100 %, fin des franchises, des participations forfaitaires et des dépassements d'honoraires, intégration des complémentaires à la Sécurité sociale.`, src: `L'Avenir en commun 2027 ; plan santé` }
       ],
-      note: `Reste à charge moyen en 2025 (DREES, Insee). Le PS réduit le reste à charge pour la dépendance sans cible chiffrée ; les autres partis ne fixent pas de cible.` },
+      note: `Reste à charge moyen en 2025 (DREES, Insee). LE rembourse à 100 % les soins essentiels sans cible chiffrée de reste à charge ; les autres partis ne fixent pas de cible.` },
     { id: 'classes', title: 'Élèves par classe', sub: 'Effectif maximal annoncé, école primaire',
       min: 16, max: 24, ticks: [16, 18, 20, 22, 24], tick: function (v) { return v + ''; },
       today: { v: 21.3, label: '≈ 21' },
       rows: [
-        { p: 'PS', v: 19, label: '19', sub: 'maximum, toutes classes', tip: `Objectif de 19 élèves au maximum par classe ; à effectifs d'enseignants constants, les classes des écoles passeraient de 22,4 à 18,2 élèves en dix ans.`, src: `Le Projet socialiste, éducation` },
         { p: 'LFI', v: 19, label: '< 19', sub: 'mieux que la moyenne européenne', tip: `Réduire partout les effectifs pour faire mieux que la moyenne européenne de 19 élèves par classe, en priorité en maternelle et en éducation prioritaire.`, src: `L'Avenir en commun 2027` },
         { p: 'LE', v: 19, label: '19', sub: '2032 ; 12 en éducation prioritaire', tip: `Réduire la taille des classes de l'école primaire à 19 élèves en 2032 et à 12 dans les établissements en réseau d'éducation prioritaire.`, src: `Les Écologistes, programme 2027` },
         { p: 'RN', v: 20, label: '20', sub: 'GS et CP ; 30 au secondaire', tip: `Dédoublement programmé des classes de grande section et de CP : 20 élèves au maximum ; plafond de 30 dans le secondaire. Texte de 2022.`, src: `RN, livret École` }
       ],
-      note: `Aujourd'hui : moyenne du public en 2025 (21,1 en zone rurale, 21,4 en zone urbaine, DEPP) ; le privé sous contrat est à 24,2-24,8. Dans le secondaire public : 24,7 au collège, 30,5 en lycée général et technologique. LFI et le PS visent tous les niveaux ; FH, LR et NE ne fixent pas de plafond.` },
+      note: `Aujourd'hui : moyenne du public en 2025 (21,1 en zone rurale, 21,4 en zone urbaine, DEPP) ; le privé sous contrat est à 24,2-24,8. Dans le secondaire public : 24,7 au collège, 30,5 en lycée général et technologique. LFI vise tous les niveaux et LE l'école primaire ; PP veut réduire le nombre d'élèves par enseignant sans plafond ; FH, LR et NE ne fixent pas de plafond.` },
     { id: 'salaires', title: 'Revalorisation des salaires des enseignants', sub: 'Hausse annoncée, en %',
       min: 0, max: 25, ticks: [0, 5, 10, 15, 20, 25], tick: function (v) { return v + ' %'; },
       today: { v: 0, label: 'salaires actuels' },
@@ -423,7 +421,7 @@
         { p: 'RN', v: 15, label: '+15 %', sub: '3 % par an pendant 5 ans', tip: `Revalorisation de 3 % par an pendant 5 ans, soit plus de 15 % sur le quinquennat, pour rattraper la moyenne de l'OCDE ; coût en partie couvert par des économies. Texte de 2022.`, src: `RN, livret École` },
         { p: 'NE', v: 20, label: '+20 %', sub: 'en cinq ans, sous conditions', tip: `Augmentation de 20 % des rémunérations en cinq ans, conditionnée à une réorganisation : autonomie accrue, présence renforcée.`, src: `Nouvelle Énergie, Éducation` }
       ],
-      note: `Pas de pourcentage chez LR (+135 € nets par mois en début de carrière, jusqu'à +300 € en milieu), LFI (rattrapage du gel du point d'indice depuis 2010, par négociation) ni le PS (rattraper la moyenne de l'OCDE). Les assiettes diffèrent : ces barres ne sont pas strictement comparables.` }
+      note: `Pas de pourcentage chez LR (+135 € nets par mois en début de carrière, jusqu'à +300 € en milieu), LFI (rattrapage du gel du point d'indice depuis 2010, par négociation) ni PP (revalorisation « continue et planifiée sur 5 ans »). Les assiettes diffèrent : ces barres ne sont pas strictement comparables.` }
   ];
   var panelsEl = document.getElementById('panels');
   PANELS.forEach(function (pn) {
@@ -499,7 +497,7 @@
     ['LFI', '1re année : retraites 9 Md€, garantie d\'autonomie des jeunes 9,5 Md€, cantine gratuite 3,6 Md€, 250 000 places à l\'université 3,5 Md€, 10 000 postes d\'enseignants 0,5 Md€, hôpitaux +3 Md€, assurance chômage 3 Md€, logement d\'urgence 3 Md€. 100 % Sécu non chiffré globalement', '2027, première année', 'Dépenses nouvelles', 'Budget rectificatif, 14/10/2026'],
     ['LR', 'Revenu familial : 40,3 Md€ de coût pour 41 Md€ de dispositifs supprimés ; −42 Md€ sur les retraites, −13 Md€ sur le chômage, −4 Md€ sur les arrêts maladie, −10 Md€ sur l\'immigration ; salaires des professeurs financés par la baisse des effectifs (> 3 Md€/an en fin de quinquennat, « sans impôt nouveau »)', 'Jusqu\'en 2032', 'Réforme à coût constant et économies', 'Fiches Famille et École ; LR, 12/10/2026'],
     ['NE', '−8 Md€ par an (5 ans de résidence pour les allocations non contributives) ; salaires des enseignants +20 % en cinq ans, sans montant', 'Régime établi ; 5 ans', 'Économie et dépense non chiffrée', 'FAQ NE, 16/10/2026 ; page Éducation'],
-    ['PS', 'Aucun montant pour le service public de la petite enfance, de l\'autonomie, le revenu d\'autonomie ni l\'éducation ; classes à 19 élèves « sans nouvelle dépense » à effectifs d\'enseignants constants', '—', 'Non chiffré', 'Projet socialiste'],
+    ['PP', 'Aucun montant sur le social, la santé ou l\'éducation (enseignants revalorisés « sur 5 ans » sans pourcentage) ; Smic à 1 600 € net ; un milliard d\'euros pour un plan contre les violences sexistes et sexuelles', 'Deux ans (Smic) ; 5 ans (enseignants)', 'Propositions sans chiffrage global', 'Programme PP, p. 40, 68, 78'],
     ['RN', 'Réforme des retraites estimée à 15 à 20 Md€ (sans détail) ; prestations conditionnées −11,9 Md€ ; plan d\'urgence santé 20 Md€ (2022) ; salaires des enseignants +3 %/an, « en large partie couvert » par des économies (2022)', '2026-2032', 'Économies et dépenses', 'RN, 06/10/2026 ; contre-budget ; 22 mesures']
   ];
   var tb = document.getElementById('efforts-body');

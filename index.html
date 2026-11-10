@@ -13,7 +13,7 @@
   :root {
     --bg: #f3f5f7; --panel: #fcfdfd; --fg: #0f1b26; --muted: #52606d; --faint: #7b8794;
     --line: #dde3e8; --accent: #0b5c6b; --pill: #e6eef1;
-    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300; --p-LE: #7c4dce;
+    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PP: #e87ba4; --p-RN: #008300; --p-LE: #7c4dce; --p-HO: #0a93a8;
     --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-title: "Newsreader", Georgia, "Times New Roman", serif;
   }
@@ -21,14 +21,14 @@
     :root:not([data-theme="light"]) {
       --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
       --line: #26323d; --accent: #4cc3d6; --pill: #1f2b34;
-      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
+      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PP: #d55181; --p-RN: #008300; --p-LE: #9b7be0; --p-HO: #33bcd1;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
     --line: #26323d; --accent: #4cc3d6; --pill: #1f2b34;
-    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
+    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PP: #d55181; --p-RN: #008300; --p-LE: #9b7be0; --p-HO: #33bcd1;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -99,14 +99,15 @@
     <p class="lede">Quatre tableaux de bord construits à partir des programmes et des sources officielles du dossier Election_2027. Chaque sujet rappelle la situation actuelle avant les positions des partis.</p>
     <div class="parties" aria-label="Partis couverts">
       <span class="party" style="--c:var(--p-FH)"><i></i><b>FH</b> France Humaniste</span>
+      <span class="party" style="--c:var(--p-HO)"><i></i><b>HO</b> Horizons</span>
       <span class="party" style="--c:var(--p-LE)"><i></i><b>LE</b> Les Écologistes</span>
       <span class="party" style="--c:var(--p-LFI)"><i></i><b>LFI</b> La France insoumise</span>
       <span class="party" style="--c:var(--p-LR)"><i></i><b>LR</b> Les Républicains</span>
       <span class="party" style="--c:var(--p-NE)"><i></i><b>NE</b> Nouvelle Énergie</span>
-      <span class="party" style="--c:var(--p-PS)"><i></i><b>PS</b> Parti socialiste</span>
+      <span class="party" style="--c:var(--p-PP)"><i></i><b>PP</b> Place publique</span>
       <span class="party" style="--c:var(--p-RN)"><i></i><b>RN</b> Rassemblement national</span>
     </div>
-    <p class="stamp">Situation au 10/11/2026.</p>
+    <p class="stamp">Situation au 10/11/2026. Horizons (HO) n'a pas de programme présidentiel 2027 dans le dossier : ses positions viennent de manifestes et de notes de réflexion qui se déclarent non officielles, et beaucoup de sujets y sont « non traités ».</p>
   </header>
 
   <section class="entries" aria-label="Tableaux de bord">
@@ -120,7 +121,7 @@
         <li>Déficit, dette, prélèvements et dépenses : situation actuelle et cibles des partis</li>
         <li>Estimation indicative de l'effet des mesures sur le déficit (LFI, RN, NE)</li>
         <li>Probabilité que les recettes de LFI soient au rendez-vous, d'après les écarts passés entre impôts prévus et obtenus</li>
-        <li>Probabilité de stabiliser puis de réduire le déficit pour les partis qui chiffrent un plan (pas de calcul possible pour le PS)</li>
+        <li>Probabilité de stabiliser puis de réduire le déficit : calcul direct pour FH, LR, NE et RN ; estimation partielle pour LFI et LE ; tableau conditionnel pour PP (aucun plan chiffré) ; pas de calcul pour HO (aucun chiffre)</li>
       </ul>
       <div class="go"><span>Ouvrir le tableau de bord →</span><small>Estimations, pas un chiffrage officiel</small></div>
     </a>
@@ -128,12 +129,12 @@
       <div class="head">
         <span class="tag">Social</span>
         <h2>Orientations sociales</h2>
-        <p class="what">Pour chaque sujet, l'état actuel puis la position des sept partis, avec des graphiques « aujourd'hui → cible » quand un chiffre existe.</p>
+        <p class="what">Pour chaque sujet, l'état actuel puis la position des huit partis, avec des graphiques « aujourd'hui → cible » quand un chiffre existe.</p>
       </div>
       <ul>
         <li>Santé, retraites, grand âge, famille, logement, pauvreté et minima sociaux, éducation</li>
         <li>Repères : pauvreté, fécondité, logements, dépenses de retraite et de santé, éducation</li>
-        <li>Huit graphiques : âge de départ, minimum vieillesse, logements neufs, places d'accueil, taille des classes, salaires des enseignants…</li>
+        <li>Sept graphiques : âge de départ, minimum vieillesse, logements neufs, places d'accueil, reste à charge, taille des classes, salaires des enseignants</li>
         <li>Tableau des coûts annoncés par parti</li>
       </ul>
       <div class="go"><span>Ouvrir le tableau de bord →</span><small>Peu de chiffrage dans les textes</small></div>
@@ -142,7 +143,7 @@
       <div class="head">
         <span class="tag">Ordre public, défense et travail</span>
         <h2>Immigration, sécurité, défense, emploi</h2>
-        <p class="what">Sept sujets (immigration, intégration, sécurité, justice pénale, justice civile, défense, emploi) : l'état actuel, puis la position des sept partis.</p>
+        <p class="what">Sept sujets (immigration, intégration, sécurité, justice pénale, justice civile, défense, emploi) : l'état actuel, puis la position des huit partis.</p>
       </div>
       <ul>
         <li>Repères : immigrés, titres de séjour, asile, discriminations déclarées, délinquance, détenus et places de prison, dépenses militaires, chômage, emploi</li>
@@ -156,7 +157,7 @@
       <div class="head">
         <span class="tag">Territoire et environnement</span>
         <h2>Énergie, environnement, ruralité</h2>
-        <p class="what">Neuf sujets en quatre blocs (énergie, climat et logement, eau-déchets-mer, campagnes et agriculture) : l'état actuel, puis la position des sept partis.</p>
+        <p class="what">Neuf sujets en quatre blocs (énergie, climat et logement, eau-déchets-mer, campagnes et agriculture) : l'état actuel, puis la position des huit partis.</p>
       </div>
       <ul>
         <li>Repères : électricité, nucléaire, prix, facture fossile, émissions, fuites d'eau, sécheresse, passoires thermiques, communes rurales</li>

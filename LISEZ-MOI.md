@@ -2,6 +2,8 @@
 
 Cinq pages HTML sans dépendance à Claude : `index.html` (portail), `economiques.html`, `sociales.html`, `immigration-securite-emploi.html` et `energie-climat-ruralite.html` (tableaux de bord). Les liens entre pages sont relatifs : gardez les cinq fichiers dans le même dossier.
 
+Les pages comparent sept partis : FH, LE, LFI, LR, NE, PP et RN (le PS a été remplacé par Place publique).
+
 ## Ouvrir en local
 Double-cliquer sur `index.html`. Le site s'ouvre dans le navigateur, sans serveur.
 - Les polices (IBM Plex Sans, Newsreader) viennent de Google Fonts : sans connexion Internet, la page s'affiche avec une police de remplacement.

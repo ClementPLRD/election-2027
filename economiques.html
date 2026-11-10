@@ -24,8 +24,8 @@
     --p-LFI: #eb6834;
     --p-LR: #1baf7a;
     --p-NE: #eda100;
-    --p-PS: #e87ba4;
-    --p-RN: #008300; --p-LE: #7c4dce;
+    --p-PP: #e87ba4;
+    --p-RN: #008300; --p-LE: #7c4dce; --p-HO: #0a93a8;
     --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-title: "Newsreader", Georgia, "Times New Roman", serif;
   }
@@ -33,14 +33,14 @@
     :root:not([data-theme="light"]) {
       --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
       --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
+      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PP: #d55181; --p-RN: #008300; --p-LE: #9b7be0; --p-HO: #33bcd1;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
     --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
+    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PP: #d55181; --p-RN: #008300; --p-LE: #9b7be0; --p-HO: #33bcd1;
     color-scheme: dark;
   }
 
@@ -205,7 +205,7 @@
   <header class="top">
     <p class="eyebrow">Présidentielle 2027 · Programmes économiques</p>
     <h1 id="titre">Orientations économiques 2027</h1>
-    <p class="lede" id="resume">Quatre partis (FH, LR, NE, RN) allègent les impôts de production, quatre (FH, LE, LFI, PS) alourdissent la fiscalité des plus hauts patrimoines, trois (LE, LFI, PS) relèvent le Smic (autour de 1 700 € net pour LFI et le PS, ≈ 1 583 € pour LE), tandis que FH, LR et RN augmentent le net en allégeant les cotisations. Le PS et LE ne donnent pas de trajectoire de déficit chiffrée dans les documents examinés ; LFI chiffre seulement une première année (−24,7 Md€ de déficit en 2027).</p>
+    <p class="lede" id="resume">Quatre partis (FH, LR, NE, RN) allègent les impôts de production, quatre (FH, LE, LFI, PP) alourdissent la fiscalité des plus hauts patrimoines, trois (LE, LFI, PP) relèvent le Smic (1 700 € net pour LFI, 1 600 € pour PP, ≈ 1 583 € pour LE), tandis que FH, LR et RN augmentent le net en allégeant les cotisations. PP et LE ne donnent pas de trajectoire de déficit chiffrée dans les documents examinés ; LFI chiffre seulement une première année (−24,7 Md€ de déficit en 2027).</p>
     <p class="stamp">Situation au 10/11/2026 · chiffres des partis tirés de leurs documents, non vérifiés par un organisme indépendant.</p>
     <div class="chips" id="filtre" role="group" aria-label="Partis affichés"><span class="lbl">Partis affichés</span></div>
   </header>
@@ -291,32 +291,56 @@
   <section id="trajectoire" aria-labelledby="h-traj">
     <div class="sec-head">
       <h2 id="h-traj">Stabiliser puis réduire le déficit : quelle probabilité ?</h2>
-      <p>Estimation indicative pour 2032, à partir des plans chiffrés publiés en octobre et novembre 2026. Point de départ : 5,0 % du PIB. <b>Stabiliser</b> = 5,0 % ou moins ; <b>réduire</b> = 4,0 % ou moins ; <b>sous 3 %</b> = le seuil européen. Hypothèses : économies réalisées à ≈ 60 % en moyenne (repère : un plan de 50 Md€ lancé en 2014 n'a été réalisé qu'aux deux tiers), dérive du déficit de +1,3 point sans mesure (déduite des plans de RN, LR et FH), dérapage de prévision de +0,5 point.</p>
+      <p>Estimation indicative pour 2032, à partir des plans chiffrés publiés en octobre et novembre 2026. Point de départ : 5,0 % du PIB. <b>Stabiliser</b> = 5,0 % ou moins ; <b>réduire</b> = 4,0 % ou moins ; <b>sous 3 %</b> = le seuil européen. Hypothèses : économies réalisées à ≈ 60 % en moyenne (repère : un plan de 50 Md€ lancé en 2014 n'a été réalisé qu'aux deux tiers), dérive du déficit de +1,3 point sans mesure (déduite des plans de RN, LR et FH), dérapage de prévision de +0,5 point. <b>LFI et LE</b> n'ont pas de plan de déficit : leurs lignes sont des estimations partielles, faites à partir de leurs mesures chiffrées et d'hypothèses de coût que j'indique. <b>PP</b> ne chiffre rien : un tableau dit ce qu'il faudrait annoncer.</p>
     </div>
     <div class="panels">
-      <figure class="panel" id="traj-chart"><h3>Probabilité d'atteindre chaque niveau en 2032</h3><p class="sub">Réalisation centrale, dérapage modéré. Zone claire : fourchette selon que les baisses d'impôts promises sont votées avant ou avec les économies.</p><div class="chart" id="chart-traj"></div><p class="note">Plans : FH 65 Md€ de mesures et ≈ 60 Md€ de croissance, sous 3 % en 2031 ; RN 140 Md€ nets d'économies, sous 3 % dès 2030 ; LR 197 Md€ d'économies dont 51 rendus, 2,2 % en 2032 ; NE 200 Md€ d'économies sans cible de déficit. Survolez ou touchez un parti pour le détail.</p></figure>
+      <figure class="panel" id="traj-chart"><h3>Probabilité d'atteindre chaque niveau en 2032</h3><p class="sub">Réalisation centrale, dérapage modéré. Zone claire : fourchette selon que les baisses d'impôts promises sont votées avant ou avec les économies.</p><div class="chart" id="chart-traj"></div><p class="note">Plans : FH 65 Md€ de mesures et ≈ 60 Md€ de croissance, sous 3 % en 2031 ; RN 140 Md€ nets d'économies, sous 3 % dès 2030 ; LR 197 Md€ d'économies dont 51 rendus, 2,2 % en 2032 ; NE 200 Md€ d'économies sans cible de déficit ; LFI budget 2027 maintenu jusqu'en 2032 (+106 Md€ de recettes annoncées, +82 Md€ de dépenses) ; LE mesures chiffrées seulement (successions, taxe Zucman, ISF, grandes entreprises, 10 Md€ de climat). Pour LFI et LE, la zone claire est la fourchette entre dépenses votées quoi qu'il arrive et dépenses ajustées aux recettes obtenues. Survolez ou touchez un parti pour le détail.</p></figure>
       <figure class="panel" id="traj-table"><h3>Et si le déficit dérape davantage ?</h3><p class="sub">Probabilité de stabiliser (déficit 2032 ≤ 5 %), selon le dérapage de prévision par rapport au plan</p>
         <div class="tbl-wrap"><table class="compact">
           <thead><tr><th>Parti</th><th>Aucun</th><th>+0,5 pt</th><th>+1,0 pt</th></tr></thead>
           <tbody>
             <tr data-p="FH"><td><span class="who" style="--c:var(--p-FH)"><span class="dot"></span>FH</span></td><td class="num">95 %</td><td class="num">88 %</td><td class="num">66 %</td></tr>
+            <tr data-p="LE"><td><span class="who" style="--c:var(--p-LE)"><span class="dot"></span>LE</span></td><td class="num">0 à 2 %</td><td class="num">1 à 6 %</td><td class="num">1 à 5 %</td></tr>
+            <tr data-p="LFI"><td><span class="who" style="--c:var(--p-LFI)"><span class="dot"></span>LFI</span></td><td class="num">0 %</td><td class="num">0 à 2 %</td><td class="num">0 à 3 %</td></tr>
             <tr data-p="RN"><td><span class="who" style="--c:var(--p-RN)"><span class="dot"></span>RN</span></td><td class="num">98 %</td><td class="num">76 %</td><td class="num">55 %</td></tr>
             <tr data-p="LR"><td><span class="who" style="--c:var(--p-LR)"><span class="dot"></span>LR</span></td><td class="num">83 à 99 %</td><td class="num">58 à 79 %</td><td class="num">41 à 58 %</td></tr>
             <tr data-p="NE"><td><span class="who" style="--c:var(--p-NE)"><span class="dot"></span>NE</span></td><td class="num">4 à 31 %</td><td class="num">3 à 21 %</td><td class="num">3 à 14 %</td></tr>
           </tbody>
         </table></div>
-        <p class="note">Repères du dérapage : le déficit a dépassé la prévision de +0,5 point en 2023, de +1,4 point en 2024, et la prévision 2026 est passée de 5,0 % à 5,4 %. La programmation de 2023-2027 visait 2,7 à 2,9 % en 2027 pour ≈ 5 % attendu aujourd'hui.</p>
+        <p class="note">Repères du dérapage : le déficit a dépassé la prévision de +0,5 point en 2023, de +1,4 point en 2024, et la prévision 2026 est passée de 5,0 % à 5,4 %. La programmation de 2023-2027 visait 2,7 à 2,9 % en 2027 pour ≈ 5 % attendu aujourd'hui. LE et LFI : fourchettes selon que les coûts non chiffrés sont comptés ou non, et que les dépenses sont votées quoi qu'il arrive ou ajustées aux recettes obtenues.</p>
       </figure>
     </div>
-    <div class="panel" data-p="LE">
-      <h3>LE : pas de probabilité possible</h3>
-      <p class="sub">Les Écologistes ne donnent ni trajectoire de déficit ni total d'économies : seulement des mesures de recettes et un budget 2027.</p>
-      <p class="note">Mesures chiffrées dans leurs documents : contribution sur les successions ≈ 15 Md€ par an en régime de croisière, 10 Md€ de dépenses pour le climat dès 2027, hausse de la défense de 6,4 Md€ acceptée. Ils parlent de « stabiliser » la dette et de renégocier la trajectoire du Semestre européen. Sans plan global, la simulation commune ne peut pas être appliquée.</p>
+    <div class="panel" data-p="HO">
+      <h3>HO : pas de plan chiffré, donc pas de probabilité</h3>
+      <p class="sub">Horizons n'a ni programme présidentiel 2027 ni chiffrage dans le dossier : ses notes de réflexion, qui se déclarent non officielles, ne donnent aucun montant.</p>
+      <p class="note">La note n°18 (janvier 2025) demande une consolidation « rapide et forte » portée surtout par la dépense, sans total ni cible. La table conditionnelle du panneau PP ci-dessous s'applique : avec des économies annoncées, il faudrait <b>≈ 105 Md€</b> pour une chance sur deux de stabiliser le déficit (dérapage modéré). Aucun résultat n'est attribué à Horizons.</p>
     </div>
-    <div class="panel" data-p="PS">
-      <h3>PS : pas de probabilité possible</h3>
-      <p class="sub">Le PS annonce 200 Md€ d'investissements sur cinq ans, dont 50 Md€ financés, sans chiffrage du déficit.</p>
-      <p class="note">Les 150 Md€ non financés représentent ≈ 30 Md€ par an, soit ≈ 0,8 point de PIB en 2032 : avec la même dérive de 1,3 point, le déficit approcherait 7 % avant toute autre mesure. Les mesures chiffrées du projet socialiste apportent au mieux ≈ 36 Md€ (grandes successions ≈ 25 Md€ par an en régime établi, exonérations sociales 11 Md€) : il manquerait de l'ordre de 40 Md€ de mesures non encore publiées pour revenir à 5 %. LFI n'est pas comparable (horizon 2027 seulement, voir plus haut).</p>
+    <div class="panel" data-p="LE">
+      <h3>LE : estimation partielle, à lire comme une borne favorable</h3>
+      <p class="sub">Les Écologistes ne donnent ni trajectoire de déficit ni total d'économies. J'ai chiffré ce qui l'est, et mis le reste en hypothèse.</p>
+      <p class="note"><b>Recettes retenues</b> (Md€ annoncés, valeur 2027) : successions 15 (document LE), taxe Zucman 15 et ISF rétabli 6,3 (repères du dossier, pas des chiffres de LE), grandes entreprises 10 (impôt minimal, taxe numérique à 5 %, rachats d'actions : ordre de grandeur de ma part), soit ≈ 46 Md€, dont ≈ 25 perçus à l'hypothèse centrale. <b>Dépenses chiffrées</b> : 10 Md€ pour le climat dès 2027. <b>Non chiffré par LE</b> : retraite à 62 ans, services publics, bouclier social, Smic ; je retiens 5 à 35 Md€ en 2032 (≈ 15 le plus probable), à corriger. Chaque tranche de 10 Md€ de plus ajoute ≈ 0,27 point de déficit.</p>
+      <p class="note"><b>Résultat</b> (dérapage modéré) : déficit 2032 médian ≈ <b>6,9 %</b> (5,8 à 7,9) si les dépenses sont votées quoi qu'il arrive, ≈ <b>6,5 %</b> si elles sont ajustées aux recettes obtenues ; sans les coûts non chiffrés, 6,4 % et 6,2 %. Même si tout était perçu et sans coût non chiffré : 5,1 %. Probabilité de stabiliser (≤ 5 %) : de 1 à 6 %. Non compté : les économies sur les aides aux entreprises (187 Md€ à cibler) et la TVA écologique, dont LE ne donne pas le rendement ; elles pourraient réduire le déficit.</p>
+    </div>
+    <div class="panel" data-p="LFI">
+      <h3>LFI : le budget 2027 maintenu jusqu'en 2032</h3>
+      <p class="sub">Estimation à partir du budget rectificatif du 14/10/2026 : recettes et dépenses gardées à part de PIB constante, plus des coûts non chiffrés en hypothèse.</p>
+      <p class="note"><b>Hypothèses</b> : 106,4 Md€ de recettes annoncées, dont ≈ 57 perçus à l'hypothèse centrale (53 %, précédents documentés plus haut dans cette page) ; 81,7 Md€ de dépenses, avec une dérive de coût de 0 à 25 % ; coûts non chiffrés (Smic à 1 700 € net, retraite à 60 ans, blocage du carburant, barème de l'impôt sur le revenu) de 10 à 60 Md€ en 2032 (≈ 30 le plus probable) ; dérive du déficit de +1,3 point sans mesure, comme pour les autres partis.</p>
+      <p class="note"><b>Résultat</b> (dérapage modéré) : déficit 2032 médian ≈ <b>8,8 %</b> (7,6 à 9,9) si les dépenses sont votées quoi qu'il arrive, ≈ <b>7,0 %</b> (6,0 à 8,0) si elles sont ajustées aux recettes obtenues ; sans les coûts non chiffrés, 7,9 % et 6,5 %. Si 100 % des recettes étaient perçues et rien d'autre : 5,5 %. Si l'on part de la politique inchangée (≈ 6,4 % en 2027 selon le HCFP) plutôt que du projet du gouvernement (≈ 5 %), il faut ajouter ≈ 1,4 point. Probabilité de stabiliser : 0 à 3 %. <b>Non compté</b> : l'effet de relance que LFI attend à partir de 2028, la reprise de dette par la BCE et les 100 Md€ d'investissements hors budget, dont LFI ne donne pas le traitement. Ils jouent dans les deux sens et ne sont pas chiffrés par LFI.</p>
+    </div>
+    <div class="panel" data-p="PP">
+      <h3>PP : pas de plan chiffré, donc un tableau conditionnel</h3>
+      <p class="sub">Place publique annonce une « trajectoire crédible de désendettement » sans niveau ni total. On ne peut donc pas lui attribuer un résultat : voici ce qu'il faudrait annoncer, et réaliser.</p>
+      <div class="tbl-wrap"><table class="compact">
+        <thead><tr><th>Effort net annoncé en 2032</th><th>Stabiliser (≤ 5 %), si ce sont des économies</th><th>Idem, si ce sont des recettes nouvelles</th><th>Réduire (≤ 4 %), économies</th></tr></thead>
+        <tbody>
+          <tr><td>50 Md€ (≈ 1,4 pt)</td><td class="num">12 %</td><td class="num">9 %</td><td class="num">1 %</td></tr>
+          <tr><td>75 Md€</td><td class="num">27 %</td><td class="num">20 %</td><td class="num">3 %</td></tr>
+          <tr><td><b>100 Md€</b></td><td class="num"><b>47 %</b></td><td class="num"><b>35 %</b></td><td class="num"><b>10 %</b></td></tr>
+          <tr><td>125 Md€</td><td class="num">66 %</td><td class="num">51 %</td><td class="num">24 %</td></tr>
+          <tr><td>150 Md€</td><td class="num">81 %</td><td class="num">66 %</td><td class="num">42 %</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Même modèle que pour les autres partis (dérive de +1,3 point sans mesure, économies réalisées à 35 / 60 / 95 %, recettes nouvelles à 20 / 50 / 90 %, dérapage modéré de +0,5 point). Stabiliser exige de <b>réaliser</b> ≈ 47 Md€ en 2032, viser 4 % ≈ 84 Md€, 3 % ≈ 120 Md€. Pour une chance sur deux de stabiliser il faudrait <b>annoncer ≈ 105 Md€ d'économies ou ≈ 125 Md€ de recettes nettes</b> (≈ 80 et 90 Md€ sans dérapage). Les sources de financement de PP restent qualitatives (niches et dépenses jugées inefficaces, contribution des ultra-riches et des grands groupes, superprofits, fiscalité écologique) ; ses dépenses (Smic à 1 600 € net, retraites « plus justes ») ne sont pas chiffrées non plus. Seul chiffre : un fonds européen de défense de 500 Md€ par emprunt commun, hors budget national.</p>
     </div>
     <p class="note" style="color: var(--muted); font-size: 12.5px;">Limites : je modélise la réalisation des plans, pas leur adoption (élection, majorité, référendum, Conseil constitutionnel). Les montants viennent de comptes rendus de presse de conférences récentes. Atteindre 3 % dès 2030 (RN) ou 2031 (LR) est plus exigeant qu'en 2032 : leurs échéances exactes sont donc moins probables que ce graphique. Aucun de ces plans n'est vérifié par un organisme indépendant.</p>
   </section>
@@ -337,7 +361,7 @@
   <section id="lecture" aria-labelledby="h-lecture">
     <div class="sec-head"><h2 id="h-lecture">À lire avant de comparer</h2></div>
     <ul class="plain notes">
-      <li><b>Documents de natures différentes.</b> FH, LFI et PS ont un programme complet ; LR, NE et RN n'ont que des fiches ou des pages thématiques. Un sujet absent ne prouve pas l'absence de position.</li>
+      <li><b>Documents de natures différentes.</b> FH, LE, LFI et PP ont un programme complet ; LR, NE et RN n'ont que des fiches ou des pages thématiques. Un sujet absent ne prouve pas l'absence de position.</li>
       <li><b>RN : pas de programme 2027 en ligne.</b> Les chiffres viennent du contre-budget 2026 (octobre 2025) et du programme des législatives 2024 ; les « 22 mesures » citées datent de 2022.</li>
       <li><b>NE : données anciennes.</b> Les trois axes du programme citent des chiffres de l'époque Covid. Les montants d'économies (100, 200 ou 300 Md€) varient selon les interventions.</li>
       <li><b>Chiffres estimés (≈).</b> Smic net actuel, Smic net FH et déficit RN en % du PIB sont calculés à partir de chiffres publiés ; leur méthode est donnée dans l'infobulle.</li>
@@ -353,7 +377,7 @@
         <li>Prévisions 2026-2027 : <a href="https://www.hcfp.fr/sites/default/files/2026-10/Avis%20HCFP%202026-5%20-%20PLF-PLFSS%202027.pdf">HCFP, avis 2026-5 sur le PLF et le PLFSS 2027</a> (déficit 5,4 % en 2026, croissance 1,0 % jugée optimiste en 2027) ; <a href="https://www.ccomptes.fr/sites/default/files/2026-06/20260625-synthese-RSPFP-2026.pdf">Cour des comptes, juin 2026</a> (dette ≈ 118,5 % fin 2026).</li>
         <li>Retraites : <a href="https://www.lassuranceretraite.fr/portail-info/hors-menu/actualites-nationales/actif/2026/carriere-longue-quels-changement.html">Assurance retraite</a> (suspension de la réforme pour les générations 1964 à 1968).</li>
         <li>Impôt sur le revenu : <a href="https://www.economie.gouv.fr/particuliers/impots-et-fiscalite/gerer-mon-impot-sur-le-revenu/comment-calculer-votre-impot-dapres-le-bareme-de-limpot-sur-le-revenu">économie.gouv.fr</a> (5 taux, de 0 à 45 %).</li>
-        <li>Partis : FH, <i>France 2027</i> et chroniques (lafrancehumaniste.fr) · LFI, <i>L'Avenir en commun</i> 2027 et <i>Comment nous allons remettre de l'ordre dans les comptes publics</i> (14/10/2026) · LR, brochure <i>Nos propositions</i> (déc. 2025) et fiche <i>Produire plus</i> · NE, pages « Notre programme » et FAQ (unenouvelleenergie.fr) · PS, <i>Le Projet socialiste</i> · RN, <i>Contre-budget 2026</i>, programme des législatives 2024, <i>22 mesures pour 2022</i>.</li>
+        <li>Partis : FH, <i>France 2027</i> et chroniques (lafrancehumaniste.fr) · LFI, <i>L'Avenir en commun</i> 2027 et <i>Comment nous allons remettre de l'ordre dans les comptes publics</i> (14/10/2026) · LR, brochure <i>Nos propositions</i> (déc. 2025) et fiche <i>Produire plus</i> · NE, pages « Notre programme » et FAQ (unenouvelleenergie.fr) · LE, <i>Pour une prospérité écologique</i> (programme de juillet 2026) · PP, <i>Les chantiers de Place publique</i> · RN, <i>Contre-budget 2026</i>, programme des législatives 2024, <i>22 mesures pour 2022</i>.</li>
       </ul>
     </details>
   </section>
@@ -365,11 +389,12 @@
 (function () {
   var P = [
     { code: 'FH',  name: 'France Humaniste' },
+    { code: 'HO', name: 'Horizons' },
     { code: 'LE', name: 'Les Écologistes' },
     { code: 'LFI', name: 'La France insoumise' },
     { code: 'LR',  name: 'Les Républicains' },
     { code: 'NE',  name: 'Nouvelle Énergie' },
-    { code: 'PS',  name: 'Parti socialiste' },
+    { code: 'PP', name: 'Place publique' },
     { code: 'RN',  name: 'Rassemblement national' }
   ];
   var NAME = {}; P.forEach(function (p) { NAME[p.code] = p.name; });
@@ -385,66 +410,72 @@
       now: '<b>Déficit 5,1 %</b> du PIB, <b>dette 115,6 %</b>, <b>dépense publique 57,2 %</b> du PIB (2025).',
       c: [
         ['FH', 'down', 'Déficit sous <b>3 %</b> en 2031 : <b>125 Md€</b> à trouver, dont 65 après croissance (0,8 %/an). Deux tiers par la suppression des niches, un tiers par de nouveaux impôts.', 'Fiscalité, 28/08/2026'],
+        ['HO', 'down', `Ni cible de déficit ni montant d'économies. La note n°18 propose <b>4 piliers</b> : une consolidation « <b>rapide et forte</b> » portée surtout par la <b>dépense</b> (les prélèvements sont déjà parmi les plus élevés de l'UE), un Haut Conseil des finances publiques aux missions élargies (ses propres prévisions, avis sur la soutenabilité de la dette), des réformes de compétitivité, un consensus par des « comptes ouverts ». Piste d'<b>étanchéité</b> entre budget social et budget de l'État : la dépense sociale financée par des prélèvements dédiés et, à défaut, baisse automatique des prestations.`, `Note n°18, janv. 2025 (note de réflexion, non officielle)`],
         ['LE', 'mix', `« Pacte fiscal vert » 2027-2032 : loi de programmation conciliant transition, engagements européens (dépenses militaires comprises) et services publics ; <b>dette stabilisée</b> par plus de progressivité de l'impôt ; trajectoire de déficit à renégocier au Semestre européen pour « préserver l'emploi ». Budget 2027 : <b>10 Md€</b> pour le climat. Ni cible de déficit ni économies chiffrées.`, 'Programme 2027 (juillet 2026), chapitre 17 ; budget 2027'],
         ['LFI', 'down', 'Budget 2027 de première année : <b>+106,4 Md€</b> de recettes, <b>+81,7 Md€</b> de dépenses, soit <b>−24,7 Md€</b> de déficit (≈ 0,8 pt). Ni trajectoire ni niveau de déficit après mesures ; Smic à 1 700 € non chiffré.', 'LFI, budget rectificatif, 14/10/2026'],
         ['LR', 'down', '<b>197 Md€</b> d\'économies jusqu\'en 2032 (dont 51 rendus), déficit sous <b>3 %</b> dès 2031 et <b>2,2 %</b> en 2032, sans impôt nouveau.', 'LR, 12/10/2026'],
         ['NE', 'down', '<b>−8 points</b> de PIB de dépense en 10 ans (sous 50 %), règle d\'or sur les déficits. <b>200 Md€</b> d\'économies « documentés », objectif 300 Md€.', 'Axe 1 ; FAQ du 16/10/2026'],
-        ['PS', 'nc', 'Pas de cible de déficit : <b>200 Md€</b> d\'investissements sur 5 ans, dont 50 financés ; vise la stabilisation de la dette en 2032 ; budget de l\'UE ×3.', 'PS, 09/11/2026 ; Projet socialiste'],
+        ['PP', 'nc', `Pas de cible de déficit chiffrée : « trajectoire crédible de <b>désendettement</b> », financée par la suppression de dépenses et de niches fiscales inefficaces, la contribution des ultra-riches et la taxation des superprofits ; investissements de prévention, d'emploi et de transition censés faire baisser la dépense à terme. Au niveau européen : <b>500 Md€</b> de fonds de défense par emprunt commun.`, 'Programme PP, p. 11, 85'],
         ['RN', 'down', '<b>140 Md€</b> nets d\'économies d\'ici 2032, déficit sous <b>3 %</b> dès 2030. Contre-budget 2026 : <b>57 Md€</b> de baisses de dépenses.', 'RN, 06/10/2026 ; contre-budget']
       ] },
     { id: 't-patrimoine', group: 'Fiscalité', title: 'Impôts sur le capital et les hauts patrimoines', hint: 'Sens : impôts',
       now: 'ISF supprimé (IFI sur l\'immobilier à la place), flat tax sur les revenus du capital, <b>5 taux</b> d\'impôt sur le revenu (0 à 45 %).',
       c: [
         ['FH', 'up', 'Impôt unique sur le patrimoine dès <b>2,2 M€</b> (+8 Md€), 9 impôts en tout. Aucun droit sous <b>1 M€</b> transmis de son vivant.', 'Propositions 6-9'],
+        ['HO', 'none', `Aucune position sur l'impôt sur la fortune, les successions ou le capital dans le manifeste, les notes ou le manifeste européen du dossier.`, `—`],
         ['LE', 'up', `<b>Taxe Zucman de 2 %</b> au-delà de 100 M€ de patrimoine, ISF rétabli avec une composante climatique, exit tax étendue ; héritages : barème progressif avec tranches pour le 1 % le plus riche (au-delà de 4 M€) et le 0,1 % (au-delà de 13 M€), soit ≈ <b>15 Md€ par an</b> en régime de croisière ; tranche d'impôt sur le revenu à <b>60 %</b> au-delà de 250 000 €.`, 'Programme 2027 (juillet 2026), chapitre 17 ; budget 2027'],
         ['LFI', 'up', 'ISF rétabli, taxe Zucman de <b>2 %</b>, fin de la flat tax, impôt sur le revenu à <b>14 tranches</b>, héritage maximal de <b>12 M€</b>.', 'Avenir en commun, « révolution fiscale »'],
         ['LR', 'none', 'Aucune mesure sur ce sujet dans les documents du dossier.', '—'],
         ['NE', 'down', 'Pas de hausse annoncée ; réforme des droits de succession sur les entreprises.', 'Axe 2'],
-        ['PS', 'up', 'Taxe Zucman de <b>2 %</b> au-delà de 100 M€, impôt sur les grandes successions (<b>400 Md€</b> cumulés 2025-2040), fin de la flat tax.', 'Projet socialiste, justice fiscale'],
+        ['PP', 'up', `Effort fiscal nouveau <b>ciblé sur les très hauts patrimoines et les grands groupes</b> ; « grand chantier fiscal » pour rééquilibrer la taxation entre travail, capital, héritage et retraites ; taxation automatique des <b>superprofits</b> des multinationales ; fiscalité écologique renforcée. Aucun taux ni seuil chiffré.`, 'Programme PP, p. 40, 85'],
         ['RN', 'mix', 'Impôt sur la fortune financière (<b>IFF</b>) à la place de l\'IFI ; taxes sur la spéculation (<b>12,2 Md€</b>) ; fin des droits sur l\'héritage direct des familles modestes.', 'Contre-budget ; législatives 2024']
       ] },
     { id: 't-entreprises', group: 'Fiscalité', title: 'Impôts de production et fiscalité des entreprises', hint: 'Sens : impôts',
       now: 'Impôts de production ≈ <b>95 Md€/an</b>, soit 3,2 % du PIB (chiffre cité par LR).',
       c: [
         ['FH', 'down', 'Abolition des impôts de production (non chiffrée) ; transmission d\'entreprise sans droits de son vivant.', 'Proposition 2'],
+        ['HO', 'nc', `Pas de proposition fiscale nouvelle. La note n°08 (juil. 2023) présente comme efficaces la baisse de l'IS (2017), la baisse des impôts de production (−10 Md€ par an dès 2021), le remplacement du CICE par des allègements de cotisations, et veut « simplifier ». La note n°18 constate que les impôts de production pèsent <b>2,4 points de PIB</b> de plus que la moyenne de la zone euro et que les cotisations patronales restent élevées.`, `Notes n°08 et n°18 (note de réflexion, non officielle)`],
         ['LE', 'mix', `Impôt minimal sur les bénéfices des sociétés de plus d'un milliard de chiffre d'affaires, taxe sur les superprofits pétro-gaziers et du transport maritime, taxe sur les transactions financières portée à 0,7 % ; <b>187 Md€</b> d'aides aux entreprises ciblées et conditionnées ; allègement du taux réduit d'IS et de la taxe sur les salaires pour les TPE-PME. Pas de baisse des impôts de production.`, 'Programme 2027 (juillet 2026), chapitres 13 et 17'],
         ['LFI', 'up', 'IS progressif, CVAE remplacée par un impôt selon le chiffre d\'affaires et l\'empreinte écologique, taxe sur les superprofits.', 'Avenir en commun'],
         ['LR', 'down', '<b>−15 Md€</b> de fiscalité de production (C3S, CVAE, forfait social, CFE industrielle) et <b>25 Md€</b> d\'allègement du coût du travail.', 'Produire plus, p. 20-21'],
         ['NE', 'down', 'Suppression de la C3S et de la CVAE (<b>−11,5 Md€</b>) en plus de −10 Md€ déjà prévus : impôts de production divisés par deux.', 'Axe 2'],
-        ['PS', 'mix', 'IS progressif, taxation minimale des grandes entreprises, fin des exonérations sociales sans effet sur l\'emploi (<b>11 Md€/an</b>).', 'Projet socialiste, justice fiscale'],
+        ['PP', 'mix', `Pas de baisse des impôts de production relevée ; niches fiscales des grandes entreprises supprimées, aides conditionnées ; crédit d'impôt recherche plafonné pour les grands groupes et recentré sur les PME ; « taxe Amazon » et hausse ciblée de la taxe GAFAM ; protectionnisme ciblé (« Fabriqué en France », mesures miroirs).`, 'Programme PP, p. 14, 24, 41, 85'],
         ['RN', 'down', 'Suppression de la CFE, de la C3S et de la CVAE : <b>−16,2 Md€</b>.', 'Contre-budget, p. 4']
       ] },
     { id: 't-salaires', group: 'Travail et protection sociale', title: 'Pouvoir d\'achat des salariés', hint: 'Sens : revenu net',
       now: '<b>Smic ≈ 1 478 € net</b> (1 867 € brut depuis le 1er juin 2026), 35 heures, soit 1 607 h par an.',
       c: [
         ['FH', 'up', '<b>+200 €</b> nets par mois en moyenne, <b>+100 €</b> au Smic, en basculant plus de 200 Md€ de cotisations vers une CSG universelle.', 'Propositions 1 ; Fiscalité'],
+        ['HO', 'nc', `Pas de position sur le Smic. La note n°06 (avr. 2023) met en garde contre l'indexation des salaires (« boucle prix-salaires ») et juge que les aides aux ménages doivent être ciblées et ne pas durer. La note n°14 propose de pouvoir déroger par accord d'entreprise aux hausses de salaire à l'ancienneté, pour le coût du travail des seniors.`, `Notes n°06 et n°14 (note de réflexion, non officielle)`],
         ['LE', 'up', `<b>Smic à 2 000 € brut</b> dès 2027 (≈ 1 583 € net, calcul), point d'indice indexé sur l'inflation, enseignants <b>+15 %</b>, écart de 1 à 20 dans l'entreprise ; <b>32 heures</b> sans perte de salaire dans les métiers pénibles ou de nuit ; exonérations de cotisations conditionnées à la hausse des salaires.`, 'Programme 2027 (juillet 2026), chapitres 13 et 14'],
         ['LFI', 'up', 'Smic à <b>1 700 € net</b>, 35 h rétablies (32 h dans les métiers pénibles), 6e semaine de congés, salaires indexés.', 'Avenir en commun'],
         ['LR', 'up', 'Heures au-delà de <b>1 623 h/an</b> sans cotisations : ≈ <b>+500 €/an</b> au salaire médian. Fusion RSA, prime d\'activité et ASS.', 'Brochure, p. 11-16'],
         ['NE', 'nc', 'Contrat de travail unique, assouplissement du code du travail, charges négatives pour embaucher un allocataire du RSA. Net non chiffré.', 'Axe 2'],
-        ['PS', 'up', 'Smic à <b>1 690 € net</b> et conférence sociale sur les salaires au-dessus du Smic.', 'Projet socialiste, « Vivre libres »'],
+        ['PP', 'up', `<b>Smic à 1 600 € net</b> dans les deux ans, conférences salariales dans les branches (métiers utiles, précarité, pénibilité), écarts de salaires limités dans l'entreprise, point d'indice indexé sur l'inflation.`, 'Programme PP, p. 40'],
         ['RN', 'up', 'Hausse de salaire de <b>10 %</b> (jusqu\'à 3 Smic) exonérée de cotisations patronales ; baisse de la TVA sur l\'énergie ; pas d\'impôt sur le revenu avant 30 ans.', 'Législatives 2024, p. 8-10']
       ] },
     { id: 't-retraites', group: 'Travail et protection sociale', title: 'Âge de départ à la retraite', hint: 'Sens : âge',
       now: '<b>64 ans</b> pour les générations 1969 et suivantes (172 trimestres). Réforme suspendue : 62 ans 9 mois pour la génération 1964.',
       c: [
         ['FH', 'off', 'Suppression de l\'âge légal au profit d\'une durée de cotisation, avec prise en compte de la pénibilité ; règle d\'or d\'équilibre.', 'Texte socle'],
+        ['HO', 'nc', `Pas de position sur l'âge légal. L'édito d'Édouard Philippe de la note n°14 écarte la « retraite à 60 ans » et une nouvelle réduction du temps de travail (« aussi coûteuses qu'inefficaces ») et admet des départs anticipés pour les carrières pénibles. La note propose accompagnement, formation et <b>fin de carrière flexible</b>. La note n°18 cite un âge moyen de départ plus bas parmi les causes des dépenses de retraite supérieures de 2,1 points de PIB à la zone euro.`, `Note n°14, sept. 2024 ; note n°18 (note de réflexion, non officielle)`],
         ['LE', 'down', `Retour immédiat à <b>62 ans</b>, objectif de 60 ans, et 60 ans pour les carrières longues ; refus de la capitalisation ; conférence travail-retraite pour l'équilibre en 2050 ; hautes retraites sous-indexées.`, 'Programme 2027 (juillet 2026), chapitre 31'],
         ['LFI', 'down', 'Abrogation de la réforme de 2023, puis retour à <b>60 ans</b> à taux plein pour 40 annuités.', 'Avenir en commun, retraites'],
         ['LR', 'none', 'Pas de changement d\'âge dans les documents. Exonération de cotisations des seniors qui ont tous leurs trimestres (≈ <b>+300 €</b>/mois net).', 'Brochure, p. 13'],
         ['NE', 'up', 'Âge légal à <b>65 ans</b>, puis socle de répartition et capitalisation pour les autres régimes (≈ <b>116 Md€</b>).', 'Axe 2'],
-        ['PS', 'down', 'Abrogation de la réforme Borne ; <b>43 annuités</b> réductibles selon la pénibilité ; âge légal ramené à <b>62 ans</b>.', 'Projet socialiste, retraites'],
+        ['PP', 'mix', `Abrogation de la réforme de 2023 puis réforme d'ampleur avec les partenaires sociaux : fin de la focalisation sur l'âge légal, « certains doivent pouvoir partir à <b>60 ans</b>, d'autres devront travailler davantage » ; Haut Conseil du pilotage des retraites ; plus de cotisants (seniors, immigration de travail).`, 'Programme PP, p. 43'],
         ['RN', 'down', 'Abrogation de la réforme de 2023, système « progressif » tenant compte de la pénibilité. En 2022 : <b>60 ans</b> après 40 annuités pour les carrières longues.', 'Législatives 2024, p. 8 ; 22 mesures']
       ] },
     { id: 't-aides', group: 'Travail et protection sociale', title: 'Aides sociales et assurance chômage', hint: 'Sens : dépense sociale',
       now: 'RSA, prime d\'activité, ASS et APL versés séparément, sans plafond global de cumul (selon LR).',
       c: [
         ['FH', 'mix', 'Cotisations famille, santé et handicap (plus de 200 Md€) remplacées par une CSG à taux unique, élargie aux dépenses d\'IA.', 'Fiscalité, 28/08/2026'],
+        ['HO', 'down', `Pistes de la note n°03 (« évolutions envisageables », pour le débat) : <b>dégressivité élargie</b> (limitée aujourd'hui aux salaires de plus de 4 500 € bruts), sanctions renforcées en cas de refus d'offre valable, fin des « préretraites Unedic », revue des cumuls et rechargements, durée des droits modulée selon la conjoncture, gouvernance tripartite, évaluation du bonus-malus. Option structurelle : un <b>socle forfaitaire</b> complété par des assurances collectives obligatoires.`, `Note n°03, déc. 2022 (note de réflexion, non officielle)`],
         ['LE', 'up', `<b>Garantie d'autonomie</b> à 50 % du Smic net à la place du RSA, sans contrepartie de 15 heures ; APL +10 % ; réformes de l'assurance chômage abrogées, <b>garantie d'emploi</b> à 55 ans (territoires zéro chômeur de longue durée), bonus-malus renforcé sur les contrats courts.`, 'Programme 2027 (juillet 2026), chapitres 14 et 32'],
         ['LFI', 'up', 'Minima sociaux relevés, garantie d\'emploi pour les chômeurs de longue durée, cotisation sociale universelle.', 'Avenir en commun'],
         ['LR', 'down', 'Aides plafonnées à <b>70 % du Smic net</b> par adulte, assurance chômage resserrée : <b>13 Md€/an</b> d\'économies.', 'Brochure, p. 14-15'],
         ['NE', 'down', '<b>5 ans</b> de résidence pour les allocations non contributives (<b>8 Md€/an</b>) ; réforme de l\'État-providence (34 % du PIB, contre 29 % en Europe).', 'Axe 2 ; FAQ'],
-        ['PS', 'none', 'Pas de mesure d\'ensemble relevée dans les passages examinés.', '—'],
+        ['PP', 'up', `Réforme Macron de l'assurance chômage <b>abrogée</b> ; <b>garantie à l'emploi</b> (Territoires zéro chômeur généralisé, CDI d'insertion) ; conférence sociale vers un <b>minimum social unique</b>, ouvert aux moins de 25 ans, et une Sécurité sociale unique.`, 'Programme PP, p. 42, 53'],
         ['RN', 'down', 'Prestations de solidarité conditionnées à <b>5 ans</b> de travail en France ; annulation de la réforme de l\'assurance chômage de 2024.', 'Contre-budget, p. 3 ; législatives 2024']
       ] }
   ];
@@ -484,7 +515,7 @@
         { p: 'FH', v: 1578, label: '≈ 1 578 €', sub: '≈ +7 %', tip: '+100 € nets au Smic par la bascule des cotisations vers la CSG (proposition 1). Une chronique du 28/08/2026 parle de ≈ 90 €. Estimation : 1 478 + 100.', src: 'France Humaniste, proposition 1' },
         { p: 'LE', v: 1583, label: '≈ 1 583 €', sub: '2 000 € brut (calcul)', tip: 'Smic à 2 000 € brut dès 2027. Calcul : 2 000 × (1 478 ÷ 1 867) ≈ 1 583 € net, avec le même rapport net/brut que le Smic actuel.', src: 'Les Écologistes, programme 2027, chapitre 13' },
         { p: 'LFI', v: 1700, label: '1 700 €', sub: '+15 %', tip: 'Smic porté « immédiatement » à 1 700 € net.', src: 'L\'Avenir en commun 2027' },
-        { p: 'PS', v: 1690, label: '1 690 €', sub: '+14 %', tip: 'Réhausser le Smic à 1 690 € net.', src: 'Le Projet socialiste' }
+        { p: 'PP', v: 1600, label: '1 600 €', sub: '+8 %', tip: 'Smic à 1 600 € net dans les deux ans suivant l\'arrivée au pouvoir.', src: 'Place publique, programme p. 40' }
       ],
       note: 'Sans objectif de Smic net : LR, NE (passent par les cotisations ou le code du travail) et RN (hausse de 10 % des salaires exonérée de cotisations patronales).' },
     { id: 'age', title: 'Âge légal de départ à la retraite', sub: 'Ans',
@@ -493,7 +524,6 @@
       rows: [
         { p: 'LFI', v: 60, label: '60 ans', sub: 'à taux plein, 40 annuités', tip: 'Abroger la réforme de 2023, puis restaurer la retraite à 60 ans à taux plein pour 40 annuités.', src: 'L\'Avenir en commun 2027' },
         { p: 'LE', v: 62, label: '62 ans', sub: 'retour immédiat, objectif 60', tip: 'Abroger l\'âge légal de 64 ans pour revenir immédiatement à 62 ans et viser 60 ans, en priorité pour les carrières longues et pénibles.', src: 'Les Écologistes, programme 2027' },
-        { p: 'PS', v: 62, label: '62 ans', sub: '43 annuités', tip: 'Âge légal ramené à 62 ans ; durée de 43 annuités, réductible selon la pénibilité.', src: 'Le Projet socialiste' },
         { p: 'NE', v: 65, label: '65 ans', sub: '+ capitalisation', tip: 'Âge légal de 65 ans « impératif national », puis socle par répartition et capitalisation.', src: 'Nouvelle Énergie, axe 2' }
       ],
       note: 'Sans âge chiffré : FH (supprime l\'âge légal au profit d\'une durée de cotisation), RN (abroge la réforme de 2023 ; 60 ans après 40 annuités dans les 22 mesures de 2022), LR (n\'y touche pas dans les documents).' },
@@ -506,7 +536,7 @@
         { p: 'NE', v: 0, label: 'Équilibre', sub: 'règle d\'or, sans date', hollow: true, tip: 'Équilibre structurel des dépenses et des recettes, sous une « règle d\'or » qui exclut l\'investissement. Aucune date.', src: 'Nouvelle Énergie, axe 1' },
         { p: 'RN', v: 3, label: '< 3 % en 2030', sub: '140 Md€ nets d\'économies', tip: 'Plan du 6 octobre 2026 : 140 Md€ nets d\'économies d\'ici 2032 par rapport à 2026, déficit sous 3 % dès 2030. Le contre-budget 2026 d\'octobre 2025 donnait un déficit de 107 Md€ au lieu de 143 Md€ (≈ 3,5 % du PIB, calcul de ma part).', src: 'RN, 06/10/2026 (franceinfo, Boursorama)' }
       ],
-      note: 'Sans cible de déficit en % du PIB : LFI (annonce −24,7 Md€ de déficit en 2027 sans dire le niveau atteint, et suspend la règle des 3 %) et PS (vise la stabilisation de la dette en 2032). Prévisions du gouvernement : 5,4 % en 2026 et ≈ 5 % en 2027 (HCFP, septembre 2026) ; objectif officiel de 3 % en 2029, jugé très peu vraisemblable par le HCFP.' },
+      note: 'Sans cible de déficit en % du PIB : LFI (annonce −24,7 Md€ de déficit en 2027 sans dire le niveau atteint, et suspend la règle des 3 %) PP (« trajectoire crédible de désendettement ») et LE (« stabiliser » la dette), sans niveau. Prévisions du gouvernement : 5,4 % en 2026 et ≈ 5 % en 2027 (HCFP, septembre 2026) ; objectif officiel de 3 % en 2029, jugé très peu vraisemblable par le HCFP.' },
     { id: 'depense', title: 'Dépense publique', sub: '% du PIB',
       min: 44, max: 60, ticks: [44, 48, 52, 56, 60], tick: function (v) { return v + ' %'; },
       today: { v: 57.2, label: '57,2 %', tip: '2025 (Insee).' },
@@ -522,7 +552,7 @@
         { p: 'NE', v: 83.5, label: '−11,5 Md€', sub: '−21,5 avec les 10 déjà prévus', tip: 'Suppression de la C3S et de la CVAE : 11,5 Md€, en plus de 10 Md€ déjà prévus par le gouvernement, soit une division par deux (2 % → 1 % du PIB).', src: 'Nouvelle Énergie, axe 2' },
         { p: 'RN', v: 78.8, label: '−16,2 Md€', sub: 'CFE, C3S, CVAE', tip: 'Suppression de la CFE, de la C3S et de la CVAE dans le contre-budget 2026.', src: 'Contre-budget RN 2026, p. 4' }
       ],
-      note: 'FH propose d\'abolir ces impôts sans chiffrer. LFI et PS vont dans l\'autre sens (CVAE remplacée, IS progressif). Les bases de calcul diffèrent selon les partis.' }
+      note: 'FH propose d\'abolir ces impôts sans chiffrer. LFI (CVAE remplacée, IS progressif) et LE (impôt minimal sur les grandes entreprises) vont dans l\'autre sens ; PP ne propose pas de baisse. Les bases de calcul diffèrent selon les partis.' }
   ];
 
   var panelsEl = document.getElementById('panels');
@@ -831,9 +861,11 @@
     el.insertBefore(svg, el.firstChild);
   }
 
-  /* Probabilité de stabiliser puis de réduire le déficit en 2032 (RN, LR, FH, NE) */
+  /* Probabilité de stabiliser puis de réduire le déficit en 2032 (FH, LE, LFI, LR, NE, RN) */
   var TRAJ = [
     { p: 'FH', v: [[88, 88], [46, 46], [8, 8]], med: `4,1 % (3,1 à 5,1)`, plan: `65 Md€ de mesures et ≈ 60 Md€ attendus de la croissance ; sous 3 % en 2031. Aucune marge : un seul écart de rendement suffit à le faire échouer.`, src: `FH, 28/08/2026` },
+    { p: 'LE', v: [[1, 6], [0, 0], [0, 0]], med: `6,9 % (5,8 à 7,9) ou 6,5 % (5,5 à 7,5)`, plan: `Estimation partielle : ≈ 46 Md€ de recettes (successions 15, Zucman 15, ISF 6,3, grandes entreprises 10) et 10 Md€ de climat ; 5 à 35 Md€ de coûts non chiffrés en hypothèse. Aucune trajectoire publiée par LE. Sans coûts non chiffrés : 6,4 % ou 6,2 %.`, src: `Estimation indicative, pas un chiffrage de LE (dossier de presse du 26/08/2026)` },
+    { p: 'LFI', v: [[0, 2], [0, 0], [0, 0]], med: `8,8 % (7,6 à 9,9) ou 7,0 % (6,0 à 8,0)`, plan: `Budget 2027 maintenu jusqu'en 2032 : 106 Md€ de recettes annoncées (≈ 57 perçus), 82 Md€ de dépenses, 10 à 60 Md€ de coûts non chiffrés en hypothèse. Si tout est perçu et rien d'autre : 5,5 %. Relance et reprise de dette par la BCE non comptées.`, src: `Estimation indicative, pas un chiffrage de LFI (budget du 14/10/2026)` },
     { p: 'LR', v: [[58, 79], [22, 39], [4, 8]], med: `4,8 % (3,5 à 6,1) ou 4,3 % (3,1 à 5,4)`, plan: `197 Md€ d'économies dont 51 rendus ; 2,2 % en 2032. La fourchette dépend du moment des baisses d'impôts. Repose sur 42 Md€ sur les retraites et 400 000 postes publics supprimés.`, src: `LR, 12/10/2026 (LCP, AFP)` },
     { p: 'NE', v: [[3, 21], [0, 3], [0, 0]], med: `7,2 % (5,7 à 8,7) ou 5,8 % (4,5 à 6,9)`, plan: `200 Md€ d'économies en grande partie rendus : le plan n'est pas conçu pour réduire le déficit (5,2 % ou 4,1 % même si tout est réalisé).`, src: `NE, 16/10/2026` },
     { p: 'RN', v: [[76, 76], [34, 34], [7, 7]], med: `4,4 % (3,2 à 5,5)`, plan: `140 Md€ nets d'économies d'ici 2032 ; sous 3 % dès 2030. Dépend de réformes lourdes (référendum sur l'immigration, retraites).`, src: `RN, 06/10/2026 (franceinfo, Boursorama)` }
@@ -879,11 +911,12 @@
   /* ---------- Tableau des efforts ---------- */
   var EFFORTS = [
     ['FH', '125 Md€ à trouver (65 Md€ après croissance)', 'D\'ici 2031', 'Retour du déficit sous 3 % : ⅔ baisse de dépense/niches, ⅓ impôts', 'Fiscalité, 28/08/2026'],
+    ['HO', 'Aucun total ni cible de déficit : la note n°18 plaide pour une consolidation « rapide et forte », surtout par la dépense (note de réflexion, non officielle) ; aucun chiffre dans le manifeste de 2021 ni dans le manifeste européen de 2024', 'Horizon non précisé', 'Pas de chiffrage global ni de programme présidentiel 2027 dans le dossier', 'Note n°18, janv. 2025 ; manifeste 2021'],
     ['LE', '10 Md€ pour le climat et l\'adaptation en 2027 ; contribution sur les successions ≈ 15 Md€ par an en régime de croisière ; défense +6,4 Md€ (loi de programmation militaire) acceptée ; aucune trajectoire de déficit ni total d\'économies', '2027 ; régime de croisière', 'Budget 2027 : recettes patrimoine, dépenses climat ; pas de chiffrage global', 'LE, dossier de presse du 26/08/2026'],
     ['LFI', '+106,4 Md€ de recettes, +81,7 Md€ de dépenses, soit −24,7 Md€ de déficit', '2027, première année', 'Budget rectificatif, pas un chiffrage complet du programme ; + 100 Md€/an d\'investissements hors budget par un pôle public bancaire', 'LFI, 14/10/2026'],
     ['LR', '197 Md€ d\'économies, dont 51 rendus (146 pour le déficit) ; avant : 30 Md€ restitués (brochure de déc. 2025)', 'Jusqu\'en 2032', 'État 96, social 91 (dont retraites 42), collectivités 10 ; « pas d\'impôt nouveau »', 'LR, 12/10/2026 ; brochure'],
     ['NE', '200 Md€ de baisse de dépense (objectif 300)', 'Fin de quinquennat', 'Environ 7 points de PIB ; 60 % rendus en pouvoir d\'achat (120 Md€). Le texte d\'avril 2026 parlait de 100 Md€', 'FAQ NE, 16/10/2026'],
-    ['PS', '200 Md€ d\'investissements sur 5 ans, dont 50 financés ; 11 Md€/an (exonérations) ; 400 Md€ (grandes successions)', '5 ans ; 2025-2040 cumulé', 'Reste à financer et déficit non chiffrés ; vise la stabilisation de la dette en 2032', 'PS, 09/11/2026 ; Projet socialiste'],
+    ['PP', 'Aucun total ni trajectoire de déficit ; « trajectoire crédible de désendettement » ; Smic à 1 600 € net ; au niveau européen : fonds de défense de 500 Md€ par emprunt commun et budget de l\'UE « massivement » augmenté', 'Horizon non précisé', 'Pas de chiffrage global', 'Programme PP, p. 11, 40, 85'],
     ['RN', '140 Md€ nets d\'économies d\'ici 2032 (125 en 2030) ; avant : contre-budget 2026 (57 Md€ de dépenses en moins)', 'Jusqu\'en 2032', 'Déficit sous 3 % dès 2030 visé ; immigration ≈ 15 Md€, retraites 15 à 20 Md€ ; contre-budget 2026 : solde ≈ +36 Md€', 'RN, 06/10/2026 ; contre-budget']
   ];
   var tb = document.getElementById('efforts-body');
