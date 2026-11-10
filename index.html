@@ -13,7 +13,7 @@
   :root {
     --bg: #f3f5f7; --panel: #fcfdfd; --fg: #0f1b26; --muted: #52606d; --faint: #7b8794;
     --line: #dde3e8; --accent: #0b5c6b; --pill: #e6eef1;
-    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300;
+    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300; --p-LE: #7c4dce;
     --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-title: "Newsreader", Georgia, "Times New Roman", serif;
   }
@@ -21,14 +21,14 @@
     :root:not([data-theme="light"]) {
       --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
       --line: #26323d; --accent: #4cc3d6; --pill: #1f2b34;
-      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
     --line: #26323d; --accent: #4cc3d6; --pill: #1f2b34;
-    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -99,6 +99,7 @@
     <p class="lede">Quatre tableaux de bord construits à partir des programmes et des sources officielles du dossier Election_2027. Chaque sujet rappelle la situation actuelle avant les positions des partis.</p>
     <div class="parties" aria-label="Partis couverts">
       <span class="party" style="--c:var(--p-FH)"><i></i><b>FH</b> France Humaniste</span>
+      <span class="party" style="--c:var(--p-LE)"><i></i><b>LE</b> Les Écologistes</span>
       <span class="party" style="--c:var(--p-LFI)"><i></i><b>LFI</b> La France insoumise</span>
       <span class="party" style="--c:var(--p-LR)"><i></i><b>LR</b> Les Républicains</span>
       <span class="party" style="--c:var(--p-NE)"><i></i><b>NE</b> Nouvelle Énergie</span>
@@ -127,7 +128,7 @@
       <div class="head">
         <span class="tag">Social</span>
         <h2>Orientations sociales</h2>
-        <p class="what">Pour chaque sujet, l'état actuel puis la position des six partis, avec des graphiques « aujourd'hui → cible » quand un chiffre existe.</p>
+        <p class="what">Pour chaque sujet, l'état actuel puis la position des sept partis, avec des graphiques « aujourd'hui → cible » quand un chiffre existe.</p>
       </div>
       <ul>
         <li>Santé, retraites, grand âge, famille, logement, pauvreté et minima sociaux, éducation</li>
@@ -141,7 +142,7 @@
       <div class="head">
         <span class="tag">Ordre public, défense et travail</span>
         <h2>Immigration, sécurité, défense, emploi</h2>
-        <p class="what">Sept sujets (immigration, intégration, sécurité, justice pénale, justice civile, défense, emploi) : l'état actuel, puis la position des six partis.</p>
+        <p class="what">Sept sujets (immigration, intégration, sécurité, justice pénale, justice civile, défense, emploi) : l'état actuel, puis la position des sept partis.</p>
       </div>
       <ul>
         <li>Repères : immigrés, titres de séjour, asile, discriminations déclarées, délinquance, détenus et places de prison, dépenses militaires, chômage, emploi</li>
@@ -155,7 +156,7 @@
       <div class="head">
         <span class="tag">Territoire et environnement</span>
         <h2>Énergie, environnement, ruralité</h2>
-        <p class="what">Neuf sujets en quatre blocs (énergie, climat et logement, eau-déchets-mer, campagnes et agriculture) : l'état actuel, puis la position des six partis.</p>
+        <p class="what">Neuf sujets en quatre blocs (énergie, climat et logement, eau-déchets-mer, campagnes et agriculture) : l'état actuel, puis la position des sept partis.</p>
       </div>
       <ul>
         <li>Repères : électricité, nucléaire, prix, facture fossile, émissions, fuites d'eau, sécheresse, passoires thermiques, communes rurales</li>

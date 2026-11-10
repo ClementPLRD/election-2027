@@ -12,7 +12,7 @@
   :root {
     --bg: #f3f5f7; --panel: #fcfdfd; --fg: #0f1b26; --muted: #52606d; --faint: #7b8794;
     --line: #dde3e8; --grid: #e6eaee; --accent: #0b5c6b; --pill: #e6eef1; --ring: #fcfdfd;
-    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300;
+    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300; --p-LE: #7c4dce;
     --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-title: "Newsreader", Georgia, "Times New Roman", serif;
   }
@@ -20,14 +20,14 @@
     :root:not([data-theme="light"]) {
       --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
       --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
     --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -76,8 +76,8 @@
   .theme-head .now b { color: var(--fg); font-weight: 600; }
   .theme-head .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-right: 6px; }
   .cells { display: grid; grid-template-columns: 1fr; }
-  @media (min-width: 640px) { .cells { grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 1100px) { .cells { grid-template-columns: repeat(6, 1fr); } }
+  @media (min-width: 560px) { .cells { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .cells { grid-template-columns: repeat(4, 1fr); } }
   .cell { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin-top: -1px; margin-left: -1px; min-width: 0; }
   .cell .who { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; }
   .cell .who .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
@@ -175,7 +175,7 @@
   <header class="top">
     <p class="eyebrow">Présidentielle 2027 · Énergie, environnement, ruralité</p>
     <h1 id="titre">Énergie, environnement, ruralité 2027</h1>
-    <p class="lede">Énergie : FH, LR, NE et le RN misent sur le nucléaire (LR vise 80 ans pour les réacteurs actuels), LR et le RN coupent aussi les aides aux renouvelables, LFI sort du nucléaire pour du 100 % renouvelable en 2060, le PS combine les deux. Climat : LFI vise −65 % d'émissions en 2033, FH et NE un prix du carbone, le RN refuse « l'écologie punitive ». Eau, déchets, mer : LFI et le PS misent sur la gestion publique, le réemploi et la protection des océans, LR demande un moratoire sur les interdictions allant au-delà de l'Europe, le RN un plan pour les réseaux d'eau. Campagnes : LFI, FH et NE promettent services publics et transports, LR abroge le ZAN, le RN supprime les zones à faibles émissions.</p>
+    <p class="lede">Énergie : FH, LR, NE et le RN misent sur le nucléaire (LR vise 80 ans pour les réacteurs actuels), LR et le RN coupent aussi les aides aux renouvelables, LFI et LE sortent du nucléaire (LFI : 100 % renouvelable en 2060 ; LE : arrêt du parc sur une vingtaine d'années), le PS combine les deux. Climat : LFI vise −65 % d'émissions en 2033, LE la neutralité en 2050 avec 10 Md€ dès 2027, FH et NE un prix du carbone, le RN refuse « l'écologie punitive ». Eau, déchets, mer : LFI et le PS misent sur la gestion publique, le réemploi et la protection des océans, LR demande un moratoire sur les interdictions allant au-delà de l'Europe, le RN un plan pour les réseaux d'eau. Campagnes : LFI, FH et NE promettent services publics et transports, LR abroge le ZAN, le RN supprime les zones à faibles émissions.</p>
     <p class="stamp">Situation au 10/11/2026 · positions tirées des documents des partis, souvent sans chiffrage. LR n'a pas de fiche climat ni ruralité ; le RN n'a pas de document sur les services publics en zone rurale.</p>
     <div class="chips" id="filtre" role="group" aria-label="Partis affichés"><span class="lbl">Partis affichés</span></div>
   </header>
@@ -263,7 +263,7 @@
         <li>Climat, importations fossiles, émissions : Direction générale du Trésor, <i>Rapport économique, social et financier</i>, annexe du PLF 2027 (06/10/2026).</li>
         <li>Eau : OFB, communiqué sur le 16e rapport national de l'Observatoire des services publics d'eau et d'assainissement (SISPEA, 25/06/2026). Déchets : SDES, <i>Bilan environnemental de la France</i>, édition 2020. Mer : annonce du gouvernement et estimation de Greenpeace et du CNRS relevées dans la presse (10/11/2026), à confirmer sur les publications du SDES.</li>
         <li>Territoires et logement : <a href="https://www.insee.fr/fr/statistiques/8996946?sommaire=8996963">Insee, « Territoires : vivre, travailler, habiter »</a> ; agriculture : <a href="https://www.insee.fr/fr/statistiques/9080401?sommaire=8996963">Insee, « Tissu productif, industrie, culture, agriculture »</a> (15/10/2026).</li>
-        <li>Partis : FH, <i>France 2027</i> et chroniques · LFI, <i>L'Avenir en commun</i>, plan ruralité, budget rectificatif du 14/10/2026 · LR, fiches Électricité, Agriculture, Logement · NE, programme web (axes 2 et 3), page Agriculture · PS, <i>Le Projet socialiste</i> · RN, 22 mesures pour 2022, livrets Écologie et Agriculture, programme des législatives 2024, contre-budget 2026.</li>
+        <li>Partis : FH, <i>France 2027</i> et chroniques · LFI, <i>L'Avenir en commun</i>, plan ruralité, budget rectificatif du 14/10/2026 · LR, fiches Électricité, Agriculture, Logement · NE, programme web (axes 2 et 3), page Agriculture · LE, <i>Pour une prospérité écologique</i> (programme de juillet 2026), livret Littoral, dossier budget 2027 · PS, <i>Le Projet socialiste</i> · RN, 22 mesures pour 2022, livrets Écologie et Agriculture, programme des législatives 2024, contre-budget 2026.</li>
       </ul>
     </details>
   </section>
@@ -274,7 +274,8 @@
 <script>
 (function () {
   var P = [
-    { code: 'FH', name: 'France Humaniste' }, { code: 'LFI', name: 'La France insoumise' }, { code: 'LR', name: 'Les Républicains' },
+    { code: 'FH', name: 'France Humaniste' },
+    { code: 'LE', name: 'Les Écologistes' }, { code: 'LFI', name: 'La France insoumise' }, { code: 'LR', name: 'Les Républicains' },
     { code: 'NE', name: 'Nouvelle Énergie' }, { code: 'PS', name: 'Parti socialiste' }, { code: 'RN', name: 'Rassemblement national' }
   ];
   var NAME = {}; P.forEach(function (p) { NAME[p.code] = p.name; });
@@ -287,6 +288,7 @@
       now: `Production <b>547,5 TWh</b> en 2025, dont <b>373,0 TWh</b> de nucléaire (+11,3 TWh) et 62,4 TWh d'hydraulique ; solaire <b>+33 %</b> et éolien +6 % sur un an ; fossile au plus bas depuis près de 75 ans. Électricité décarbonée à <b>95,2 %</b>, renouvelable à 27,0 %. Programme officiel : <b>6 EPR2</b> (premier vers 2038), 8 de plus à l'étude, réacteurs actuels exploités jusqu'à 60 ans « voire au-delà » (PPE3).`,
       c: [
         ['FH', ['◆', 'Nucléaire et éolien en mer'], `<b>6 EPR2</b> et un <b>éolien en mer</b> industrialisé, électrification massive des usages pour les ménages et l'industrie ; décarbonation de l'énergie comme « clé » de la transition ; planification inscrite dans la Constitution.`, 'Proposition 16 ; texte socle'],
+        ['LE', ['▼', 'Sortie du nucléaire'], `<b>Sortie du nucléaire planifiée</b> : fin des programmes EPR2 et SMR, arrêt progressif du parc sur une vingtaine d'années (prolongations étudiées sous condition de sûreté), moratoire sur CIGEO ; renouvelables à <b>44 %</b> de la consommation finale brute d'électricité en 2030 ; éolien, solaire, géothermie, biogaz soutenus, prêt à taux zéro à 60 % des devis ; <b>10 000 communautés énergétiques</b>.`, 'Programme 2027 (juillet 2026), chapitre 1'],
         ['LFI', ['▼', 'Sortie du nucléaire'], `<b>100 % renouvelable</b> au plus tard en <b>2060</b>, sortie des fossiles avant 2050 ; réacteurs fermés progressivement sans dépasser <b>60 ans</b>, programme <b>EPR2 arrêté</b>, enfouissement des déchets abandonné ; pôle public de l'énergie, barrages non privatisés, Engie renationalisée.`, 'Avenir en commun'],
         ['LR', ['▲', 'Nucléaire et hydraulique'], `Réacteurs actuels exploités <b>80 ans</b>, <b>EPR2 confirmés</b>, hydroélectricité relancée ; <b>fin des subventions</b> aux nouvelles capacités éoliennes et photovoltaïques en métropole ; réacteurs à neutrons rapides de 4e génération ; blocage de l'European Grid Package.`, 'LR, fiche Électricité'],
         ['NE', ['▲', 'Nucléaire'], `Priorité au nucléaire décarboné : réacteurs prolongés <b>jusqu'à 60 ans</b>, EPR de nouvelle génération, <b>mini-réacteurs</b> ; renouvelables ramenées au droit commun (fin des prix et des règles d'urbanisme dérogatoires), les économies réinvesties dans le nucléaire.`, 'NE, axe 3'],
@@ -297,6 +299,7 @@
       now: `Prix à terme de l'électricité <b>61 €/MWh</b> (livraison 2026, vu en 2025), contre 77 €/MWh un an plus tôt ; prix français très inférieurs aux prix allemands et italiens (RTE). Prix pour les ménages <b>13 %</b> sous la moyenne européenne en 2025 (Trésor). Importations d'énergies fossiles : <b>63 Md€</b> en 2025.`,
       c: [
         ['FH', ['▼', 'Baisse de la facture'], `<b>−15 %</b> sur la facture d'électricité : contrats universels au coût réel de production, fin des « quasi-taxes » ; tarification du carbone ; mécanisme de protection des ménages précaires pour chaque instrument.`, 'Proposition 3 ; texte socle'],
+        ['LE', ['◆', 'Découpler du prix des fossiles'], `Prix de l'électricité <b>découplé</b> de celui des fossiles : accise unifiée sur le gaz et l'électricité, TVA réduite sur l'abonnement, niches fossiles supprimées ; tarif bleu refondu avec tarification progressive ; <b>contrats pour différence</b> pour stabiliser les prix ; certificats d'économies d'énergie réformés ; refus d'étendre le marché carbone aux ménages (ETS2).`, 'Programme 2027 (juillet 2026), chapitre 1'],
         ['LFI', ['◆', 'Tarifs réglementés, public'], `<b>Tarifs réglementés</b> calculés sur les coûts de production, premières quantités <b>gratuites</b> ; libéralisation du marché de l'électricité et du gaz annulée, hausses du prix du gaz annulées ; pôle public de l'énergie avec les coopératives locales et EDF.`, 'Avenir en commun'],
         ['LR', ['▼', 'Baisse de la facture'], `<b>−5 %</b> tout de suite (suppression des certificats d'économies d'énergie sur l'électricité), puis <b>−5 à −10 %</b> à partir de 2030 ; industriels et consommateurs font profiter du parc nucléaire ; freins à l'électrification levés à coût budgétaire nul.`, 'LR, fiche Électricité'],
         ['NE', ['◆', 'Prix du carbone, droit commun'], `Fiscalité environnementale à <b>taxation totale constante</b> (pollueur-payeur, produit redistribué aux « perdants »), prix du carbone sous réciprocité internationale ; renouvelables sans prix dérogatoires. Pas d'objectif de prix.`, 'NE, axe 3'],
@@ -307,6 +310,7 @@
       now: `Objectif officiel : neutralité carbone en <b>2050</b>, <b>−50 %</b> d'émissions brutes en 2030 par rapport à 1990 ; il faudrait baisser d'environ <b>5 %</b> par an de 2024 à 2030, contre 3 % en moyenne de 2017 à 2023. Émissions par habitant <b>−22 %</b> de 2017 à 2024 (UE : −21 %). Transports : 34 % des émissions brutes ; combustion d'énergie : environ 60 % (2023). Source : Trésor.`,
       c: [
         ['FH', ['◆', 'Prix du carbone, planification'], `« Écologie de vérité » : <b>tarification du carbone</b> nationale, européenne et mondiale, planification inscrite dans la Constitution ; transition portée par les choix individuels plus que par les interdits, avec protection des ménages précaires ; <b>dividende climatique</b> ; adaptation du territoire.`, 'Texte socle ; chroniques'],
+        ['LE', ['▲', 'Planification et justice climatique'], `Neutralité carbone en <b>2050</b>, loi de programmation climatique (sobriété, efficacité, renouvelables) ; « pacte fiscal vert » 2027-2032 et fonds France Verte 2040 ; taxe sur les superprofits pétro-gaziers et du transport maritime, TVA verte différenciée ; <b>7 Md€ par an</b> d'ici 2032 pour l'adaptation ; budget 2027 : <b>10 Md€</b> pour le climat ; Caisse nationale de sécurité climatique.`, 'Programme 2027 (juillet 2026), chapitres 1, 4, 17 ; budget 2027'],
         ['LFI', ['▲', 'Planification et règle verte'], `<b>−65 %</b> d'émissions de gaz à effet de serre d'ici <b>2033</b>, bilan annuel incluant les émissions importées ; « règle verte » dans la Constitution ; moratoire sur les grands projets « écocidaires » ; comptabilité carbone certifiée pour les entreprises ; conseil à la planification écologique.`, 'Avenir en commun'],
         ['LR', ['◆', 'Réciprocité, moins de normes'], `Pas de fiche climat dans le dossier. Dans les autres fiches : mécanisme d'ajustement carbone aux frontières renforcé et étendu, principe de précaution retiré de la Charte de l'environnement, Office français de la biodiversité (OFB) <b>supprimé</b>.`, 'LR, Produire plus ; Agriculture'],
         ['NE', ['◆', 'Prix du carbone, innovation'], `« France leader bas carbone du G20 », sans décroissance ni « écologie punitive » ; prix du carbone et fiscalité verte à <b>taxation constante</b> ; recherche énergétique accélérée. Pas de chiffre de réduction des émissions.`, 'NE, axe 3'],
@@ -317,6 +321,7 @@
       now: `<b>3,9 millions</b> de logements classés F ou G (passoires thermiques), soit <b>12,7 %</b> des résidences principales au 1er janvier 2025 ; 1,1 million dans le parc locatif privé (13,8 %), environ 300 000 dans le parc social (5,8 %). Transports : première source d'émissions (34 %).`,
       c: [
         ['FH', ['▲', 'Équipement des ménages'], `<b>1 million</b> de pompes à chaleur et <b>1 million</b> de voitures électriques en leasing social ; une liaison par heure entre chaque préfecture et ses sous-préfectures à prix unique ; train du quotidien prioritaire (chronique).`, 'Propositions 4 et 17 ; chronique'],
+        ['LE', ['▲', 'Rénovation et transports publics'], `<b>500 000 rénovations</b> performantes par an (un million de personnes sorties de la précarité énergétique par an), fin des chaudières au fioul en 2032 ; <b>1 million</b> de voitures électriques en leasing social ; <b>25 %</b> de part modale des transports collectifs en 2030 ; voies cyclables doublées (120 000 km en 2032), vitesse à 110 km/h sur autoroute ; moratoire sur l'A69, Seine-Nord et Lyon-Turin.`, 'Programme 2027 (juillet 2026), chapitres 2 et 3'],
         ['LFI', ['▲', 'Rénovation publique'], `<b>700 000</b> logements isolés par an, service public de la rénovation, location des passoires thermiques interdite, chauffages au fioul et au gaz remplacés (pompes à chaleur, géothermie) ; <b>pôle public des transports</b>, lignes de train du quotidien rouvertes.`, 'Avenir en commun ; plan ruralité'],
         ['LR', ['▼', 'Moins de contraintes'], `Interdictions de louer liées au DPE <b>supprimées</b> (≈ 450 000 logements préservés) ; ZAN abrogé. Pas de plan de rénovation ni de mobilité dans le dossier.`, 'LR, fiche Logement'],
         ['NE', ['◆', 'Infrastructures'], `Pas de mesure de rénovation thermique dans les documents lus ; <b>plan d'investissement</b> dans les infrastructures routières et ferroviaires contre l'enclavement, fibre ou internet par satellite.`, 'NE, axe 2'],
@@ -327,6 +332,7 @@
       now: `Agriculture et agroalimentaire : <b>3,5 %</b> du PIB et près de 5 % de l'emploi. Emploi agricole passé de plus de 8 % de l'emploi total au début des années 1980 à moins de 3 %. Environ <b>350 000</b> exploitations en 2023 (664 000 en 2000), plus grandes (69 ha en moyenne contre 42). Niveau de vie médian des ménages agricoles <b>24 700 €</b> en 2021, contre 23 000 € pour l'ensemble de la population.`,
       c: [
         ['FH', ['◆', 'Revenus, installation, carbone'], `Objectif de <b>500 000 exploitations</b> en 2035 à taille humaine ; aides concentrées sur l'installation, foncières publiques d'achat de terres ; usage des phytosanitaires <b>réduit de moitié</b> d'ici 2030, haies restaurées ; producteurs organisés face à la grande distribution ; commande publique de produits français ; neutralité carbone agricole.`, 'Texte socle, chantier Agriculture'],
+        ['LE', ['▼', 'Agroécologie, élevage réduit'], `<b>21 %</b> d'agriculture bio en 2030 puis 25 % en 2032 ; prix planchers et partage de la valeur, dotation nouvel agriculteur sans critère d'âge ; <b>plan de transition de l'élevage</b> (réduction planifiée des cheptels bovins), <b>−50 %</b> de protéines animales consommées en 2050 ; loi Duplomb abrogée, nouveaux OGM interdits ; paiements pour services environnementaux.`, 'Programme 2027 (juillet 2026), chapitres 11 et 12'],
         ['LFI', ['▲', 'Agriculture paysanne'], `<b>500 000 emplois agricoles</b> créés, prix planchers garantis, dettes des exploitants passés au 100 % bio reprises, PAC réorientée vers la production écologique, réforme agraire (préemption pour les installations), clause de sauvegarde à l'import ; marges de l'agroalimentaire et de la distribution encadrées ; fermes-usines interdites.`, 'Avenir en commun'],
         ['LR', ['▲', 'Production, moins de normes'], `Agriculture « intérêt fondamental de la Nation » dans la Constitution, <b>principe de précaution retiré</b> de la Charte de l'environnement, <b>OFB supprimé</b> ; fin des surtranspositions, réciprocité à l'import ; stockage d'eau d'intérêt général ; objectif Ecophyto de −50 % abandonné.`, 'LR, fiche Agriculture'],
         ['NE', ['▲', 'Liberté de produire'], `Fin des surtranspositions, clauses miroirs, PAC recentrée sur la production ; nouvelles techniques génomiques autorisées, phytosanitaires encadrés « sur base scientifique » ; statut unique d'exploitation simplifié, charges transférées en partie vers la valeur ajoutée ; <b>compte-épargne aléas climatiques</b> pour les agriculteurs.`, 'NE, Agriculture ; axe 2'],
@@ -337,6 +343,7 @@
       now: `Les territoires ruraux représentent <b>88 %</b> des communes et un tiers de la population ; la population rurale progresse de <b>0,2 %</b> par an (2017-2023), contre 0,5 % en ville. <b>9 %</b> des sols sont artificialisés (6 % dans les communes rurales, 56 % dans les grands centres urbains). Objectif de <b>zéro artificialisation nette</b> en 2050, rythme de consommation d'espace divisé par deux entre 2021 et 2031.`,
       c: [
         ['FH', ['▲', 'Maillage territorial'], `« Promesse unique, moyens variables » : <b>sous-préfectures</b> comme maillage de base, <b>une liaison par heure</b> entre préfecture et sous-préfectures à prix unique, assemblée annuelle des maires et conseil des territoires auprès du Président ; train du quotidien et adaptation du territoire au climat.`, 'Texte socle ; chronique'],
+        ['LE', ['▲', 'Services à 15 minutes'], `Accueil physique des services publics <b>à 15 minutes</b> partout (Maisons France Services dotées d'agents assermentés) ; <b>états généraux des espaces ruraux</b> ; centres et maisons de santé dans les zones sous-dotées ; fermetures de classes empêchées ; petites lignes ferroviaires régénérées ; <b>ZAN</b> renforcé pour 2031-2041 et loi foncière.`, 'Programme 2027 (juillet 2026), chapitres 10 et 45'],
         ['LFI', ['▲', 'Services publics partout'], `<b>États généraux des espaces ruraux</b>, fermetures de services publics stoppées (poste, gares, hôpitaux, écoles, tribunaux), guichets physiques rouverts, bus des services publics ; DGF rééquilibrée et indexée sur l'inflation, métropoles supprimées ; plan de protection du foncier pour le <b>ZAN</b>.`, 'Plan ruralité ; Avenir en commun'],
         ['LR', ['▼', 'Libérer la construction'], `<b>ZAN abrogé</b> : une commune rurale « qui n'a pas bétonné » ne peut plus se développer ; liberté de bâtir rendue aux maires, avec une part de la TVA des logements neufs. Pas de fiche ruralité ni services publics dans le dossier.`, 'LR, fiche Logement'],
         ['NE', ['◆', 'Provinces et désenclavement'], `Schéma <b>État / Province / bloc communal</b> (référendum constitutionnel) ; chaque zone rurale à moins de <b>20 minutes</b> d'une ville moyenne, chaque ville moyenne à moins d'1 h 30 d'une métropole ; plan routier et ferroviaire, fibre ou satellite ; loi SRU supprimée.`, 'NE, axes 2 et 3'],
@@ -347,6 +354,7 @@
       now: `Rendement moyen du réseau de distribution : <b>79 %</b> en 2024, soit 21 % de fuites ; 19 % des services sous le seuil du décret « fuites ». Prix moyen de l'eau et de l'assainissement : <b>4,89 €/m³</b> au 1er janvier 2025 (4,69 € en 2023), soit 586,80 € par an pour un foyer. Été 2026 : canicules et sécheresse « inédites », plan de plus d'<b>1 Md€</b> pour les agriculteurs, −0,1 point de PIB (Trésor). Valeurs 2024 à lire avec prudence (OFB).`,
       c: [
         ['FH', ['◆', 'Souveraineté hydrique'], `Eau polluée comme enjeu de santé de l'« écologie de vie » ; <b>souveraineté hydrique</b> et résilience dans l'outre-mer. Pas de plan pour les réseaux ni le stockage dans les documents lus.`, 'Texte socle ; chronique'],
+        ['LE', ['▲', 'Régies publiques, gratuité'], `Moratoire sur les <b>méga-bassines</b> ; <b>régies publiques</b> de l'eau, <b>gratuité des premiers mètres cubes</b> et tarification progressive ; plomb et chlorure de vinyle interdits ; très bon état des cours d'eau, captages protégés ; rénovation des canalisations (outre-mer notamment), désimperméabilisation des sols ; gouvernance de l'eau ouverte (fin de la mainmise du préfet).`, 'Programme 2027 (juillet 2026), chapitre 9'],
         ['LFI', ['▲', 'Gestion publique, réseaux rénovés'], `Rénovation de <b>l'intégralité des réseaux</b> d'eau et d'assainissement (fuites, droit à l'eau) ; <b>gestion publique et démocratique</b> de l'eau, usages domestiques et agricoles nourriciers prioritaires en cas de tension ; accès à l'eau potable garanti « quoi qu'il en coûte » outre-mer ; dépollution des mers.`, 'Avenir en commun ; plan ruralité'],
         ['LR', ['▲', "Stockage de l'eau"], `<b>Stockage d'eau</b> reconnu d'intérêt général majeur pour l'agriculture, avec des délais d'instruction opposables à l'administration (le silence vaut accord). Pas d'autre mesure sur l'eau dans le dossier.`, 'LR, fiche Agriculture'],
         ['NE', ['◆', 'Subsidiarité, bassines'], `Gestion de l'eau fondée sur la <b>subsidiarité</b> : « oui aux bassines, lorsqu'elles sont techniquement justifiées et localement décidées » ; compte-épargne aléas climatiques pour les agriculteurs.`, 'NE, Agriculture ; axe 2'],
@@ -357,6 +365,7 @@
       now: `Données anciennes dans le dossier (SDES, bilan 2020) : <b>342,4 Mt</b> de déchets produits en 2018, dont 29,7 Mt de déchets ménagers et assimilés ; taux de recyclage de <b>66 %</b> pour l'ensemble (2018) et près de <b>43 %</b> pour les déchets ménagers (2017) ; mise en décharge des déchets ménagers ramenée de 43 % à 22 % de 2000 à 2017. Des éditions plus récentes existent.`,
       c: [
         ['FH', 'none', `Aucune mesure sur les déchets ou le recyclage dans les documents lus.`, '—'],
+        ['LE', ['▲', 'Écoconception et réemploi'], `Écoconception obligatoire (produits démontables, réparables), pré-tri « réemploi » en déchetterie, tri à la source des biodéchets ; <b>réforme de la REP</b> (conflit d'intérêt entre renouvellement et réemploi) ; publicité encadrée ; loi contre la fast fashion appliquée strictement (5 000 nouveaux modèles par an au plus) ; métiers de la réparation promus.`, 'Programme 2027 (juillet 2026), chapitre 19'],
         ['LFI', ['▲', 'Réemploi et interdictions'], `<b>Service public du réemploi</b> (recycleries, ateliers de réparation), obsolescence programmée abolie, <b>plastiques à usage unique interdits</b> immédiatement, consigne du verre restaurée ; réemploi, compostage puis recyclage obligatoires ; indice de durabilité des produits, écoconception imposée.`, 'Avenir en commun'],
         ['LR', ['▼', 'Moratoire sur les interdictions'], `<b>Moratoire immédiat</b> sur toute interdiction (loi anti-gaspillage AGEC, plastiques, PFAS) qui irait <b>au-delà des règlements européens</b>.`, 'LR, Produire plus'],
         ['NE', ['◆', 'Traitement à la source'], `Pas de politique des déchets propre ; action internationale ciblée sur les « super-pollueurs » (10 fleuves seraient à l'origine de 88 à 95 % des déchets plastiques déversés dans les océans) ; recherche sur le traitement des déchets nucléaires par laser.`, 'NE, axe 3'],
@@ -367,6 +376,7 @@
       now: `Éolien en mer installé : <b>1,9 GW</b> fin 2025 (+0,4 GW). Aires marines protégées : le gouvernement annonce <b>14,8 %</b> des eaux françaises en « protection forte » fin 2026 (4,8 % avant), Greenpeace et le CNRS en comptent <b>1,58 %</b> ; objectif national : 30 % protégés dont 10 % en protection forte en 2030. Aide au carburant pour la pêche en 2026 : 0,20 à 0,35 €/L (Trésor).`,
       c: [
         ['FH', ['◆', 'Adaptation du littoral'], `<b>Cartographier le recul du trait de côte</b>, relocaliser quand il le faut avec accompagnement, renforcer les protections efficaces ; en outre-mer, résilience cyclonique et énergies locales ; éolien en mer industrialisé.`, 'Chronique ; proposition 16'],
+        ['LE', ['▲', 'Protection stricte, pêche artisanale'], `<b>10 % des zones maritimes en protection stricte</b> d'ici 2030 (sans activité extractive ni destructrice), 30 % renforcés ; alternatives au chalutage de fond et plan de transition des flottilles ; <b>pêche artisanale</b> soutenue, subventions et quotas redirigés ; moratoire sur l'extraction minière en eaux profondes et les forages en Méditerranée ; navires-usines interdits ; trait de côte anticipé dans les PLU.`, 'Programme 2027 (juillet 2026), chapitres 4 et 6 ; livret Littoral'],
         ['LFI', ['▲', 'Protection et planification'], `<b>Éolien en mer à 45 GW en 2050</b>, planification maritime intégrée ; aires marines protégées étendues (haute mer), <b>12 milles côtiers réservés</b> à la pêche durable et artisanale, pêche électrique et navires-usines écartés ; moratoire sur les forages en Méditerranée et l'extraction minière en eaux profondes ; marine marchande décarbonée, ports relancés, COP Océans en France en 2028.`, 'Avenir en commun'],
         ['LR', 'none', `Aucun document sur la mer, le littoral ou la pêche dans le dossier.`, '—'],
         ['NE', 'none', `Aucune mesure sur la mer, le littoral ou la pêche dans les documents lus (plastiques : voir Déchets).`, '—'],
@@ -404,6 +414,7 @@
       today: { v: 0, label: '0 en service' },
       rows: [
         { p: 'FH', v: 6, label: '6', sub: 'comme le programme officiel', tip: `6 EPR2, comme le programme lancé à Belfort en 2022 et repris dans la PPE3 ; éolien en mer industrialisé et électrification massive.`, src: `France Humaniste, proposition 16` },
+        { p: 'LE', v: 0, label: '0', sub: 'EPR2 et SMR arrêtés', tip: `Mettre fin aux programmes EPR2 et SMR et planifier l'arrêt progressif du parc sur une vingtaine d'années.`, src: `Les Écologistes, programme 2027, chapitre 1` },
         { p: 'LFI', v: 0, label: '0', sub: 'programme arrêté', tip: `Arrêt du programme de nouveau nucléaire (EPR2) et fermeture progressive des centrales existantes.`, src: `L'Avenir en commun 2027` }
       ],
       note: `Programme officiel (Trésor, RESF 2027) : 6 EPR2, premier couplage attendu vers 2038, et un second palier d'au moins 13 GW (8 EPR2) à l'étude. LR, NE et le RN relancent le nucléaire (EPR, mini-réacteurs) sans donner de nombre ; le PS : « le nucléaire autant que nécessaire ».` },
@@ -421,6 +432,7 @@
       today: { v: 2026, label: '2026' },
       rows: [
         { p: 'FH', v: 2050, label: '2050', sub: 'neutralité carbone', tip: `Le « net zéro en 2050 » est l'horizon de l'écologie de FH ; pas d'échéance propre pour les fossiles.`, src: `France Humaniste, texte socle` },
+        { p: 'LE', v: 2050, label: '2050', sub: 'neutralité carbone', tip: `Atteindre la neutralité carbone en 2050 par une loi de programmation climatique.`, src: `Les Écologistes, programme 2027, chapitre 1` },
         { p: 'PS', v: 2050, label: '2050', sub: 'mix 100 % décarboné', tip: `Planifier la sortie des énergies fossiles et la transition vers un mix énergétique 100 % décarboné en 2050.`, src: `Le Projet socialiste, énergie` },
         { p: 'LFI', v: 2050, label: '2050', sub: 'fin des fossiles', tip: `Organiser la sortie des énergies fossiles avant 2050.`, src: `L'Avenir en commun 2027` },
         { p: 'LFI', v: 2060, label: '2060', sub: '100 % renouvelable', tip: `Atteindre le 100 % d'énergies renouvelables au plus tard en 2060.`, src: `L'Avenir en commun 2027` }
@@ -448,7 +460,15 @@
       rows: [
         { p: 'LFI', v: 45, label: '45 GW', sub: 'en 2050, posé et flottant', tip: `Déployer l'éolien en mer, posé et flottant, pour atteindre au moins 45 gigawatts de puissance installée en 2050, ainsi que les énergies marines renouvelables (hydrolien, houle).`, src: `L'Avenir en commun 2027` }
       ],
-      note: `Aujourd'hui : 1,9 GW fin 2025 (RTE). FH veut un éolien en mer « industrialisé » sans puissance ; le PS planifie les renouvelables sans chiffre ; LR et le RN arrêtent les aides ou les projets éoliens ; NE les ramène au droit commun.` }
+      note: `Aujourd'hui : 1,9 GW fin 2025 (RTE). FH veut un éolien en mer « industrialisé » sans puissance ; le PS planifie les renouvelables sans chiffre ; LR et le RN arrêtent les aides ou les projets éoliens ; NE les ramène au droit commun.` },
+    { id: 'bio', title: 'Agriculture biologique', sub: 'Part de la surface agricole',
+      min: 0, max: 30, ticks: [0, 10, 20, 30], tick: function (v) { return v + ' %'; },
+      today: { v: 10, label: '≈ 10 %' },
+      rows: [
+        { p: 'LE', v: 21, label: '21 %', sub: 'en 2030', tip: `Atteindre l'objectif français de 21 % d'agriculture biologique en 2030, 25 % en 2032 et 100 % à la fin du siècle.`, src: `Les Écologistes, programme 2027, chapitre 12` },
+        { p: 'LE', v: 25, label: '25 %', sub: 'en 2032', tip: `25 % d'agriculture biologique en 2032, par un éco-régime bio renforcé et l'aide à la conversion.`, src: `Les Écologistes, programme 2027, chapitre 12` }
+      ],
+      note: `Aujourd'hui : environ 10 % de la surface agricole utile, chiffre cité par FH, non vérifié dans le dossier. Les autres partis ne fixent pas d'objectif de surface en bio ; le RN prévoit un plan de soutien de cinq ans.` }
   ];
   var panelsEl = document.getElementById('panels');
   PANELS.forEach(function (pn) {
@@ -537,6 +557,7 @@
   /* ---------- Coûts annoncés ---------- */
   var EFFORTS = [
     ['FH', 'Facture d\'électricité −15 % ; 6 EPR2 ; 1 million de pompes à chaleur et 1 million de voitures électriques en leasing social ; pas de montant en euros dans le dossier', '—', 'Propositions sans chiffrage', 'France 2027'],
+    ['LE', 'Budget 2027 : 10 Md€ pour le climat dont MaPrimeRénov\' +1,4 Md€, Fonds vert +1,9 Md€, rail +1 Md€, leasing social +1 Md€ ; adaptation : 7 Md€ par an d\'ici 2032 ; contribution sur les successions ≈ 15 Md€ par an ; isolation des écoles 2 Md€ par an', '2027 ; 2032', 'Dépenses nouvelles et recettes', 'LE, dossier de presse du 26/08/2026 ; programme 2027'],
     ['LFI', 'Budget d\'urgence 2027 : services publics, pouvoir d\'achat et planification écologique, un peu plus de 80 Md€ pour l\'ensemble ; isolation de 700 000 logements par an, éolien en mer à 45 GW en 2050, rénovation de tous les réseaux d\'eau : sans montant isolé', '2027, première année', 'Dépenses nouvelles', 'Budget rectificatif, 14/10/2026'],
     ['LR', 'Électricité −5 % tout de suite (suppression des CEE) puis −5 à −10 % dès 2030 ; aides aux nouvelles capacités éoliennes et photovoltaïques supprimées ; « pas d\'impôt nouveau » ; aucune dépense sur l\'eau ou les déchets', 'Jusqu\'en 2032', 'Baisse de prix, économies', 'LR, fiche Électricité ; 12/10/2026'],
     ['NE', 'Fiscalité environnementale à taxation totale constante ; économies sur les renouvelables réinvesties dans le nucléaire ; aucun montant', '—', 'Non chiffré', 'NE, axe 3'],

@@ -25,7 +25,7 @@
     --p-LR: #1baf7a;
     --p-NE: #eda100;
     --p-PS: #e87ba4;
-    --p-RN: #008300;
+    --p-RN: #008300; --p-LE: #7c4dce;
     --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-title: "Newsreader", Georgia, "Times New Roman", serif;
   }
@@ -33,14 +33,14 @@
     :root:not([data-theme="light"]) {
       --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
       --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
     --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
     color-scheme: dark;
   }
 
@@ -105,7 +105,9 @@
   .theme-head .now { font-size: 14px; color: var(--muted); }
   .theme-head .now b { color: var(--fg); font-weight: 600; }
   .theme-head .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-right: 6px; }
-  .cells { display: grid; grid-template-columns: repeat(auto-fit, minmax(176px, 1fr)); }
+  .cells { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .cells { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .cells { grid-template-columns: repeat(4, 1fr); } }
   .cell { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin-top: -1px; margin-left: -1px; min-width: 0; }
   .cell .who { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; }
   .cell .who .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
@@ -203,7 +205,7 @@
   <header class="top">
     <p class="eyebrow">Présidentielle 2027 · Programmes économiques</p>
     <h1 id="titre">Orientations économiques 2027</h1>
-    <p class="lede" id="resume">Quatre partis (FH, LR, NE, RN) allègent les impôts de production, trois (FH, LFI, PS) alourdissent la fiscalité des plus hauts patrimoines, deux (LFI, PS) relèvent le Smic autour de 1 700 € net, tandis que FH, LR et RN augmentent le net en allégeant les cotisations. Le PS ne donne pas de trajectoire de déficit chiffrée dans les documents examinés ; LFI chiffre seulement une première année (−24,7 Md€ de déficit en 2027).</p>
+    <p class="lede" id="resume">Quatre partis (FH, LR, NE, RN) allègent les impôts de production, quatre (FH, LE, LFI, PS) alourdissent la fiscalité des plus hauts patrimoines, trois (LE, LFI, PS) relèvent le Smic (autour de 1 700 € net pour LFI et le PS, ≈ 1 583 € pour LE), tandis que FH, LR et RN augmentent le net en allégeant les cotisations. Le PS et LE ne donnent pas de trajectoire de déficit chiffrée dans les documents examinés ; LFI chiffre seulement une première année (−24,7 Md€ de déficit en 2027).</p>
     <p class="stamp">Situation au 10/11/2026 · chiffres des partis tirés de leurs documents, non vérifiés par un organisme indépendant.</p>
     <div class="chips" id="filtre" role="group" aria-label="Partis affichés"><span class="lbl">Partis affichés</span></div>
   </header>
@@ -306,6 +308,11 @@
         <p class="note">Repères du dérapage : le déficit a dépassé la prévision de +0,5 point en 2023, de +1,4 point en 2024, et la prévision 2026 est passée de 5,0 % à 5,4 %. La programmation de 2023-2027 visait 2,7 à 2,9 % en 2027 pour ≈ 5 % attendu aujourd'hui.</p>
       </figure>
     </div>
+    <div class="panel" data-p="LE">
+      <h3>LE : pas de probabilité possible</h3>
+      <p class="sub">Les Écologistes ne donnent ni trajectoire de déficit ni total d'économies : seulement des mesures de recettes et un budget 2027.</p>
+      <p class="note">Mesures chiffrées dans leurs documents : contribution sur les successions ≈ 15 Md€ par an en régime de croisière, 10 Md€ de dépenses pour le climat dès 2027, hausse de la défense de 6,4 Md€ acceptée. Ils parlent de « stabiliser » la dette et de renégocier la trajectoire du Semestre européen. Sans plan global, la simulation commune ne peut pas être appliquée.</p>
+    </div>
     <div class="panel" data-p="PS">
       <h3>PS : pas de probabilité possible</h3>
       <p class="sub">Le PS annonce 200 Md€ d'investissements sur cinq ans, dont 50 Md€ financés, sans chiffrage du déficit.</p>
@@ -358,6 +365,7 @@
 (function () {
   var P = [
     { code: 'FH',  name: 'France Humaniste' },
+    { code: 'LE', name: 'Les Écologistes' },
     { code: 'LFI', name: 'La France insoumise' },
     { code: 'LR',  name: 'Les Républicains' },
     { code: 'NE',  name: 'Nouvelle Énergie' },
@@ -377,6 +385,7 @@
       now: '<b>Déficit 5,1 %</b> du PIB, <b>dette 115,6 %</b>, <b>dépense publique 57,2 %</b> du PIB (2025).',
       c: [
         ['FH', 'down', 'Déficit sous <b>3 %</b> en 2031 : <b>125 Md€</b> à trouver, dont 65 après croissance (0,8 %/an). Deux tiers par la suppression des niches, un tiers par de nouveaux impôts.', 'Fiscalité, 28/08/2026'],
+        ['LE', 'mix', `« Pacte fiscal vert » 2027-2032 : loi de programmation conciliant transition, engagements européens (dépenses militaires comprises) et services publics ; <b>dette stabilisée</b> par plus de progressivité de l'impôt ; trajectoire de déficit à renégocier au Semestre européen pour « préserver l'emploi ». Budget 2027 : <b>10 Md€</b> pour le climat. Ni cible de déficit ni économies chiffrées.`, 'Programme 2027 (juillet 2026), chapitre 17 ; budget 2027'],
         ['LFI', 'down', 'Budget 2027 de première année : <b>+106,4 Md€</b> de recettes, <b>+81,7 Md€</b> de dépenses, soit <b>−24,7 Md€</b> de déficit (≈ 0,8 pt). Ni trajectoire ni niveau de déficit après mesures ; Smic à 1 700 € non chiffré.', 'LFI, budget rectificatif, 14/10/2026'],
         ['LR', 'down', '<b>197 Md€</b> d\'économies jusqu\'en 2032 (dont 51 rendus), déficit sous <b>3 %</b> dès 2031 et <b>2,2 %</b> en 2032, sans impôt nouveau.', 'LR, 12/10/2026'],
         ['NE', 'down', '<b>−8 points</b> de PIB de dépense en 10 ans (sous 50 %), règle d\'or sur les déficits. <b>200 Md€</b> d\'économies « documentés », objectif 300 Md€.', 'Axe 1 ; FAQ du 16/10/2026'],
@@ -387,6 +396,7 @@
       now: 'ISF supprimé (IFI sur l\'immobilier à la place), flat tax sur les revenus du capital, <b>5 taux</b> d\'impôt sur le revenu (0 à 45 %).',
       c: [
         ['FH', 'up', 'Impôt unique sur le patrimoine dès <b>2,2 M€</b> (+8 Md€), 9 impôts en tout. Aucun droit sous <b>1 M€</b> transmis de son vivant.', 'Propositions 6-9'],
+        ['LE', 'up', `<b>Taxe Zucman de 2 %</b> au-delà de 100 M€ de patrimoine, ISF rétabli avec une composante climatique, exit tax étendue ; héritages : barème progressif avec tranches pour le 1 % le plus riche (au-delà de 4 M€) et le 0,1 % (au-delà de 13 M€), soit ≈ <b>15 Md€ par an</b> en régime de croisière ; tranche d'impôt sur le revenu à <b>60 %</b> au-delà de 250 000 €.`, 'Programme 2027 (juillet 2026), chapitre 17 ; budget 2027'],
         ['LFI', 'up', 'ISF rétabli, taxe Zucman de <b>2 %</b>, fin de la flat tax, impôt sur le revenu à <b>14 tranches</b>, héritage maximal de <b>12 M€</b>.', 'Avenir en commun, « révolution fiscale »'],
         ['LR', 'none', 'Aucune mesure sur ce sujet dans les documents du dossier.', '—'],
         ['NE', 'down', 'Pas de hausse annoncée ; réforme des droits de succession sur les entreprises.', 'Axe 2'],
@@ -397,6 +407,7 @@
       now: 'Impôts de production ≈ <b>95 Md€/an</b>, soit 3,2 % du PIB (chiffre cité par LR).',
       c: [
         ['FH', 'down', 'Abolition des impôts de production (non chiffrée) ; transmission d\'entreprise sans droits de son vivant.', 'Proposition 2'],
+        ['LE', 'mix', `Impôt minimal sur les bénéfices des sociétés de plus d'un milliard de chiffre d'affaires, taxe sur les superprofits pétro-gaziers et du transport maritime, taxe sur les transactions financières portée à 0,7 % ; <b>187 Md€</b> d'aides aux entreprises ciblées et conditionnées ; allègement du taux réduit d'IS et de la taxe sur les salaires pour les TPE-PME. Pas de baisse des impôts de production.`, 'Programme 2027 (juillet 2026), chapitres 13 et 17'],
         ['LFI', 'up', 'IS progressif, CVAE remplacée par un impôt selon le chiffre d\'affaires et l\'empreinte écologique, taxe sur les superprofits.', 'Avenir en commun'],
         ['LR', 'down', '<b>−15 Md€</b> de fiscalité de production (C3S, CVAE, forfait social, CFE industrielle) et <b>25 Md€</b> d\'allègement du coût du travail.', 'Produire plus, p. 20-21'],
         ['NE', 'down', 'Suppression de la C3S et de la CVAE (<b>−11,5 Md€</b>) en plus de −10 Md€ déjà prévus : impôts de production divisés par deux.', 'Axe 2'],
@@ -407,6 +418,7 @@
       now: '<b>Smic ≈ 1 478 € net</b> (1 867 € brut depuis le 1er juin 2026), 35 heures, soit 1 607 h par an.',
       c: [
         ['FH', 'up', '<b>+200 €</b> nets par mois en moyenne, <b>+100 €</b> au Smic, en basculant plus de 200 Md€ de cotisations vers une CSG universelle.', 'Propositions 1 ; Fiscalité'],
+        ['LE', 'up', `<b>Smic à 2 000 € brut</b> dès 2027 (≈ 1 583 € net, calcul), point d'indice indexé sur l'inflation, enseignants <b>+15 %</b>, écart de 1 à 20 dans l'entreprise ; <b>32 heures</b> sans perte de salaire dans les métiers pénibles ou de nuit ; exonérations de cotisations conditionnées à la hausse des salaires.`, 'Programme 2027 (juillet 2026), chapitres 13 et 14'],
         ['LFI', 'up', 'Smic à <b>1 700 € net</b>, 35 h rétablies (32 h dans les métiers pénibles), 6e semaine de congés, salaires indexés.', 'Avenir en commun'],
         ['LR', 'up', 'Heures au-delà de <b>1 623 h/an</b> sans cotisations : ≈ <b>+500 €/an</b> au salaire médian. Fusion RSA, prime d\'activité et ASS.', 'Brochure, p. 11-16'],
         ['NE', 'nc', 'Contrat de travail unique, assouplissement du code du travail, charges négatives pour embaucher un allocataire du RSA. Net non chiffré.', 'Axe 2'],
@@ -417,6 +429,7 @@
       now: '<b>64 ans</b> pour les générations 1969 et suivantes (172 trimestres). Réforme suspendue : 62 ans 9 mois pour la génération 1964.',
       c: [
         ['FH', 'off', 'Suppression de l\'âge légal au profit d\'une durée de cotisation, avec prise en compte de la pénibilité ; règle d\'or d\'équilibre.', 'Texte socle'],
+        ['LE', 'down', `Retour immédiat à <b>62 ans</b>, objectif de 60 ans, et 60 ans pour les carrières longues ; refus de la capitalisation ; conférence travail-retraite pour l'équilibre en 2050 ; hautes retraites sous-indexées.`, 'Programme 2027 (juillet 2026), chapitre 31'],
         ['LFI', 'down', 'Abrogation de la réforme de 2023, puis retour à <b>60 ans</b> à taux plein pour 40 annuités.', 'Avenir en commun, retraites'],
         ['LR', 'none', 'Pas de changement d\'âge dans les documents. Exonération de cotisations des seniors qui ont tous leurs trimestres (≈ <b>+300 €</b>/mois net).', 'Brochure, p. 13'],
         ['NE', 'up', 'Âge légal à <b>65 ans</b>, puis socle de répartition et capitalisation pour les autres régimes (≈ <b>116 Md€</b>).', 'Axe 2'],
@@ -427,6 +440,7 @@
       now: 'RSA, prime d\'activité, ASS et APL versés séparément, sans plafond global de cumul (selon LR).',
       c: [
         ['FH', 'mix', 'Cotisations famille, santé et handicap (plus de 200 Md€) remplacées par une CSG à taux unique, élargie aux dépenses d\'IA.', 'Fiscalité, 28/08/2026'],
+        ['LE', 'up', `<b>Garantie d'autonomie</b> à 50 % du Smic net à la place du RSA, sans contrepartie de 15 heures ; APL +10 % ; réformes de l'assurance chômage abrogées, <b>garantie d'emploi</b> à 55 ans (territoires zéro chômeur de longue durée), bonus-malus renforcé sur les contrats courts.`, 'Programme 2027 (juillet 2026), chapitres 14 et 32'],
         ['LFI', 'up', 'Minima sociaux relevés, garantie d\'emploi pour les chômeurs de longue durée, cotisation sociale universelle.', 'Avenir en commun'],
         ['LR', 'down', 'Aides plafonnées à <b>70 % du Smic net</b> par adulte, assurance chômage resserrée : <b>13 Md€/an</b> d\'économies.', 'Brochure, p. 14-15'],
         ['NE', 'down', '<b>5 ans</b> de résidence pour les allocations non contributives (<b>8 Md€/an</b>) ; réforme de l\'État-providence (34 % du PIB, contre 29 % en Europe).', 'Axe 2 ; FAQ'],
@@ -468,6 +482,7 @@
       today: { v: 1478, label: '≈ 1 478 €', tip: 'Net estimé : 1 443,11 € en janvier 2026 (ministère du Travail), revalorisé comme le brut (+2,4 %) au 1er juin 2026.' },
       rows: [
         { p: 'FH', v: 1578, label: '≈ 1 578 €', sub: '≈ +7 %', tip: '+100 € nets au Smic par la bascule des cotisations vers la CSG (proposition 1). Une chronique du 28/08/2026 parle de ≈ 90 €. Estimation : 1 478 + 100.', src: 'France Humaniste, proposition 1' },
+        { p: 'LE', v: 1583, label: '≈ 1 583 €', sub: '2 000 € brut (calcul)', tip: 'Smic à 2 000 € brut dès 2027. Calcul : 2 000 × (1 478 ÷ 1 867) ≈ 1 583 € net, avec le même rapport net/brut que le Smic actuel.', src: 'Les Écologistes, programme 2027, chapitre 13' },
         { p: 'LFI', v: 1700, label: '1 700 €', sub: '+15 %', tip: 'Smic porté « immédiatement » à 1 700 € net.', src: 'L\'Avenir en commun 2027' },
         { p: 'PS', v: 1690, label: '1 690 €', sub: '+14 %', tip: 'Réhausser le Smic à 1 690 € net.', src: 'Le Projet socialiste' }
       ],
@@ -477,6 +492,7 @@
       today: { v: 64, label: '64 ans', tip: 'Générations 1969 et suivantes. La réforme de 2023 est suspendue : 62 ans 9 mois pour la génération 1964.' },
       rows: [
         { p: 'LFI', v: 60, label: '60 ans', sub: 'à taux plein, 40 annuités', tip: 'Abroger la réforme de 2023, puis restaurer la retraite à 60 ans à taux plein pour 40 annuités.', src: 'L\'Avenir en commun 2027' },
+        { p: 'LE', v: 62, label: '62 ans', sub: 'retour immédiat, objectif 60', tip: 'Abroger l\'âge légal de 64 ans pour revenir immédiatement à 62 ans et viser 60 ans, en priorité pour les carrières longues et pénibles.', src: 'Les Écologistes, programme 2027' },
         { p: 'PS', v: 62, label: '62 ans', sub: '43 annuités', tip: 'Âge légal ramené à 62 ans ; durée de 43 annuités, réductible selon la pénibilité.', src: 'Le Projet socialiste' },
         { p: 'NE', v: 65, label: '65 ans', sub: '+ capitalisation', tip: 'Âge légal de 65 ans « impératif national », puis socle par répartition et capitalisation.', src: 'Nouvelle Énergie, axe 2' }
       ],
@@ -863,6 +879,7 @@
   /* ---------- Tableau des efforts ---------- */
   var EFFORTS = [
     ['FH', '125 Md€ à trouver (65 Md€ après croissance)', 'D\'ici 2031', 'Retour du déficit sous 3 % : ⅔ baisse de dépense/niches, ⅓ impôts', 'Fiscalité, 28/08/2026'],
+    ['LE', '10 Md€ pour le climat et l\'adaptation en 2027 ; contribution sur les successions ≈ 15 Md€ par an en régime de croisière ; défense +6,4 Md€ (loi de programmation militaire) acceptée ; aucune trajectoire de déficit ni total d\'économies', '2027 ; régime de croisière', 'Budget 2027 : recettes patrimoine, dépenses climat ; pas de chiffrage global', 'LE, dossier de presse du 26/08/2026'],
     ['LFI', '+106,4 Md€ de recettes, +81,7 Md€ de dépenses, soit −24,7 Md€ de déficit', '2027, première année', 'Budget rectificatif, pas un chiffrage complet du programme ; + 100 Md€/an d\'investissements hors budget par un pôle public bancaire', 'LFI, 14/10/2026'],
     ['LR', '197 Md€ d\'économies, dont 51 rendus (146 pour le déficit) ; avant : 30 Md€ restitués (brochure de déc. 2025)', 'Jusqu\'en 2032', 'État 96, social 91 (dont retraites 42), collectivités 10 ; « pas d\'impôt nouveau »', 'LR, 12/10/2026 ; brochure'],
     ['NE', '200 Md€ de baisse de dépense (objectif 300)', 'Fin de quinquennat', 'Environ 7 points de PIB ; 60 % rendus en pouvoir d\'achat (120 Md€). Le texte d\'avril 2026 parlait de 100 Md€', 'FAQ NE, 16/10/2026'],

@@ -12,7 +12,7 @@
   :root {
     --bg: #f3f5f7; --panel: #fcfdfd; --fg: #0f1b26; --muted: #52606d; --faint: #7b8794;
     --line: #dde3e8; --grid: #e6eaee; --accent: #0b5c6b; --pill: #e6eef1; --ring: #fcfdfd;
-    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300;
+    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300; --p-LE: #7c4dce;
     --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-title: "Newsreader", Georgia, "Times New Roman", serif;
   }
@@ -20,14 +20,14 @@
     :root:not([data-theme="light"]) {
       --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
       --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
     --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
-    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300; --p-LE: #9b7be0;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -76,8 +76,8 @@
   .theme-head .now b { color: var(--fg); font-weight: 600; }
   .theme-head .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-right: 6px; }
   .cells { display: grid; grid-template-columns: 1fr; }
-  @media (min-width: 640px) { .cells { grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 1100px) { .cells { grid-template-columns: repeat(6, 1fr); } }
+  @media (min-width: 560px) { .cells { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .cells { grid-template-columns: repeat(4, 1fr); } }
   .cell { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin-top: -1px; margin-left: -1px; min-width: 0; }
   .cell .who { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; }
   .cell .who .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
@@ -173,8 +173,8 @@
   <header class="top">
     <p class="eyebrow">Présidentielle 2027 · Immigration, sécurité, défense, emploi</p>
     <h1 id="titre">Immigration, sécurité, défense, emploi 2027</h1>
-    <p class="lede">Immigration et intégration : LFI ouvre l'accès au séjour et lutte contre le racisme, le PS régularise par le travail, NE et le RN restreignent le séjour et prônent l'assimilation, FH et LR conditionnent l'accueil. Sécurité et justice : le RN et NE misent sur les peines et les prisons, LFI et le PS sur la police de proximité, la prévention et l'accès au droit. Défense : le RN vise 55 Md€ en 2027, LFI sort de l'OTAN, le PS et FH veulent une défense européenne. Emploi : LFI et le PS protègent contrats et chômeurs, NE assouplit le code du travail, LR resserre l'assurance chômage.</p>
-    <p class="stamp">Situation au 10/11/2026 · positions tirées des documents des partis, souvent sans chiffrage. LR n'a aucun document sur la sécurité, la justice, l'intégration ni la défense dans le dossier.</p>
+    <p class="lede">Immigration et intégration : LFI ouvre l'accès au séjour et lutte contre le racisme, le PS régularise par le travail, NE et le RN restreignent le séjour et prônent l'assimilation, FH et LR conditionnent l'accueil ; LE régularise, garantit le droit du sol et démantèle Frontex. Sécurité et justice : le RN et NE misent sur les peines et les prisons, LFI, le PS et LE sur la police de proximité, la prévention et l'accès au droit (LE : 9 000 magistrats en dix ans, cannabis légalisé). Défense : le RN vise 55 Md€ en 2027, LFI sort de l'OTAN, le PS, FH et LE veulent une défense européenne. Emploi : LFI, le PS et LE protègent contrats et chômeurs, NE assouplit le code du travail, LR resserre l'assurance chômage.</p>
+    <p class="stamp">Situation au 10/11/2026 · positions tirées des documents des partis, souvent sans chiffrage. LR n'a aucun document sur la sécurité, la justice, l'intégration ni la défense dans le dossier ; LE : programme de juillet 2026.</p>
     <div class="chips" id="filtre" role="group" aria-label="Partis affichés"><span class="lbl">Partis affichés</span></div>
   </header>
 
@@ -261,7 +261,7 @@
         <li>Emploi : <a href="https://www.insee.fr/fr/statistiques/8996926?sommaire=8996963">Insee, « Emploi, chômage, travail »</a> ; chômage : <a href="https://www.insee.fr/fr/statistiques/9118603">Insee, IR 270</a>. Offres d'emploi : France Travail, série des offres diffusées, 1er trimestre 2026.</li>
         <li>Sécurité : SSMSI (service statistique du ministère de l'Intérieur), délinquance enregistrée par département, données produites le 25/06/2026, sommes sur l'ensemble des départements. Prisons : ministère de la Justice, <i>Mesure de l'incarcération, indicateurs clés au 1er octobre 2026</i>. Justice civile : pas de source d'état dans le dossier.</li>
         <li>Défense et intégration : <a href="https://www.insee.fr/fr/statistiques/8996950?sommaire=8996963">Insee, « Défense »</a> et <a href="https://www.insee.fr/fr/statistiques/8996938?sommaire=8996963">« Immigration, intégration, discriminations »</a> (15/10/2026).</li>
-        <li>Partis : FH, <i>France 2027</i> · LFI, <i>L'Avenir en commun</i>, budget rectificatif du 14/10/2026 · LR, fiches Famille et Logement, brochure, plan du 12/10/2026 (presse) · NE, pages Immigration, Sécurité, programme web, discours de Bayeux · PS, <i>Le Projet socialiste</i> · RN, 22 mesures pour 2022, livrets Contrôle de l'immigration et Sécurité, programme des législatives 2024, contre-budget 2026.</li>
+        <li>Partis : FH, <i>France 2027</i> · LFI, <i>L'Avenir en commun</i>, budget rectificatif du 14/10/2026 · LR, fiches Famille et Logement, brochure, plan du 12/10/2026 (presse) · NE, pages Immigration, Sécurité, programme web, discours de Bayeux · LE, <i>Pour une prospérité écologique</i> (programme de juillet 2026), dossier budget 2027 · PS, <i>Le Projet socialiste</i> · RN, 22 mesures pour 2022, livrets Contrôle de l'immigration et Sécurité, programme des législatives 2024, contre-budget 2026.</li>
       </ul>
     </details>
   </section>
@@ -272,7 +272,8 @@
 <script>
 (function () {
   var P = [
-    { code: 'FH', name: 'France Humaniste' }, { code: 'LFI', name: 'La France insoumise' }, { code: 'LR', name: 'Les Républicains' },
+    { code: 'FH', name: 'France Humaniste' },
+    { code: 'LE', name: 'Les Écologistes' }, { code: 'LFI', name: 'La France insoumise' }, { code: 'LR', name: 'Les Républicains' },
     { code: 'NE', name: 'Nouvelle Énergie' }, { code: 'PS', name: 'Parti socialiste' }, { code: 'RN', name: 'Rassemblement national' }
   ];
   var NAME = {}; P.forEach(function (p) { NAME[p.code] = p.name; });
@@ -285,6 +286,7 @@
       now: `<b>8,0 millions</b> d'immigrés en 2025 (estimation provisoire), soit <b>11,6 %</b> de la population ; un tiers sont devenus français. <b>313 000</b> entrées en 2024 (234 000 en 2006). <b>377 000</b> premiers titres de séjour en 2025 : 117 000 pour études, 91 000 famille, 88 000 humanitaire, 51 000 économique. <b>152 904</b> demandes d'asile (−3,0 %).`,
       c: [
         ['FH', ['◆', 'Conditionne par réciprocité'], `Politique « de long terme » fondée sur la <b>réciprocité</b> : accueil conditionné à l'acceptation des retours, visas contre laissez-passer consulaires, intégration renforcée. Exécution effective des <b>OQTF</b>, jugée « dramatiquement » basse. Pause sur Schengen ; le pacte européen est une « première étape ». L'immigration sert aussi la stabilité démographique.`, 'Texte socle'],
+        ['LE', ['▲', "Élargit l'accès"], `<b>Régularisation</b> des travailleurs, étudiants et parents d'enfants scolarisés sans papiers sur critères objectifs ; AME et PUMA ouverts, délais de carence supprimés ; <b>droit du sol</b> garanti (régime de Mayotte supprimé) ; fin de la rétention administrative ; <b>Frontex démantelée</b> au profit d'une agence de protection des droits ; voies légales d'immigration par révision du Pacte européen ; français langue étrangère jusqu'au niveau A2.`, 'Programme 2027 (juillet 2026), chapitre 56'],
         ['LFI', ['▲', 'Élargit l\'accès'], `<b>Carte de séjour de 10 ans</b> comme titre de référence, visas facilités ; <b>régularisation</b> des travailleurs, étudiants et parents d'enfants scolarisés sans papiers ; refus du pacte européen ; fermeture des centres de rétention ; fin de la liste des pays d'origine sûrs ; AME garantie ; <b>droit du sol</b> intégral ; vote des étrangers aux élections locales.`, 'Avenir en commun'],
         ['LR', ['▼', 'Restreint'], `Pas de projet immigration dans le dossier (les fiches y renvoient). Plan du 12/10/2026 : <b>−10 Md€</b> sur l'immigration, moyens non précisés. <b>5 ans</b> de résidence et d'activité pour les dispositifs familiaux, hébergement d'urgence conditionné à la régularité du séjour, APL des étudiants étrangers non boursiers supprimées.`, 'LR, fiches Famille et Logement ; 12/10/2026'],
         ['NE', ['▼', 'Restreint'], `Titres de séjour <b>divisés par huit</b>, quotas de main-d'œuvre qualifiée, regroupement familial sous conditions de ressources et tests d'intégration, fin de l'automaticité du <b>droit du sol</b> ; rétention jusqu'à <b>24 mois</b> ; AME supprimée (−700 M€) ; délit de séjour irrégulier ; primauté du droit national, sortie de la CEDH en dernier recours.`, 'NE, Immigration ; discours de Bayeux'],
@@ -295,6 +297,7 @@
       now: `Faits enregistrés en 2025 : <b>975</b> homicides (835 en 2017), <b>4 477</b> tentatives d'homicide (2 284), <b>132 143</b> victimes de violences sexuelles (57 003), <b>57 446</b> mis en cause pour trafic de stupéfiants. En baisse : vols violents sans arme <b>49 193</b> (89 542) et cambriolages de logement <b>211 596</b> (252 956). Une hausse enregistrée peut refléter plus de plaintes.`,
       c: [
         ['FH', ['◆', 'Sécurité intégrale'], `Police et justice réunies dans une « sécurité intégrale » articulée entre niveaux territoriaux ; priorités : <b>narcotrafic</b>, violences sexistes et sexuelles (réorganisation, formation), plus de <b>patrouilles</b>, civilité enseignée dès l'école. Compétence de sécurité pour la commune. Pas de chiffrage.`, 'Texte socle'],
+        ['LE', ['◆', 'Police de proximité, libertés'], `<b>Police nationale de proximité</b> et fin de la politique du chiffre, doctrine de maintien de l'ordre fondée sur la désescalade ; <b>IGPN et IGGN remplacées</b> par un organisme indépendant rattaché à la Défenseure des droits ; reconnaissance faciale interdite, lois Sécurité globale et Séparatisme abrogées ; narcotrafic : moyens financiers et cyber, juridictions spécialisées ; <b>cannabis légalisé</b> et encadré.`, 'Programme 2027 (juillet 2026), chapitres 50 et 58'],
         ['LFI', ['◆', 'Police de proximité, prévention'], `<b>Police de proximité</b> rétablie, BAC et BRAV-M démantelées ; IGPN et IGGN remplacées par une autorité indépendante ; tasers, LBD et grenades de désencerclement interdits pour la police du quotidien ; formation portée à <b>2 ans</b> ; fin de la politique du chiffre ; police scientifique <b>doublée</b> ; reconnaissance faciale interdite.`, 'Avenir en commun'],
         ['LR', 'none', `Aucun document sur la sécurité dans le dossier.`, '—'],
         ['NE', ['◆', 'Autorité et subsidiarité'], `Préfets aux commandes avec des marges locales, <b>polices municipales</b> armables pour les communes volontaires, cellules anti-stups sous autorité du préfet ; interdiction des Frères musulmans, contrôle des écoles hors contrat, expulsion des prêcheurs radicaux, voile interdit à l'université.`, 'NE, Sécurité'],
@@ -305,6 +308,7 @@
       now: `Au 1er octobre 2026 : <b>90 937</b> détenus pour <b>63 452</b> places opérationnelles, soit une densité de <b>143,3 %</b> (178,0 % en maisons d'arrêt) et <b>8 959</b> matelas au sol ; un an plus tôt, 84 862 détenus et 135,8 %. Pas de statistique sur les délais ou les effectifs de magistrats dans le dossier.`,
       c: [
         ['FH', ['◆', 'Exécution des peines'], `« Clarté » sur l'<b>exécution effective des peines</b>, police et justice articulées. Pas de mesure détaillée dans le texte.`, 'Texte socle'],
+        ['LE', ['◆', 'Moyens et humanisation'], `<b>9 000 magistrats</b> créés en dix ans, 10 000 greffiers et 7 000 attachés de justice ; parquet indépendant, police judiciaire placée sous les procureurs ; <b>numerus clausus carcéral</b> : surpopulation limitée à 100 % des capacités ; probation et semi-liberté développées ; primauté de l'éducatif pour les mineurs.`, 'Programme 2027 (juillet 2026), chapitres 51 et 53'],
         ['LFI', ['◆', 'Moins de carcéral, indépendance'], `Fin de la <b>surpopulation carcérale</b> par un mécanisme contraignant de régulation, sortie du « tout carcéral » ; débat annuel du Parlement sur la politique pénale ; police judiciaire rattachée aux magistrats ; plus de magistrats et de greffiers ; jurés populaires rétablis ; effectifs doublés contre la délinquance financière.`, 'Avenir en commun'],
         ['LR', 'none', `Aucun document sur la justice dans le dossier.`, '—'],
         ['NE', ['◆', 'Fermeté des peines'], `Fin des réductions de peine automatiques, <b>peines planchers</b> pour les récidivistes, sanction dès la première infraction ; <b>majorité pénale à 16 ans</b>, excuse de minorité inversée dès 13 ans, internats disciplinaires fermés ; effectifs doublés dans les juridictions correctionnelles.`, 'NE, Sécurité'],
@@ -315,6 +319,7 @@
       now: `Taux d'emploi <b>69 %</b> et taux d'activité <b>75 %</b> des 15-64 ans en 2025, plus hauts niveaux depuis 1975 ; chômage <b>8,2 %</b> (3e trimestre 2026). <b>+1,7 M</b> d'emplois entre fin 2019 et fin 2025, dont la moitié via alternants et micro-entrepreneurs. Chômage des 15-29 ans <b>14 %</b> en 2024 (11 % dans l'UE) ; emploi des 55-64 ans 62 % (UE : 66 %). <b>846 700</b> contrats d'apprentissage débutés en 2025 (−5 %). Politiques du marché du travail : <b>2,5 %</b> du PIB en 2023, 1,0 point au-dessus de la moyenne européenne.`,
       c: [
         ['FH', ['◆', 'Insertion et participation'], `<b>Insertion professionnelle des jeunes</b> : priorité numéro un du service public de l'emploi, équité d'accès aux stages et à l'alternance ; carrière continue par la formation ; métiers manuels et du soin revalorisés ; partenaires sociaux avec un domaine propre ; emplois garantis si des niches sont supprimées. Pas de chiffrage.`, 'Texte socle'],
+        ['LE', ['◆', 'Protection et temps de travail'], `<b>Smic à 2 000 € brut</b> dès 2027 ; <b>32 heures</b> sans perte de salaire dans les métiers pénibles ou de nuit ; <b>garantie d'emploi</b> à 55 ans (territoires zéro chômeur), réformes de l'assurance chômage abrogées ; contrats courts limités par un bonus-malus ; sécurité sociale professionnelle pour les salariés touchés par la transition ; plan contre le chômage des jeunes.`, 'Programme 2027 (juillet 2026), chapitres 13, 14 et 35'],
         ['LFI', ['◆', 'Protection et garantie d\'emploi'], `<b>Garantie d'emploi</b> pour les chômeurs de longue durée (au moins le Smic revalorisé), <b>emploi jeune</b> de 5 ans dans le non marchand ; loi France Travail et 15 h d'activité abrogées ; fin des radiations au premier rendez-vous manqué ; <b>licenciements boursiers interdits</b>, veto suspensif des comités d'entreprise ; 3 Md€ pour l'assurance chômage la 1re année.`, 'Avenir en commun ; budget 14/10/2026'],
         ['LR', ['◆', 'Incitation et conditions'], `Assurance chômage <b>resserrée</b> (ruptures conventionnelles, transfrontaliers, alternance emploi-chômage) : « un filet de sécurité, pas un choix de vie » ; cumul des aides plafonné à <b>70 % du Smic net</b> ; RSA, prime d'activité et ASS fusionnés ; <b>−13 Md€</b> par an.`, 'Brochure ; LR, 12/10/2026'],
         ['NE', ['◆', 'Flexibilité du droit du travail'], `<b>Contrat de travail unique</b> fusionnant CDI et CDD, avec indemnités de licenciement progressives ; assouplissement du code du travail ; charges patronales <b>négatives</b> pour embaucher un allocataire du RSA depuis plus de 2 ans ; charges supprimées pour les employeurs à domicile au Smic. Pas de chiffrage global.`, 'NE, axe 2'],
@@ -325,6 +330,7 @@
       now: `Immigrés : chômage de <b>12 %</b> en 2025 contre 7 % pour les non-immigrés, niveau de vie moyen inférieur de <b>22 %</b>, pauvreté monétaire deux fois plus fréquente. Les descendants d'immigrés ont des diplômes et des emplois comparables à ceux de la population sans ascendance migratoire. Primo-arrivants admis au séjour en 2018 : <b>68 %</b> en emploi en 2022 (+14 points depuis 2019). Traitements inégalitaires déclarés sur cinq ans : <b>24 %</b> des immigrés et <b>25 %</b> des descendants, contre 17 % de la population (2019-2020).`,
       c: [
         ['FH', ['◆', 'Intégration par la langue'], `Intégration « renforcée » misant d'abord sur la <b>langue</b>, la formation et la répartition sur le territoire ; laïcité : la loi de 1905 « appliquée pleinement » ; fin de la « cascade des mépris » ; unité du territoire, banlieues comprises. Pas de chiffrage.`, 'Texte socle'],
+        ['LE', ['▲', 'Égalité et lutte contre le racisme'], `<b>Commissariat à l'égalité</b> (DILCRAH transformée) et observatoire des discriminations ; <b>récépissé de contrôle d'identité</b>, contrôles aléatoires interdits ; formation à la non-discrimination obligatoire dans la fonction publique et les entreprises de plus de 50 salariés ; tolérance zéro des actes racistes, islamophobes et antisémites ; quartiers populaires : classes à 12 élèves, ANRU3.`, 'Programme 2027 (juillet 2026), chapitres 43 et 44'],
         ['LFI', ['▲', 'Égalité et lutte contre le racisme'], `Plan contre l'islamophobie, l'antisémitisme et le racisme doté d'<b>un milliard</b> ; commissariat à l'égalité et observatoire des discriminations ; <b>testing</b> généralisé, dossiers anonymes expérimentés, sanctions renforcées contre les entreprises, jusqu'au refus de marchés publics ; <b>récépissé de contrôle d'identité</b> ; droit du sol intégral, vote des étrangers aux élections locales.`, 'Avenir en commun'],
         ['LR', 'none', `Aucun document sur l'intégration ni les discriminations dans le dossier.`, '—'],
         ['NE', ['◆', 'Assimilation'], `« Nouvelle politique d'<b>assimilation</b> » par l'éducation, le respect rigoureux de la loi, l'emploi et le logement, pour les immigrés installés régulièrement ; regroupement familial soumis à des tests d'intégration. Pas de chiffrage.`, 'NE, axe 2 ; Immigration'],
@@ -335,6 +341,7 @@
       now: `Pas de statistique sur les délais ni sur le budget de la justice dans le dossier (thème « Sécurité, justice et ordre public » de l'Insee « à venir »). Selon NE, le budget de la justice est de <b>0,20 % du PIB</b> et la France compte <b>10,9</b> juges pour 100 000 habitants, la médiane européenne étant de 17,7.`,
       c: [
         ['FH', ['◆', 'Justice du logement, codes ÷ 4'], `<b>Justice du logement en trois mois</b> ; volume des codes <b>divisé par quatre</b>, fin des surtranspositions, méthode « Code civil » (commission de juristes du Conseil d'État et de la Cour de cassation). Pas de mesure sur l'aide juridictionnelle.`, 'Propositions 5 et 19 ; texte socle'],
+        ['LE', ['▲', 'Justice du quotidien'], `<b>Aide juridictionnelle</b> améliorée et ouverte au pré-contentieux, justice numérique et recours en ligne ; justice restaurative développée ; référé environnemental unique ; prud'hommes avec un juge professionnel (échevinage) ; recours simplifiés devant les organismes de Sécurité sociale ; 9 000 magistrats et 10 000 greffiers créés.`, 'Programme 2027 (juillet 2026), chapitres 51 et 52'],
         ['LFI', ['▲', 'Accès gratuit et de proximité'], `<b>Aide juridictionnelle</b> augmentée, tribunaux de proximité rétablis, gratuité des procédures courantes (divorce) et <b>taxe de 50 €</b> supprimée pour saisir la justice ; recrutement de magistrats, greffiers et agents de la protection judiciaire de la jeunesse ; droit à la défense inscrit dans la Constitution.`, 'Avenir en commun'],
         ['LR', 'none', `Aucun document sur la justice civile dans le dossier.`, '—'],
         ['NE', ['▲', 'Budget et délais'], `Rattraper la <b>moyenne européenne</b> du budget (0,20 % du PIB) et du nombre de juges (10,9 pour 100 000, médiane 17,7) ; budget de la justice séparé de l'administration pénitentiaire ; greffiers à la hauteur de la charge ; délais de jugement raccourcis, au bénéfice de la justice civile. Pas de montant.`, 'NE, axe 3'],
@@ -345,6 +352,7 @@
       now: `Dépenses militaires de la France : <b>57 Md€</b> en 2025 (47 Md€ en 2015), soit <b>2,03 %</b> du PIB contre 1,87 % en 2015 ; Allemagne 93 Md€, Union européenne 377 Md€ (le double de 2015). Loi de programmation militaire 2024-2030 : cible de <b>275 000</b> militaires et civils en 2030. L'armée est la 2e institution la plus appréciée des Français (81 % de confiance, printemps 2024).`,
       c: [
         ['FH', ['◆', 'Revue stratégique, Europe'], `<b>Revue stratégique</b> avant de chiffrer les crédits ; réinvestir dans l'industrie, le renseignement et la résilience, du spatial au cyber ; <b>Conseil de sécurité européen</b> des cinq grandes puissances (Allemagne, Espagne, France, Italie, Pologne) ; loi de programmation militaire comptée parmi les dépenses obligatoires du plan de déficit.`, 'Texte socle'],
+        ['LE', ['◆', 'Défense européenne'], `Livre blanc actualisé et <b>nouvelle loi de programmation militaire</b> ; armée préparée à la haute intensité avec les partenaires européens ; <b>commandement militaire intégré européen</b> sous le Conseil de l'UE, pilier européen de l'OTAN ; désarmement nucléaire multilatéral, TIAN comme observateur ; soutien militaire à l'Ukraine ; budget 2027 : hausse de la défense de <b>6,4 Md€</b> (LPM) acceptée.`, 'Programme 2027 (juillet 2026), chapitres 61 et 62 ; budget 2027'],
         ['LFI', ['◆', 'Non-alignement, pôle public'], `<b>Retrait du commandement intégré de l'OTAN</b> puis de l'organisation ; rejet de la cible de 5 % du PIB ; <b>pôle public de l'armement</b> ; priorité aux technologies de rupture (cyber, spatial, IA) ; désarmement nucléaire multilatéral ; projection des forces sous mandat de l'ONU seulement ; exportations d'armes sous contrôle du Parlement.`, 'Avenir en commun'],
         ['LR', ['◆', 'Souveraineté technologique'], `Pas de fiche défense dans le dossier. La fiche IA vise des armées « qui ne dépendent plus de logiciels étrangers » et des drones français ; aucun montant ni format d'armée.`, 'LR, fiche IA'],
         ['NE', ['◆', 'Retour au régalien'], `Rééquilibrage du budget vers l'<b>État régalien</b> (défense, police, justice, diplomatie : environ un cinquième du budget de l'État) ; pas de mesure ni de montant propres aux armées dans les documents lus.`, 'NE, axe 1 ; discours de Bayeux'],
@@ -392,14 +400,14 @@
         { p: 'LR', v: 10, label: '10 Md€', sub: 'jusqu\'en 2032', tip: `Plan du 12/10/2026 : 10 milliards d'euros d'économies sur l'immigration, dans les 91 Md€ du volet social. Moyens non précisés.`, src: `LR, 12/10/2026, comptes rendus de presse` },
         { p: 'RN', v: 11.9, label: '11,9 Md€', sub: 'contre-budget 2026', tip: `Cinq ans de travail pour les prestations de solidarité, AME remplacée par l'AMU, fin du visa pour soins, fin de l'accord de 1968. La presse du 06/10/2026 évoque près de 15 Md€ dès la première année, liée à un référendum.`, src: `RN, contre-budget 2026` }
       ],
-      note: `Montants annoncés, non vérifiés. Ils ne reposent pas sur la même période : NE par an, LR jusqu'en 2032, RN dans le contre-budget 2026. FH, LFI et PS ne chiffrent pas d'économie.` },
+      note: `Montants annoncés, non vérifiés. Ils ne reposent pas sur la même période : NE par an, LR jusqu'en 2032, RN dans le contre-budget 2026. FH, LE, LFI et PS ne chiffrent pas d'économie.` },
     { id: 'prison', title: 'Places de prison', sub: 'Places opérationnelles, au 1er octobre 2026',
       min: 50000, max: 90000, ticks: [50000, 70000, 90000], tick: function (v) { return fr(v / 1000) + ' 000'; },
       today: { v: 63452, label: '63 452' },
       rows: [
         { p: 'RN', v: 85000, label: '85 000', sub: '2027 ou 2028 selon le texte', tip: `Atteindre 85 000 places de prison : en 2027 dans les 22 mesures, à l'horizon 2028 dans la loi de programmation du livret Sécurité.`, src: `RN, 22 mesures ; livret Sécurité` }
       ],
-      note: `Aujourd'hui : 63 452 places opérationnelles au 1er octobre 2026 pour 90 937 détenus (densité 143,3 %, ministère de la Justice) : 85 000 places resteraient inférieures au nombre actuel de détenus. LFI vise la fin de la surpopulation par un mécanisme de régulation, sans chiffre ; FH, NE et PS ne fixent pas de cible.` },
+      note: `Aujourd'hui : 63 452 places opérationnelles au 1er octobre 2026 pour 90 937 détenus (densité 143,3 %, ministère de la Justice) : 85 000 places resteraient inférieures au nombre actuel de détenus. LFI et LE visent la fin de la surpopulation (LE : densité limitée à 100 % par un numerus clausus), sans nombre de places ; FH, NE et PS ne fixent pas de cible.` },
     { id: 'postes', title: 'Policiers et gendarmes supplémentaires', sub: 'Postes à créer',
       min: 0, max: 10000, ticks: [0, 2000, 4000, 6000, 8000, 10000], tick: function (v) { return v === 0 ? '0' : fr(v / 1000) + ' 000'; },
       today: { v: 0, label: '0 (création nette)' },
@@ -413,7 +421,7 @@
       rows: [
         { p: 'NE', v: 17.7, label: '17,7', sub: '+62 %', tip: `Rattraper la moyenne européenne du budget de la justice (0,20 % du PIB selon NE) et du nombre de juges : 10,9 pour 100 000 habitants aujourd'hui, 17,7 pour la médiane européenne ; procureurs doublés.`, src: `Nouvelle Énergie, axe 3` }
       ],
-      note: `Seul NE chiffre une cible ; ses chiffres de départ n'ont pas pu être vérifiés dans le dossier. Le RN double le nombre de magistrats (2022) ; LFI et le PS recrutent magistrats et greffiers sans cible ; FH et LR ne disent rien.` }
+      note: `Seul NE chiffre une cible ; ses chiffres de départ n'ont pas pu être vérifiés dans le dossier. Le RN double le nombre de magistrats (2022) ; LE crée 9 000 postes de magistrats en dix ans ; LFI et le PS recrutent magistrats et greffiers sans cible ; FH et LR ne disent rien.` }
   ];
   var panelsEl = document.getElementById('panels');
   PANELS.forEach(function (pn) {
@@ -522,6 +530,7 @@
   /* ---------- Coûts annoncés ---------- */
   var EFFORTS = [
     ['FH', 'Aucun montant sur l\'immigration, la sécurité, la justice ou l\'emploi ; défense : revue stratégique avant de chiffrer les crédits, loi de programmation militaire traitée comme dépense obligatoire', '—', 'Propositions sans chiffrage', 'France 2027'],
+    ['LE', 'Aucun montant propre à l\'immigration, la sécurité ou l\'emploi ; justice : 9 000 magistrats, 10 000 greffiers, 7 000 attachés de justice sur dix ans ; cannabis légalisé avec fiscalité propre, sans montant ; défense : hausse de 6,4 Md€ en 2027 (loi de programmation militaire) acceptée', '2027 ; dix ans pour la justice', 'Dépenses sans chiffrage global', 'LE, programme 2027 ; dossier de presse du 26/08/2026'],
     ['LFI', '1re année : abrogation des réformes de l\'assurance chômage 3 Md€. Garantie d\'emploi, emploi jeune, police de proximité, aide juridictionnelle, plan antiracisme (« un milliard » nécessaire) : un seul montant donné. Défense : rejet de la cible de 5 % du PIB, pôle public de l\'armement, pas de montant', '2027, première année', 'Dépenses nouvelles', 'Budget rectificatif, 14/10/2026 ; Avenir en commun'],
     ['LR', 'Immigration −10 Md€ et assurance chômage −13 Md€ par an ; APL des étudiants étrangers non boursiers hors UE : −0,2 Md€ par an (≈ 100 000 étudiants) ; aucun montant sur la défense, la justice ou la sécurité', 'Jusqu\'en 2032', 'Économies', 'LR, 12/10/2026 ; fiche Logement'],
     ['NE', 'AME remplacée par une aide d\'urgence : −0,7 Md€ ; prestations non contributives après 5 ans de résidence : −8 Md€ par an. Titres de séjour ÷ 8, rétention à 24 mois, peines planchers ; justice : rattraper la moyenne européenne (0,20 % du PIB), sans montant ; défense : sans montant', 'Régime établi', 'Économies', 'NE, Immigration ; Sécurité ; FAQ, 16/10/2026'],
