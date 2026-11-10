@@ -172,6 +172,17 @@
   .theme-toggle .i-sun { display: none; }
   :root[data-theme="dark"] .theme-toggle .i-sun { display: block; }
   :root[data-theme="dark"] .theme-toggle .i-moon { display: none; }
+
+  .grp { display: flex; align-items: center; gap: 12px; margin: 14px 0 0; font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+  .grp::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .toc { display: grid; gap: 8px; margin-top: 6px; }
+  .toc .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; }
+  .toc .g { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); min-width: 150px; }
+  .toc a { font-size: 13px; text-decoration: none; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; color: var(--fg); }
+  .toc a:hover { border-color: var(--accent); }
+  .toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .theme { scroll-margin-top: 16px; }
+  @media (max-width: 560px) { .toc .g { min-width: 0; flex-basis: 100%; } }
 </style>
 <script>
 (function () {
@@ -223,6 +234,7 @@
     <div class="sec-head">
       <h2 id="h-caps">Le cap de chaque parti, face à la situation actuelle</h2>
       <p>Pour chaque sujet, l'état actuel est rappelé en tête, puis ce que propose chaque parti. Le pictogramme indique le sens du changement par rapport à aujourd'hui, pas un jugement.</p>
+      <nav class="toc" id="toc" aria-label="Sujets de cette page"></nav>
       <div class="legend-dir"><span>▲ augmente</span><span>▼ diminue</span><span>◆ effets mêlés</span><span>○ non chiffré</span><span>— non traité dans les documents</span></div>
     </div>
     <div class="themes" id="themes"></div>
@@ -361,7 +373,7 @@
 
   /* ---------- Matrice thèmes ---------- */
   var THEMES = [
-    { id: 't-deficit', title: 'Déficit et dépense publique', hint: 'Sens : déficit et dépense',
+    { id: 't-deficit', group: 'Finances publiques', title: 'Déficit et dépense publique', hint: 'Sens : déficit et dépense',
       now: '<b>Déficit 5,1 %</b> du PIB, <b>dette 115,6 %</b>, <b>dépense publique 57,2 %</b> du PIB (2025).',
       c: [
         ['FH', 'down', 'Déficit sous <b>3 %</b> en 2031 : <b>125 Md€</b> à trouver, dont 65 après croissance (0,8 %/an). Deux tiers par la suppression des niches, un tiers par de nouveaux impôts.', 'Fiscalité, 28/08/2026'],
@@ -371,7 +383,7 @@
         ['PS', 'nc', 'Pas de cible de déficit : <b>200 Md€</b> d\'investissements sur 5 ans, dont 50 financés ; vise la stabilisation de la dette en 2032 ; budget de l\'UE ×3.', 'PS, 09/11/2026 ; Projet socialiste'],
         ['RN', 'down', '<b>140 Md€</b> nets d\'économies d\'ici 2032, déficit sous <b>3 %</b> dès 2030. Contre-budget 2026 : <b>57 Md€</b> de baisses de dépenses.', 'RN, 06/10/2026 ; contre-budget']
       ] },
-    { id: 't-patrimoine', title: 'Impôts sur le capital et les hauts patrimoines', hint: 'Sens : impôts',
+    { id: 't-patrimoine', group: 'Fiscalité', title: 'Impôts sur le capital et les hauts patrimoines', hint: 'Sens : impôts',
       now: 'ISF supprimé (IFI sur l\'immobilier à la place), flat tax sur les revenus du capital, <b>5 taux</b> d\'impôt sur le revenu (0 à 45 %).',
       c: [
         ['FH', 'up', 'Impôt unique sur le patrimoine dès <b>2,2 M€</b> (+8 Md€), 9 impôts en tout. Aucun droit sous <b>1 M€</b> transmis de son vivant.', 'Propositions 6-9'],
@@ -381,7 +393,7 @@
         ['PS', 'up', 'Taxe Zucman de <b>2 %</b> au-delà de 100 M€, impôt sur les grandes successions (<b>400 Md€</b> cumulés 2025-2040), fin de la flat tax.', 'Projet socialiste, justice fiscale'],
         ['RN', 'mix', 'Impôt sur la fortune financière (<b>IFF</b>) à la place de l\'IFI ; taxes sur la spéculation (<b>12,2 Md€</b>) ; fin des droits sur l\'héritage direct des familles modestes.', 'Contre-budget ; législatives 2024']
       ] },
-    { id: 't-entreprises', title: 'Impôts de production et fiscalité des entreprises', hint: 'Sens : impôts',
+    { id: 't-entreprises', group: 'Fiscalité', title: 'Impôts de production et fiscalité des entreprises', hint: 'Sens : impôts',
       now: 'Impôts de production ≈ <b>95 Md€/an</b>, soit 3,2 % du PIB (chiffre cité par LR).',
       c: [
         ['FH', 'down', 'Abolition des impôts de production (non chiffrée) ; transmission d\'entreprise sans droits de son vivant.', 'Proposition 2'],
@@ -391,7 +403,7 @@
         ['PS', 'mix', 'IS progressif, taxation minimale des grandes entreprises, fin des exonérations sociales sans effet sur l\'emploi (<b>11 Md€/an</b>).', 'Projet socialiste, justice fiscale'],
         ['RN', 'down', 'Suppression de la CFE, de la C3S et de la CVAE : <b>−16,2 Md€</b>.', 'Contre-budget, p. 4']
       ] },
-    { id: 't-salaires', title: 'Pouvoir d\'achat des salariés', hint: 'Sens : revenu net',
+    { id: 't-salaires', group: 'Travail et protection sociale', title: 'Pouvoir d\'achat des salariés', hint: 'Sens : revenu net',
       now: '<b>Smic ≈ 1 478 € net</b> (1 867 € brut depuis le 1er juin 2026), 35 heures, soit 1 607 h par an.',
       c: [
         ['FH', 'up', '<b>+200 €</b> nets par mois en moyenne, <b>+100 €</b> au Smic, en basculant plus de 200 Md€ de cotisations vers une CSG universelle.', 'Propositions 1 ; Fiscalité'],
@@ -401,7 +413,7 @@
         ['PS', 'up', 'Smic à <b>1 690 € net</b> et conférence sociale sur les salaires au-dessus du Smic.', 'Projet socialiste, « Vivre libres »'],
         ['RN', 'up', 'Hausse de salaire de <b>10 %</b> (jusqu\'à 3 Smic) exonérée de cotisations patronales ; baisse de la TVA sur l\'énergie ; pas d\'impôt sur le revenu avant 30 ans.', 'Législatives 2024, p. 8-10']
       ] },
-    { id: 't-retraites', title: 'Âge de départ à la retraite', hint: 'Sens : âge',
+    { id: 't-retraites', group: 'Travail et protection sociale', title: 'Âge de départ à la retraite', hint: 'Sens : âge',
       now: '<b>64 ans</b> pour les générations 1969 et suivantes (172 trimestres). Réforme suspendue : 62 ans 9 mois pour la génération 1964.',
       c: [
         ['FH', 'off', 'Suppression de l\'âge légal au profit d\'une durée de cotisation, avec prise en compte de la pénibilité ; règle d\'or d\'équilibre.', 'Texte socle'],
@@ -411,7 +423,7 @@
         ['PS', 'down', 'Abrogation de la réforme Borne ; <b>43 annuités</b> réductibles selon la pénibilité ; âge légal ramené à <b>62 ans</b>.', 'Projet socialiste, retraites'],
         ['RN', 'down', 'Abrogation de la réforme de 2023, système « progressif » tenant compte de la pénibilité. En 2022 : <b>60 ans</b> après 40 annuités pour les carrières longues.', 'Législatives 2024, p. 8 ; 22 mesures']
       ] },
-    { id: 't-aides', title: 'Aides sociales et assurance chômage', hint: 'Sens : dépense sociale',
+    { id: 't-aides', group: 'Travail et protection sociale', title: 'Aides sociales et assurance chômage', hint: 'Sens : dépense sociale',
       now: 'RSA, prime d\'activité, ASS et APL versés séparément, sans plafond global de cumul (selon LR).',
       c: [
         ['FH', 'mix', 'Cotisations famille, santé et handicap (plus de 200 Md€) remplacées par une CSG à taux unique, élargie aux dépenses d\'IA.', 'Fiscalité, 28/08/2026'],
@@ -424,7 +436,16 @@
   ];
 
   var themesEl = document.getElementById('themes');
+  var GROUPS = ["Finances publiques","Fiscalité","Travail et protection sociale"];
+  THEMES.sort(function (x, y) { return GROUPS.indexOf(x.group) - GROUPS.indexOf(y.group); });
+  var lastGroup = null, tocEl = document.getElementById('toc'), tocRow = null;
   THEMES.forEach(function (t) {
+    if (t.group !== lastGroup) {
+      lastGroup = t.group;
+      var gh = document.createElement('h3'); gh.className = 'grp'; gh.textContent = t.group; themesEl.appendChild(gh);
+      tocRow = document.createElement('div'); tocRow.className = 'row'; tocRow.innerHTML = '<span class="g">' + t.group + '</span>'; tocEl.appendChild(tocRow);
+    }
+    var ta = document.createElement('a'); ta.href = '#' + t.id; ta.textContent = t.title; tocRow.appendChild(ta);
     var sec = document.createElement('article');
     sec.className = 'theme'; sec.id = t.id;
     var head = '<div class="theme-head"><h3>' + t.title + '</h3><p class="now"><span class="tag">Aujourd\'hui</span>' + t.now + '</p></div>';

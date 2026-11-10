@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Énergie, climat, ruralité 2027</title>
+<title>Énergie, environnement, ruralité 2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -144,6 +144,17 @@
   .hb .num { font-variant-numeric: tabular-nums; font-weight: 600; }
   .trends.two { grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); }
   .trends.two .hb { grid-template-columns: minmax(0, 150px) minmax(0, 1fr) auto; }
+
+  .grp { display: flex; align-items: center; gap: 12px; margin: 14px 0 0; font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+  .grp::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .toc { display: grid; gap: 8px; margin-top: 6px; }
+  .toc .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; }
+  .toc .g { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); min-width: 150px; }
+  .toc a { font-size: 13px; text-decoration: none; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; color: var(--fg); }
+  .toc a:hover { border-color: var(--accent); }
+  .toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .theme { scroll-margin-top: 16px; }
+  @media (max-width: 560px) { .toc .g { min-width: 0; flex-basis: 100%; } }
 </style>
 <script>
 (function () {
@@ -162,9 +173,9 @@
 <div class="wrap">
   <a class="back" href="index.html">← Sommaire</a>
   <header class="top">
-    <p class="eyebrow">Présidentielle 2027 · Énergie, climat, ruralité</p>
-    <h1 id="titre">Énergie, climat, ruralité 2027</h1>
-    <p class="lede">Électricité : FH, LR, NE et le RN misent sur le nucléaire (LR vise 80 ans pour les réacteurs actuels), LR et le RN coupent aussi les aides aux renouvelables, LFI sort du nucléaire pour du 100 % renouvelable en 2060, le PS combine les deux. Climat : LFI vise −65 % d'émissions en 2033, FH et NE un prix du carbone, le RN refuse « l'écologie punitive ». Campagnes : LFI, FH et NE promettent services publics et transports, LR abroge le ZAN, le RN supprime les zones à faibles émissions.</p>
+    <p class="eyebrow">Présidentielle 2027 · Énergie, environnement, ruralité</p>
+    <h1 id="titre">Énergie, environnement, ruralité 2027</h1>
+    <p class="lede">Énergie : FH, LR, NE et le RN misent sur le nucléaire (LR vise 80 ans pour les réacteurs actuels), LR et le RN coupent aussi les aides aux renouvelables, LFI sort du nucléaire pour du 100 % renouvelable en 2060, le PS combine les deux. Climat : LFI vise −65 % d'émissions en 2033, FH et NE un prix du carbone, le RN refuse « l'écologie punitive ». Eau, déchets, mer : LFI et le PS misent sur la gestion publique, le réemploi et la protection des océans, LR demande un moratoire sur les interdictions allant au-delà de l'Europe, le RN un plan pour les réseaux d'eau. Campagnes : LFI, FH et NE promettent services publics et transports, LR abroge le ZAN, le RN supprime les zones à faibles émissions.</p>
     <p class="stamp">Situation au 10/11/2026 · positions tirées des documents des partis, souvent sans chiffrage. LR n'a pas de fiche climat ni ruralité ; le RN n'a pas de document sur les services publics en zone rurale.</p>
     <div class="chips" id="filtre" role="group" aria-label="Partis affichés"><span class="lbl">Partis affichés</span></div>
   </header>
@@ -178,11 +189,14 @@
       <div class="kpi"><span class="k">Production d'électricité</span><span class="v">547,5<small>TWh</small></span><span class="s">2025, métropole (+1,5 %) · 95,2 % décarbonée · RTE, bilan électrique 2025</span></div>
       <div class="kpi"><span class="k">Nucléaire</span><span class="v">373,0<small>TWh</small></span><span class="s">2025 (+11,3 TWh), soit 68 % de la production (calcul) · 63,0 GW installés · RTE</span></div>
       <div class="kpi"><span class="k">Solaire</span><span class="v">+33<small>%</small></span><span class="s">production 2025 (+8,1 TWh) · 30,4 GW installés (+5,9 GW) · RTE</span></div>
+      <div class="kpi"><span class="k">Éolien en mer</span><span class="v">1,9<small>GW</small></span><span class="s">installés fin 2025 (+0,4 GW), contre 63,0 GW de nucléaire et 30,4 GW de solaire · RTE</span></div>
       <div class="kpi"><span class="k">Solde exportateur</span><span class="v">92,3<small>TWh</small></span><span class="s">2025, record pour la 2e année · 17 % de la production · RTE</span></div>
       <div class="kpi"><span class="k">Prix à terme de l'électricité</span><span class="v">61<small>€/MWh</small></span><span class="s">livraison 2026, vu en 2025 · 77 €/MWh un an plus tôt · RTE</span></div>
       <div class="kpi"><span class="k">Énergies fossiles</span><span class="v">56<small>%</small></span><span class="s">de l'énergie finale consommée en 2024 · l'électricité n'en fait que 27 % · RTE</span></div>
       <div class="kpi"><span class="k">Facture fossile importée</span><span class="v">63<small>Md€</small></span><span class="s">2025 · pic à plus de 119 Md€ en 2022 · Trésor, RESF 2027</span></div>
       <div class="kpi"><span class="k">Part des transports</span><span class="v">34<small>%</small></span><span class="s">des émissions brutes de gaz à effet de serre en 2025 · industrie : 62,4 MtCO₂e en 2024 · Trésor, RESF 2027</span></div>
+      <div class="kpi"><span class="k">Fuites dans les réseaux d'eau</span><span class="v">21<small>%</small></span><span class="s">de l'eau potable perdue en 2024 (rendement de 79 %) · eau et assainissement : 4,89 €/m³ au 1er janvier 2025 · OFB, SISPEA</span></div>
+      <div class="kpi"><span class="k">Sécheresse de l'été 2026</span><span class="v">&gt; 1<small>Md€</small></span><span class="s">plan d'aide aux agriculteurs (CASI) · effet estimé de −0,1 point de PIB · Trésor, RESF 2027</span></div>
       <div class="kpi"><span class="k">Passoires thermiques</span><span class="v">3,9<small>M</small></span><span class="s">logements F ou G, 12,7 % des résidences principales, au 1er janvier 2025 · <a href="https://www.insee.fr/fr/statistiques/8996946?sommaire=8996963">Insee</a></span></div>
       <div class="kpi"><span class="k">Communes rurales</span><span class="v">88<small>%</small></span><span class="s">des communes, un tiers de la population · +0,2 % par an de 2017 à 2023, contre +0,5 % en ville · <a href="https://www.insee.fr/fr/statistiques/8996946?sommaire=8996963">Insee</a></span></div>
       <div class="kpi"><span class="k">Sols artificialisés</span><span class="v">9<small>%</small></span><span class="s">en 2021 : 6 % dans les communes rurales, 56 % dans les grands centres urbains · <a href="https://www.insee.fr/fr/statistiques/8996946?sommaire=8996963">Insee</a></span></div>
@@ -202,6 +216,7 @@
     <div class="sec-head">
       <h2 id="h-caps">Le cap de chaque parti, face à la situation actuelle</h2>
       <p>Pour chaque sujet, l'état actuel est rappelé en tête, puis ce que propose chaque parti. Le pictogramme résume l'axe principal de la position : il n'est ni une intensité ni un jugement.</p>
+      <nav class="toc" id="toc" aria-label="Sujets de cette page"></nav>
       <div class="legend-dir"><span>▲ renforce</span><span>▼ réduit ou allège</span><span>◆ axe indiqué</span><span>— non traité dans les documents</span></div>
     </div>
     <div class="themes" id="themes"></div>
@@ -237,7 +252,8 @@
       <li><b>Textes de dates différentes.</b> Les mesures d'énergie et de climat du RN viennent des 22 mesures de 2022, de son livret Écologie et de son programme de 2024 ; LR (fiches Électricité, Agriculture, Logement) et LFI (plan ruralité) datent de 2026.</li>
       <li><b>LR.</b> Pas de fiche climat ni ruralité : seules l'électricité, l'agriculture, le logement (ZAN, DPE) sont traités. <b>RN</b> : aucun document sur les campagnes ni les services publics, mais un livret Agriculture et un livret Écologie.</li>
       <li><b>Ruralité.</b> Seuls LFI (plan ruralité), FH (maillage territorial) et NE (schéma Province / bloc communal) ont un volet dédié. Les chiffres de communes sans commerce (62 %) viennent du PS.</li>
-      <li><b>Non couvert.</b> Mer et littoraux, déchets et économie circulaire, eau, biodiversité en détail, outre-mer, transports hors rail et voiture.</li>
+      <li><b>Eau, déchets, mer : état partiel.</b> Eau : communiqué de l'OFB du 25/06/2026, données de 2024 à lire avec prudence selon l'OFB. Déchets : seul le bilan du SDES de 2020 (données de 2017-2018) est dans le dossier, des éditions plus récentes existent. Mer : annonce du gouvernement (14,8 % en protection forte) et estimation d'ONG (1,58 %), avec des définitions différentes.</li>
+      <li><b>Non couvert.</b> Biodiversité en détail, outre-mer, transports hors rail et voiture.</li>
       <li><b>Aucun chiffrage vérifié</b> par un organisme indépendant.</li>
     </ul>
     <details>
@@ -245,6 +261,7 @@
       <ul>
         <li>Électricité : RTE, <i>Bilan électrique 2025, principaux résultats</i> (février 2026).</li>
         <li>Climat, importations fossiles, émissions : Direction générale du Trésor, <i>Rapport économique, social et financier</i>, annexe du PLF 2027 (06/10/2026).</li>
+        <li>Eau : OFB, communiqué sur le 16e rapport national de l'Observatoire des services publics d'eau et d'assainissement (SISPEA, 25/06/2026). Déchets : SDES, <i>Bilan environnemental de la France</i>, édition 2020. Mer : annonce du gouvernement et estimation de Greenpeace et du CNRS relevées dans la presse (10/11/2026), à confirmer sur les publications du SDES.</li>
         <li>Territoires et logement : <a href="https://www.insee.fr/fr/statistiques/8996946?sommaire=8996963">Insee, « Territoires : vivre, travailler, habiter »</a> ; agriculture : <a href="https://www.insee.fr/fr/statistiques/9080401?sommaire=8996963">Insee, « Tissu productif, industrie, culture, agriculture »</a> (15/10/2026).</li>
         <li>Partis : FH, <i>France 2027</i> et chroniques · LFI, <i>L'Avenir en commun</i>, plan ruralité, budget rectificatif du 14/10/2026 · LR, fiches Électricité, Agriculture, Logement · NE, programme web (axes 2 et 3), page Agriculture · PS, <i>Le Projet socialiste</i> · RN, 22 mesures pour 2022, livrets Écologie et Agriculture, programme des législatives 2024, contre-budget 2026.</li>
       </ul>
@@ -266,7 +283,7 @@
 
   /* ---------- Positions par sujet ---------- */
   var THEMES = [
-    { id: 't-mix', title: 'Mix électrique : nucléaire et renouvelables', hint: 'Sens : choix des filières',
+    { id: 't-mix', group: 'Énergie', title: 'Mix électrique : nucléaire et renouvelables', hint: 'Sens : choix des filières',
       now: `Production <b>547,5 TWh</b> en 2025, dont <b>373,0 TWh</b> de nucléaire (+11,3 TWh) et 62,4 TWh d'hydraulique ; solaire <b>+33 %</b> et éolien +6 % sur un an ; fossile au plus bas depuis près de 75 ans. Électricité décarbonée à <b>95,2 %</b>, renouvelable à 27,0 %. Programme officiel : <b>6 EPR2</b> (premier vers 2038), 8 de plus à l'étude, réacteurs actuels exploités jusqu'à 60 ans « voire au-delà » (PPE3).`,
       c: [
         ['FH', ['◆', 'Nucléaire et éolien en mer'], `<b>6 EPR2</b> et un <b>éolien en mer</b> industrialisé, électrification massive des usages pour les ménages et l'industrie ; décarbonation de l'énergie comme « clé » de la transition ; planification inscrite dans la Constitution.`, 'Proposition 16 ; texte socle'],
@@ -276,7 +293,7 @@
         ['PS', ['◆', 'Nucléaire et renouvelables'], `« Le nucléaire autant que nécessaire, les énergies renouvelables autant que possible » : mix <b>100 % décarboné en 2050</b> planifié par le Parlement, parc électronucléaire modernisé, renouvelables planifiées ; data centers tenus de produire de l'électricité renouvelable locale.`, 'Projet socialiste, énergie'],
         ['RN', ['▲', "Nucléaire, fin de l'éolien"], `Plan « Marie Curie » : EPR, mini-réacteurs et réacteurs à neutrons rapides ; hydroélectricité développée ; <b>projets éoliens arrêtés</b> et parcs démantelés progressivement, 5 Md€ de subventions rendus aux ménages (2022) ; sortie du charbon par la biomasse, hydrogène et géothermie.`, '22 mesures ; législatives 2024']
       ] },
-    { id: 't-prix', title: 'Prix de l\'électricité et marché de l\'énergie', hint: 'Sens : facture et organisation du marché',
+    { id: 't-prix', group: 'Énergie', title: 'Prix de l\'électricité et marché de l\'énergie', hint: 'Sens : facture et organisation du marché',
       now: `Prix à terme de l'électricité <b>61 €/MWh</b> (livraison 2026, vu en 2025), contre 77 €/MWh un an plus tôt ; prix français très inférieurs aux prix allemands et italiens (RTE). Prix pour les ménages <b>13 %</b> sous la moyenne européenne en 2025 (Trésor). Importations d'énergies fossiles : <b>63 Md€</b> en 2025.`,
       c: [
         ['FH', ['▼', 'Baisse de la facture'], `<b>−15 %</b> sur la facture d'électricité : contrats universels au coût réel de production, fin des « quasi-taxes » ; tarification du carbone ; mécanisme de protection des ménages précaires pour chaque instrument.`, 'Proposition 3 ; texte socle'],
@@ -286,7 +303,7 @@
         ['PS', ['◆', 'Tarifs réglementés'], `Électricité <b>sortie de la logique de marché</b> : tarifs réglementés étendus aux particuliers, services publics et entreprises ; réseaux (RTE, Enedis, GRDF…) regroupés dans un pôle public ; « chèques-soleil » pour les panneaux solaires ; énergie encadrée pour les artisans-commerçants.`, 'Projet socialiste, énergie'],
         ['RN', ['▼', 'Baisse des taxes et du prix'], `<b>TVA de 20 % à 5,5 %</b> sur carburants, fioul, gaz et électricité ; <b>sortie du marché européen de l'électricité</b> et de ses règles de fixation des prix ; barrages protégés de la mise en concurrence ; tarifs de rachat préférentiels supprimés au contre-budget.`, '22 mesures ; législatives 2024 ; contre-budget']
       ] },
-    { id: 't-climat', title: 'Climat et transition écologique', hint: 'Sens : cadre, objectifs et instruments',
+    { id: 't-climat', group: 'Climat et logement', title: 'Climat et transition écologique', hint: 'Sens : cadre, objectifs et instruments',
       now: `Objectif officiel : neutralité carbone en <b>2050</b>, <b>−50 %</b> d'émissions brutes en 2030 par rapport à 1990 ; il faudrait baisser d'environ <b>5 %</b> par an de 2024 à 2030, contre 3 % en moyenne de 2017 à 2023. Émissions par habitant <b>−22 %</b> de 2017 à 2024 (UE : −21 %). Transports : 34 % des émissions brutes ; combustion d'énergie : environ 60 % (2023). Source : Trésor.`,
       c: [
         ['FH', ['◆', 'Prix du carbone, planification'], `« Écologie de vérité » : <b>tarification du carbone</b> nationale, européenne et mondiale, planification inscrite dans la Constitution ; transition portée par les choix individuels plus que par les interdits, avec protection des ménages précaires ; <b>dividende climatique</b> ; adaptation du territoire.`, 'Texte socle ; chroniques'],
@@ -296,7 +313,7 @@
         ['PS', ['◆', 'Sécurité écologique, adaptation'], `Pollutions de l'air, de l'eau et des sols traitées, <b>fonds de sécurité climatique</b> financé par une fiscalité carbone progressive qui exclut les ménages modestes ; adaptation planifiée par territoire (bâti, villes, eau, risques) ; subventions aux fossiles interdites.`, 'Projet socialiste, chapitre 7'],
         ['RN', ['◆', 'Écologie « sans punition »'], `Sortie du Pacte vert, trajectoire carbone appréciée chaque année selon la volonté des Français ; <b>interdiction des moteurs thermiques en 2035 écartée</b>, <b>zones à faibles émissions supprimées</b> ; relocalisations, plan de rénovation du réseau d'eau, biodiversité suivie par des espèces témoins.`, 'Livret Écologie ; législatives 2024']
       ] },
-    { id: 't-renov', title: 'Rénovation des logements et mobilité', hint: 'Sens : logement et déplacements',
+    { id: 't-renov', group: 'Climat et logement', title: 'Rénovation des logements et mobilité', hint: 'Sens : logement et déplacements',
       now: `<b>3,9 millions</b> de logements classés F ou G (passoires thermiques), soit <b>12,7 %</b> des résidences principales au 1er janvier 2025 ; 1,1 million dans le parc locatif privé (13,8 %), environ 300 000 dans le parc social (5,8 %). Transports : première source d'émissions (34 %).`,
       c: [
         ['FH', ['▲', 'Équipement des ménages'], `<b>1 million</b> de pompes à chaleur et <b>1 million</b> de voitures électriques en leasing social ; une liaison par heure entre chaque préfecture et ses sous-préfectures à prix unique ; train du quotidien prioritaire (chronique).`, 'Propositions 4 et 17 ; chronique'],
@@ -306,7 +323,7 @@
         ['PS', ['▲', 'Rénovation et rail'], `Fin des passoires thermiques par un <b>grand emprunt</b> remboursé par les économies d'énergie, TVA à 5,5 % maintenue sur les travaux ; <b>1 million</b> de voitures électriques à 100 €/mois pour les ménages modestes ou ruraux ; petites lignes de train rouvertes, plan vélo ; passeport carbone sur l'avion.`, 'Projet socialiste, chapitre 2'],
         ['RN', ['▼', 'Moins de contraintes'], `Obligations et interdictions liées au <b>DPE abrogées</b> (travaux, mise en location), accompagnement des rénovations par les professionnels ; zones à faibles émissions supprimées ; TVA à 5,5 % sur les carburants ; plan national de circulation rail, air, route.`, 'Législatives 2024 ; livret Écologie']
       ] },
-    { id: 't-agri', title: 'Agriculture et alimentation', hint: 'Sens : production, normes et revenus',
+    { id: 't-agri', group: 'Campagnes et agriculture', title: 'Agriculture et alimentation', hint: 'Sens : production, normes et revenus',
       now: `Agriculture et agroalimentaire : <b>3,5 %</b> du PIB et près de 5 % de l'emploi. Emploi agricole passé de plus de 8 % de l'emploi total au début des années 1980 à moins de 3 %. Environ <b>350 000</b> exploitations en 2023 (664 000 en 2000), plus grandes (69 ha en moyenne contre 42). Niveau de vie médian des ménages agricoles <b>24 700 €</b> en 2021, contre 23 000 € pour l'ensemble de la population.`,
       c: [
         ['FH', ['◆', 'Revenus, installation, carbone'], `Objectif de <b>500 000 exploitations</b> en 2035 à taille humaine ; aides concentrées sur l'installation, foncières publiques d'achat de terres ; usage des phytosanitaires <b>réduit de moitié</b> d'ici 2030, haies restaurées ; producteurs organisés face à la grande distribution ; commande publique de produits français ; neutralité carbone agricole.`, 'Texte socle, chantier Agriculture'],
@@ -316,7 +333,7 @@
         ['PS', ['◆', 'Agroécologie'], `Engrais et phytosanitaires de synthèse <b>remplacés en 15 ans</b> par l'agroécologie ; moratoire sur les nouveaux méga-centres logistiques de e-commerce pour préserver les terres agricoles. Pas de volet prix ni PAC dans les documents lus.`, 'Projet socialiste, chapitres 7 et 1'],
         ['RN', ['▲', 'Prix et souveraineté'], `Prix rémunérateurs (loi Egalim modifiée, intervention de l'État sur les indices), marges de la grande distribution encadrées ; opposition au Pacte vert et aux accords avec l'Australie, la Nouvelle-Zélande et le Mercosur ; plan de soutien de 5 ans à l'agriculture bio ; <b>80 %</b> de produits français en cantine à l'horizon 2027.`, 'Livret Agriculture ; législatives 2024']
       ] },
-    { id: 't-rural', title: 'Campagnes, services publics et aménagement', hint: 'Sens : services, liaisons et urbanisme',
+    { id: 't-rural', group: 'Campagnes et agriculture', title: 'Campagnes, services publics et aménagement', hint: 'Sens : services, liaisons et urbanisme',
       now: `Les territoires ruraux représentent <b>88 %</b> des communes et un tiers de la population ; la population rurale progresse de <b>0,2 %</b> par an (2017-2023), contre 0,5 % en ville. <b>9 %</b> des sols sont artificialisés (6 % dans les communes rurales, 56 % dans les grands centres urbains). Objectif de <b>zéro artificialisation nette</b> en 2050, rythme de consommation d'espace divisé par deux entre 2021 et 2031.`,
       c: [
         ['FH', ['▲', 'Maillage territorial'], `« Promesse unique, moyens variables » : <b>sous-préfectures</b> comme maillage de base, <b>une liaison par heure</b> entre préfecture et sous-préfectures à prix unique, assemblée annuelle des maires et conseil des territoires auprès du Président ; train du quotidien et adaptation du territoire au climat.`, 'Texte socle ; chronique'],
@@ -325,10 +342,49 @@
         ['NE', ['◆', 'Provinces et désenclavement'], `Schéma <b>État / Province / bloc communal</b> (référendum constitutionnel) ; chaque zone rurale à moins de <b>20 minutes</b> d'une ville moyenne, chaque ville moyenne à moins d'1 h 30 d'une métropole ; plan routier et ferroviaire, fibre ou satellite ; loi SRU supprimée.`, 'NE, axes 2 et 3'],
         ['PS', ['◆', 'Commerces et rail'], `Plan contre la <b>vacance commerciale</b> (foncières locales, droit de préemption) : 62 % des communes n'ont plus de commerce, selon le PS ; petites lignes de train rouvertes ; centres de santé dans les territoires sous-dotés. Pas de plan ruralité dédié.`, 'Projet socialiste, chapitres 1, 2 et 6'],
         ['RN', 'none', `Pas de document sur les campagnes ni les services publics dans le dossier (agriculture et zones à faibles émissions : voir ci-dessus).`, '—']
+      ] },
+    { id: 't-eau', group: 'Eau, déchets et mer', title: 'Eau et sécheresse', hint: 'Sens : réseaux, stockage et gestion',
+      now: `Rendement moyen du réseau de distribution : <b>79 %</b> en 2024, soit 21 % de fuites ; 19 % des services sous le seuil du décret « fuites ». Prix moyen de l'eau et de l'assainissement : <b>4,89 €/m³</b> au 1er janvier 2025 (4,69 € en 2023), soit 586,80 € par an pour un foyer. Été 2026 : canicules et sécheresse « inédites », plan de plus d'<b>1 Md€</b> pour les agriculteurs, −0,1 point de PIB (Trésor). Valeurs 2024 à lire avec prudence (OFB).`,
+      c: [
+        ['FH', ['◆', 'Souveraineté hydrique'], `Eau polluée comme enjeu de santé de l'« écologie de vie » ; <b>souveraineté hydrique</b> et résilience dans l'outre-mer. Pas de plan pour les réseaux ni le stockage dans les documents lus.`, 'Texte socle ; chronique'],
+        ['LFI', ['▲', 'Gestion publique, réseaux rénovés'], `Rénovation de <b>l'intégralité des réseaux</b> d'eau et d'assainissement (fuites, droit à l'eau) ; <b>gestion publique et démocratique</b> de l'eau, usages domestiques et agricoles nourriciers prioritaires en cas de tension ; accès à l'eau potable garanti « quoi qu'il en coûte » outre-mer ; dépollution des mers.`, 'Avenir en commun ; plan ruralité'],
+        ['LR', ['▲', "Stockage de l'eau"], `<b>Stockage d'eau</b> reconnu d'intérêt général majeur pour l'agriculture, avec des délais d'instruction opposables à l'administration (le silence vaut accord). Pas d'autre mesure sur l'eau dans le dossier.`, 'LR, fiche Agriculture'],
+        ['NE', ['◆', 'Subsidiarité, bassines'], `Gestion de l'eau fondée sur la <b>subsidiarité</b> : « oui aux bassines, lorsqu'elles sont techniquement justifiées et localement décidées » ; compte-épargne aléas climatiques pour les agriculteurs.`, 'NE, Agriculture ; axe 2'],
+        ['PS', ['▲', "Gestion publique de l'eau"], `<b>Gestion publique de l'eau</b> pour protéger la ressource de la spéculation, usages planifiés et répartis, sobriété ; rénovation des réseaux de stockage et de distribution ; air, eau et sols nettoyés des polluants (PFAS, perturbateurs endocriniens).`, 'Projet socialiste, chapitre 7'],
+        ['RN', ['▲', 'Rénovation du réseau'], `<b>Plan de rénovation du réseau</b> de distribution de l'eau pour réduire les pertes et améliorer la qualité ; manque d'eau jugé « dramatique » pour les régions exposées, <b>centrales de dessalement</b> à l'étude (livret).`, 'Livret Écologie ; législatives 2024']
+      ] },
+    { id: 't-dechets', group: 'Eau, déchets et mer', title: 'Déchets et économie circulaire', hint: 'Sens : réemploi, interdictions et normes',
+      now: `Données anciennes dans le dossier (SDES, bilan 2020) : <b>342,4 Mt</b> de déchets produits en 2018, dont 29,7 Mt de déchets ménagers et assimilés ; taux de recyclage de <b>66 %</b> pour l'ensemble (2018) et près de <b>43 %</b> pour les déchets ménagers (2017) ; mise en décharge des déchets ménagers ramenée de 43 % à 22 % de 2000 à 2017. Des éditions plus récentes existent.`,
+      c: [
+        ['FH', 'none', `Aucune mesure sur les déchets ou le recyclage dans les documents lus.`, '—'],
+        ['LFI', ['▲', 'Réemploi et interdictions'], `<b>Service public du réemploi</b> (recycleries, ateliers de réparation), obsolescence programmée abolie, <b>plastiques à usage unique interdits</b> immédiatement, consigne du verre restaurée ; réemploi, compostage puis recyclage obligatoires ; indice de durabilité des produits, écoconception imposée.`, 'Avenir en commun'],
+        ['LR', ['▼', 'Moratoire sur les interdictions'], `<b>Moratoire immédiat</b> sur toute interdiction (loi anti-gaspillage AGEC, plastiques, PFAS) qui irait <b>au-delà des règlements européens</b>.`, 'LR, Produire plus'],
+        ['NE', ['◆', 'Traitement à la source'], `Pas de politique des déchets propre ; action internationale ciblée sur les « super-pollueurs » (10 fleuves seraient à l'origine de 88 à 95 % des déchets plastiques déversés dans les océans) ; recherche sur le traitement des déchets nucléaires par laser.`, 'NE, axe 3'],
+        ['PS', ['▲', 'Plastiques et réparation'], `<b>Plastiques à usage unique interdits</b> d'ici 2030, emballages non recyclables taxés <b>1 €/kg</b> pour financer le recyclage (500 M€ par an) ; économie circulaire et réemploi en priorité industrielle, bonus réparation généralisé, recycleries financées.`, 'Projet socialiste, chapitres 3 et 7'],
+        ['RN', ['▲', 'Économie circulaire, local'], `Information obligatoire sur la réparabilité et la durée de vie des produits ; tri et retraitement des déchets traités comme une <b>ressource stratégique</b> (terres rares, métaux), traitement en local ; relocalisations et circuits courts.`, 'Livret Écologie']
+      ] },
+    { id: 't-mer', group: 'Eau, déchets et mer', title: 'Mer, littoraux et pêche', hint: 'Sens : protection, pêche et énergies marines',
+      now: `Éolien en mer installé : <b>1,9 GW</b> fin 2025 (+0,4 GW). Aires marines protégées : le gouvernement annonce <b>14,8 %</b> des eaux françaises en « protection forte » fin 2026 (4,8 % avant), Greenpeace et le CNRS en comptent <b>1,58 %</b> ; objectif national : 30 % protégés dont 10 % en protection forte en 2030. Aide au carburant pour la pêche en 2026 : 0,20 à 0,35 €/L (Trésor).`,
+      c: [
+        ['FH', ['◆', 'Adaptation du littoral'], `<b>Cartographier le recul du trait de côte</b>, relocaliser quand il le faut avec accompagnement, renforcer les protections efficaces ; en outre-mer, résilience cyclonique et énergies locales ; éolien en mer industrialisé.`, 'Chronique ; proposition 16'],
+        ['LFI', ['▲', 'Protection et planification'], `<b>Éolien en mer à 45 GW en 2050</b>, planification maritime intégrée ; aires marines protégées étendues (haute mer), <b>12 milles côtiers réservés</b> à la pêche durable et artisanale, pêche électrique et navires-usines écartés ; moratoire sur les forages en Méditerranée et l'extraction minière en eaux profondes ; marine marchande décarbonée, ports relancés, COP Océans en France en 2028.`, 'Avenir en commun'],
+        ['LR', 'none', `Aucun document sur la mer, le littoral ou la pêche dans le dossier.`, '—'],
+        ['NE', 'none', `Aucune mesure sur la mer, le littoral ou la pêche dans les documents lus (plastiques : voir Déchets).`, '—'],
+        ['PS', ['◆', 'Littoraux et outre-mer'], `Littoraux ultramarins protégés par des <b>solutions fondées sur la nature</b> (mangroves, récifs) ; adaptation du bâti et des infrastructures ; océans et cours d'eau nettoyés (filtres à microplastiques dans <b>100 %</b> des stations d'épuration d'ici 2030, capture des plastiques flottants).`, 'Projet socialiste, chapitre 7'],
+        ['RN', ['◆', 'Ministère de la mer'], `<b>Ministère d'État de la France d'Outre-mer et de la politique maritime</b> (la plus grande part du domaine maritime relève de l'outre-mer) ; lutte contre l'exploitation illégale des ressources halieutiques par des pêcheurs étrangers.`, 'Livret Outre-mer (2022)']
       ] }
   ];
   var themesEl = document.getElementById('themes');
+  var GROUPS = ["Énergie","Climat et logement","Eau, déchets et mer","Campagnes et agriculture"];
+  THEMES.sort(function (x, y) { return GROUPS.indexOf(x.group) - GROUPS.indexOf(y.group); });
+  var lastGroup = null, tocEl = document.getElementById('toc'), tocRow = null;
   THEMES.forEach(function (t) {
+    if (t.group !== lastGroup) {
+      lastGroup = t.group;
+      var gh = document.createElement('h3'); gh.className = 'grp'; gh.textContent = t.group; themesEl.appendChild(gh);
+      tocRow = document.createElement('div'); tocRow.className = 'row'; tocRow.innerHTML = '<span class="g">' + t.group + '</span>'; tocEl.appendChild(tocRow);
+    }
+    var ta = document.createElement('a'); ta.href = '#' + t.id; ta.textContent = t.title; tocRow.appendChild(ta);
     var sec = document.createElement('article'); sec.className = 'theme'; sec.id = t.id;
     var head = '<div class="theme-head"><h3>' + t.title + '<span class="hint">' + t.hint + '</span></h3><p class="now"><span class="tag">Aujourd\'hui</span>' + t.now + '</p></div>';
     var cells = t.c.map(function (c) {
@@ -385,7 +441,14 @@
       rows: [
         { p: 'FH', v: 500000, label: '500 000', sub: 'en 2035 (+43 %)', tip: `Redresser la barre et viser 500 000 exploitations agricoles en 2035, à taille humaine et direction familiale, contre environ 350 000 en 2023.`, src: `France Humaniste, chantier Agriculture` }
       ],
-      note: `Insee : 664 000 exploitations en 2000, 390 000 en 2020, près de 350 000 en 2023. LFI vise 500 000 emplois agricoles, une autre mesure (emplois, pas exploitations) ; LR, NE, PS et le RN ne fixent pas de nombre.` }
+      note: `Insee : 664 000 exploitations en 2000, 390 000 en 2020, près de 350 000 en 2023. LFI vise 500 000 emplois agricoles, une autre mesure (emplois, pas exploitations) ; LR, NE, PS et le RN ne fixent pas de nombre.` },
+    { id: 'eolien-mer', title: 'Éolien en mer installé', sub: 'Gigawatts',
+      min: 0, max: 50, ticks: [0, 10, 20, 30, 40, 50], tick: function (v) { return String(v); },
+      today: { v: 1.9, label: '1,9 GW (fin 2025)' },
+      rows: [
+        { p: 'LFI', v: 45, label: '45 GW', sub: 'en 2050, posé et flottant', tip: `Déployer l'éolien en mer, posé et flottant, pour atteindre au moins 45 gigawatts de puissance installée en 2050, ainsi que les énergies marines renouvelables (hydrolien, houle).`, src: `L'Avenir en commun 2027` }
+      ],
+      note: `Aujourd'hui : 1,9 GW fin 2025 (RTE). FH veut un éolien en mer « industrialisé » sans puissance ; le PS planifie les renouvelables sans chiffre ; LR et le RN arrêtent les aides ou les projets éoliens ; NE les ramène au droit commun.` }
   ];
   var panelsEl = document.getElementById('panels');
   PANELS.forEach(function (pn) {
@@ -474,11 +537,11 @@
   /* ---------- Coûts annoncés ---------- */
   var EFFORTS = [
     ['FH', 'Facture d\'électricité −15 % ; 6 EPR2 ; 1 million de pompes à chaleur et 1 million de voitures électriques en leasing social ; pas de montant en euros dans le dossier', '—', 'Propositions sans chiffrage', 'France 2027'],
-    ['LFI', 'Budget d\'urgence 2027 : services publics, pouvoir d\'achat et planification écologique, un peu plus de 80 Md€ pour l\'ensemble ; isolation de 700 000 logements par an sans montant isolé', '2027, première année', 'Dépenses nouvelles', 'Budget rectificatif, 14/10/2026'],
-    ['LR', 'Électricité −5 % tout de suite (suppression des CEE) puis −5 à −10 % dès 2030 ; aides aux nouvelles capacités éoliennes et photovoltaïques supprimées ; « pas d\'impôt nouveau »', 'Jusqu\'en 2032', 'Baisse de prix, économies', 'LR, fiche Électricité ; 12/10/2026'],
+    ['LFI', 'Budget d\'urgence 2027 : services publics, pouvoir d\'achat et planification écologique, un peu plus de 80 Md€ pour l\'ensemble ; isolation de 700 000 logements par an, éolien en mer à 45 GW en 2050, rénovation de tous les réseaux d\'eau : sans montant isolé', '2027, première année', 'Dépenses nouvelles', 'Budget rectificatif, 14/10/2026'],
+    ['LR', 'Électricité −5 % tout de suite (suppression des CEE) puis −5 à −10 % dès 2030 ; aides aux nouvelles capacités éoliennes et photovoltaïques supprimées ; « pas d\'impôt nouveau » ; aucune dépense sur l\'eau ou les déchets', 'Jusqu\'en 2032', 'Baisse de prix, économies', 'LR, fiche Électricité ; 12/10/2026'],
     ['NE', 'Fiscalité environnementale à taxation totale constante ; économies sur les renouvelables réinvesties dans le nucléaire ; aucun montant', '—', 'Non chiffré', 'NE, axe 3'],
-    ['PS', 'Grand emprunt de rénovation des logements remboursé par les économies d\'énergie ; fonds de sécurité climatique financé par une fiscalité carbone progressive ; aucun montant', '—', 'Non chiffré', 'Projet socialiste'],
-    ['RN', 'Subventions aux éoliennes : 5 Md€ rendus aux ménages ; TVA de 20 % à 5,5 % sur l\'énergie (coût non repris ici) ; contre-budget 2026 : tarifs de rachat préférentiels supprimés, « Ma Prim\'Rénov » remplacée par « 100 % Rénov », sans montant isolé', '2022 ; 2026', 'Économies et baisses de taxes', '22 mesures ; contre-budget 2026']
+    ['PS', 'Grand emprunt de rénovation des logements remboursé par les économies d\'énergie ; fonds de sécurité climatique financé par une fiscalité carbone progressive ; emballages non recyclables taxés 1 €/kg pour 500 M€ par an de recyclage', '—', 'Non chiffré, sauf le recyclage', 'Projet socialiste'],
+    ['RN', 'Subventions aux éoliennes : 5 Md€ rendus aux ménages ; TVA de 20 % à 5,5 % sur l\'énergie (coût non repris ici) ; contre-budget 2026 : tarifs de rachat préférentiels supprimés, « Ma Prim\'Rénov » remplacée par « 100 % Rénov » ; plan de rénovation du réseau d\'eau sans montant', '2022 ; 2026', 'Économies et baisses de taxes', '22 mesures ; contre-budget 2026']
   ];
   var tb = document.getElementById('efforts-body');
   EFFORTS.forEach(function (e) {
