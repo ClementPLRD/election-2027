@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ce que proposent les partis pour la présidentielle 2027, face à l'état du pays : orientations économiques et sociales.">
+<title>Présidentielle 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  /* Concept : sommaire. Deux entrées larges, chacune annonce ce qu'elle contient et ce qu'elle ne contient pas. */
+  :root {
+    --bg: #f3f5f7; --panel: #fcfdfd; --fg: #0f1b26; --muted: #52606d; --faint: #7b8794;
+    --line: #dde3e8; --accent: #0b5c6b; --pill: #e6eef1;
+    --p-FH: #2a78d6; --p-LFI: #eb6834; --p-LR: #1baf7a; --p-NE: #eda100; --p-PS: #e87ba4; --p-RN: #008300;
+    --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-title: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
+      --line: #26323d; --accent: #4cc3d6; --pill: #1f2b34;
+      --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
+    --line: #26323d; --accent: #4cc3d6; --pill: #1f2b34;
+    --p-FH: #3987e5; --p-LFI: #d95926; --p-LR: #199e70; --p-NE: #c98500; --p-PS: #d55181; --p-RN: #008300;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg); font-family: var(--font-ui); font-size: 15px; line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 36px 56px; margin: 0;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+  h1, h2 { font-family: var(--font-title); font-weight: 600; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
+  h1 { font-size: clamp(32px, 6vw, 50px); line-height: 1.05; }
+  h2 { font-size: clamp(22px, 3.4vw, 28px); line-height: 1.15; }
+  p { margin: 0; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  header { display: flex; flex-direction: column; gap: 14px; }
+  .lede { max-width: 66ch; font-size: 17px; }
+  .stamp { font-size: 13px; color: var(--muted); }
+  .parties { display: flex; flex-wrap: wrap; gap: 8px; }
+  .party { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px 5px 10px; }
+  .party i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
+  .party b { font-weight: 600; }
+  .entries { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+  .entry { display: flex; flex-direction: column; gap: 16px; min-width: 0; text-decoration: none; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 22px 22px 20px; transition: border-color .15s ease, transform .15s ease; }
+  .entry:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .entry:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .entry .head { display: flex; flex-direction: column; gap: 6px; }
+  .entry .what { color: var(--muted); }
+  .entry ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+  .entry li { display: flex; gap: 10px; }
+  .entry li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 8px; border-radius: 50%; background: var(--accent); }
+  .entry .go { margin-top: auto; padding-top: 4px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 14px; font-weight: 600; color: var(--accent); }
+  .entry .go small { font-weight: 400; font-size: 12.5px; color: var(--faint); }
+  .tag { align-self: flex-start; font-size: 12px; background: var(--pill); color: var(--muted); border-radius: 999px; padding: 3px 10px; }
+  .notes { display: flex; flex-direction: column; gap: 10px; }
+  .notes ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; max-width: 78ch; color: var(--muted); }
+  .notes b { color: var(--fg); font-weight: 600; }
+  footer { font-size: 13px; color: var(--faint); }
+  @media (prefers-reduced-motion: reduce) { .entry { transition: none; } .entry:hover { transform: none; } }
+
+  .theme-toggle { position: absolute; top: 12px; right: max(16px, env(safe-area-inset-right, 0px)); z-index: 5; width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
+  .theme-toggle:hover { border-color: var(--accent); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .theme-toggle svg { width: 18px; height: 18px; display: block; }
+  .theme-toggle .i-sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .i-sun { display: block; }
+  :root[data-theme="dark"] .theme-toggle .i-moon { display: none; }
+</style>
+<script>
+(function () {
+  var r = document.documentElement, v = null;
+  try { v = localStorage.getItem('e27-theme'); } catch (e) {}
+  if (v !== 'light' && v !== 'dark') v = r.getAttribute('data-theme');
+  if (v !== 'light' && v !== 'dark') v = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  r.setAttribute('data-theme', v);
+})();
+</script>
+</head>
+<body>
+<button type="button" class="theme-toggle" id="theme-toggle" aria-label="Passer au thème sombre" title="Changer de thème"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Présidentielle 2027</span>
+    <h1>Ce que proposent les partis, face à l'état du pays</h1>
+    <p class="lede">Deux tableaux de bord construits à partir des programmes et des sources officielles du dossier Election_2027. Chaque sujet rappelle la situation actuelle avant les positions des partis.</p>
+    <div class="parties" aria-label="Partis couverts">
+      <span class="party" style="--c:var(--p-FH)"><i></i><b>FH</b> France Humaniste</span>
+      <span class="party" style="--c:var(--p-LFI)"><i></i><b>LFI</b> La France insoumise</span>
+      <span class="party" style="--c:var(--p-LR)"><i></i><b>LR</b> Les Républicains</span>
+      <span class="party" style="--c:var(--p-NE)"><i></i><b>NE</b> Nouvelle Énergie</span>
+      <span class="party" style="--c:var(--p-PS)"><i></i><b>PS</b> Parti socialiste</span>
+      <span class="party" style="--c:var(--p-RN)"><i></i><b>RN</b> Rassemblement national</span>
+    </div>
+    <p class="stamp">Situation au 10/11/2026.</p>
+  </header>
+
+  <section class="entries" aria-label="Tableaux de bord">
+    <a class="entry" href="economiques.html">
+      <div class="head">
+        <span class="tag">Finances et économie</span>
+        <h2>Orientations économiques</h2>
+        <p class="what">L'évolution voulue par chaque parti, placée sur l'état actuel des finances publiques et de l'économie.</p>
+      </div>
+      <ul>
+        <li>Déficit, dette, prélèvements et dépenses : situation actuelle et cibles des partis</li>
+        <li>Estimation indicative de l'effet des mesures sur le déficit (LFI, RN, NE)</li>
+        <li>Probabilité que les recettes de LFI soient au rendez-vous, d'après les écarts passés entre impôts prévus et obtenus</li>
+        <li>Probabilité de stabiliser puis de réduire le déficit pour les partis qui chiffrent un plan (pas de calcul possible pour le PS)</li>
+      </ul>
+      <div class="go"><span>Ouvrir le tableau de bord →</span><small>Estimations, pas un chiffrage officiel</small></div>
+    </a>
+    <a class="entry" href="sociales.html">
+      <div class="head">
+        <span class="tag">Social</span>
+        <h2>Orientations sociales</h2>
+        <p class="what">Pour chaque sujet, l'état actuel puis la position des six partis, avec des graphiques « aujourd'hui → cible » quand un chiffre existe.</p>
+      </div>
+      <ul>
+        <li>Santé, retraites, grand âge, famille, logement, pauvreté et minima sociaux, éducation</li>
+        <li>Repères : pauvreté, fécondité, logements, dépenses de retraite et de santé, éducation</li>
+        <li>Huit graphiques : âge de départ, minimum vieillesse, logements neufs, places d'accueil, taille des classes, salaires des enseignants…</li>
+        <li>Tableau des coûts annoncés par parti</li>
+      </ul>
+      <div class="go"><span>Ouvrir le tableau de bord →</span><small>Peu de chiffrage dans les textes</small></div>
+    </a>
+  </section>
+
+  <section class="notes" aria-labelledby="h-notes">
+    <h2 id="h-notes">À lire avant de comparer</h2>
+    <ul>
+      <li><b>Les textes ne sont pas du même âge.</b> Les livrets du RN datent très probablement de 2022 ; LR, NE et RN n'ont pas de programme global dans le dossier.</li>
+      <li><b>Un parti sans chiffre n'est pas un parti sans position.</b> Une case « non chiffré » signale seulement l'absence de montant dans les documents.</li>
+      <li><b>Les estimations sont indicatives.</b> Méthode et hypothèses sont données dans le tableau de bord économique ; aucun chiffrage n'a été vérifié par un organisme indépendant.</li>
+      <li><b>Pas couvert :</b> immigration, sécurité, emploi.</li>
+    </ul>
+  </section>
+
+  <footer>Synthèse établie à partir des documents réunis dans le dossier Election_2027.</footer>
+</div>
+<script>
+(function () {
+  var b = document.getElementById('theme-toggle'), r = document.documentElement;
+  function label() { b.setAttribute('aria-label', r.getAttribute('data-theme') === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre'); }
+  b.addEventListener('click', function () {
+    var n = r.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', n);
+    try { localStorage.setItem('e27-theme', n); } catch (e) {}
+    label();
+  });
+  label();
+})();
+</script>
+</body>
+</html>
