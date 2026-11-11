@@ -53,6 +53,8 @@
   .party i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
   .party b { font-weight: 600; }
   .entries { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+  .entries.solo { grid-template-columns: 1fr; }
+  .entries.solo ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 8px 24px; }
   .entry { display: flex; flex-direction: column; gap: 16px; min-width: 0; text-decoration: none; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 22px 22px 20px; transition: border-color .15s ease, transform .15s ease; }
   .entry:hover { border-color: var(--accent); transform: translateY(-2px); }
   .entry:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -96,7 +98,7 @@
   <header>
     <span class="eyebrow">Présidentielle 2027</span>
     <h1>Ce que proposent les partis, face à l'état du pays</h1>
-    <p class="lede">Quatre tableaux de bord construits à partir des programmes et des sources officielles du dossier Election_2027. Chaque sujet rappelle la situation actuelle avant les positions des partis.</p>
+    <p class="lede">Une page de repères sur l'état du pays et quatre tableaux de bord construits à partir des programmes et des sources officielles du dossier Election_2027. Chaque sujet rappelle la situation actuelle avant les positions des partis.</p>
     <div class="parties" aria-label="Partis couverts">
       <span class="party" style="--c:var(--p-FH)"><i></i><b>FH</b> France Humaniste</span>
       <span class="party" style="--c:var(--p-HO)"><i></i><b>HO</b> Horizons</span>
@@ -109,6 +111,23 @@
     </div>
     <p class="stamp">Situation au 10/11/2026. Horizons (HO) n'a pas de programme présidentiel 2027 dans le dossier : ses positions viennent de manifestes et de notes de réflexion qui se déclarent non officielles, et beaucoup de sujets y sont « non traités ».</p>
   </header>
+
+  <section class="entries solo" aria-label="Repères sur l'état du pays">
+    <a class="entry" href="etat-du-pays.html">
+      <div class="head">
+        <span class="tag">Point de départ</span>
+        <h2>Où en est le pays : dette, déficit, budget, économie</h2>
+        <p class="what">Une page pour comprendre l'état actuel avant de comparer les programmes : combien l'État dépense et encaisse, combien le pays doit, qui paie l'impôt, comment va l'économie.</p>
+      </div>
+      <ul>
+        <li>Déficit 5,1 % du PIB et dette 115,7 % en 2025 : d'où ils viennent, comparaison avec la zone euro</li>
+        <li>Le budget de l'État 2027 (projet non voté) : dépenses, recettes, emprunt à réaliser</li>
+        <li>Qui paie l'impôt, à quoi sert l'argent public, emploi, prix, commerce extérieur, démographie</li>
+        <li>Prévisions 2026-2027 du gouvernement face aux avis indépendants, lexique, sources et deux vidéos de vulgarisation</li>
+      </ul>
+      <div class="go"><span>Ouvrir la page de repères →</span><small>Insee, Cour des comptes, Trésor, HCFP, PLF 2027</small></div>
+    </a>
+  </section>
 
   <section class="entries" aria-label="Tableaux de bord">
     <a class="entry" href="economiques.html">

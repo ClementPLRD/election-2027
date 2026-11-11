@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>État des finances et de l'économie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  /* Concept : une fiche de lecture. Le repère « aujourd'hui » reste visible à côté de chaque cap proposé. */
+  :root {
+    --bg: #f3f5f7;
+    --panel: #fcfdfd;
+    --fg: #0f1b26;
+    --muted: #52606d;
+    --faint: #7b8794;
+    --line: #dde3e8;
+    --grid: #e6eaee;
+    --accent: #0b5c6b;
+    --pill: #e6eef1;
+    --ring: #fcfdfd;
+    --p-FH: #eda100;
+    --p-LFI: #e01e2b;
+    --p-LR: #1f4287;
+    --p-NE: #2a78d6;
+    --p-PP: #e87ba4;
+    --p-RN: #14205f; --p-LE: #7c4dce; --p-HO: #0a93a8;
+    --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-title: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
+      --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
+      --p-FH: #c98500; --p-LFI: #f0424d; --p-LR: #3d63b5; --p-NE: #3987e5; --p-PP: #d55181; --p-RN: #98a2f7; --p-LE: #9b7be0; --p-HO: #33bcd1;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141a; --panel: #161e26; --fg: #eaeff3; --muted: #a9b6c2; --faint: #8896a3;
+    --line: #26323d; --grid: #212c36; --accent: #4cc3d6; --pill: #1f2b34; --ring: #161e26;
+    --p-FH: #c98500; --p-LFI: #f0424d; --p-LR: #3d63b5; --p-NE: #3987e5; --p-PP: #d55181; --p-RN: #98a2f7; --p-LE: #9b7be0; --p-HO: #33bcd1;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: var(--font-ui); font-size: 15px; line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 28px 56px;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, .hit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  h1, h2, h3 { font-family: var(--font-title); font-weight: 600; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
+  h1 { font-size: clamp(30px, 5.2vw, 46px); line-height: 1.08; }
+  h2 { font-size: clamp(22px, 3.4vw, 28px); line-height: 1.15; }
+  h3 { font-size: 18px; line-height: 1.25; }
+  p { margin: 0; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .muted { color: var(--muted); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  header.top { display: flex; flex-direction: column; gap: 14px; }
+  .lede { max-width: 68ch; font-size: 17px; color: var(--fg); }
+  .stamp { font-size: 13px; color: var(--muted); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chips .lbl { font-size: 13px; color: var(--muted); margin-right: 4px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    font: inherit; font-size: 13px; color: var(--fg);
+    background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px 6px 10px;
+  }
+  .chip .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
+  .chip b { font-weight: 600; }
+  .chip[aria-pressed="false"] { opacity: 0.5; text-decoration: line-through; text-decoration-color: var(--faint); }
+  .chip[aria-pressed="false"] .dot { background: transparent; box-shadow: inset 0 0 0 2px var(--c); }
+
+  section { display: flex; flex-direction: column; gap: 16px; }
+  .sec-head { display: flex; flex-direction: column; gap: 6px; }
+  .sec-head p { color: var(--muted); max-width: 72ch; }
+
+  /* Repères */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .kpi .k { font-size: 13px; color: var(--muted); }
+  .kpi .v { font-family: var(--font-title); font-size: 34px; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .kpi .v small { font-size: 16px; font-family: var(--font-ui); color: var(--muted); font-weight: 400; margin-left: 2px; }
+  .kpi .s { font-size: 12px; color: var(--faint); }
+  .kpi .s a { color: var(--muted); }
+
+  .fc-title { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .kpis.forecast .kpi { border-style: dashed; background: transparent; }
+  .kpi .v.v-sm { font-size: 26px; }
+
+  /* Matrice thèmes */
+  .themes { display: flex; flex-direction: column; gap: 14px; }
+  .theme { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .theme-head { padding: 14px 18px; border-bottom: 1px solid var(--line); display: grid; gap: 4px 24px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 900px) { .theme-head { grid-template-columns: minmax(220px, 300px) minmax(0, 1fr); align-items: baseline; } }
+  .theme-head .now { font-size: 14px; color: var(--muted); }
+  .theme-head .now b { color: var(--fg); font-weight: 600; }
+  .theme-head .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-right: 6px; }
+  .cells { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .cells { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .cells { grid-template-columns: repeat(4, 1fr); } }
+  .cell { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin-top: -1px; margin-left: -1px; min-width: 0; }
+  .cell .who { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; }
+  .cell .who .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
+  .cell p { font-size: 13.5px; line-height: 1.45; }
+  .cell b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .cell .src { font-size: 11.5px; color: var(--faint); margin-top: auto; }
+  .pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; background: var(--pill); border-radius: 999px; padding: 2px 9px; width: fit-content; color: var(--fg); }
+  .pill i { font-style: normal; font-size: 10px; }
+  .legend-dir { font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .legend-dir span { white-space: nowrap; }
+
+  /* Panneaux de graphiques */
+  .panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 14px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; margin: 0; }
+  .panel .sub { font-size: 13px; color: var(--muted); }
+  .chart { position: relative; width: 100%; margin-top: 4px; }
+  .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .chart text { font-family: var(--font-ui); }
+  .panel .note { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; margin-top: 4px; }
+  .tip {
+    position: absolute; z-index: 5; max-width: 260px; pointer-events: none;
+    background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 10px; font-size: 12.5px; line-height: 1.4; box-shadow: 0 6px 20px rgba(15, 27, 38, 0.18);
+  }
+  .tip small { display: block; color: var(--faint); margin-top: 4px; }
+  .empty { font-size: 13px; color: var(--muted); padding: 18px 0; }
+
+  /* Tableau */
+  .tbl-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+  table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 13.5px; }
+  table.compact { min-width: 0; }
+  #estimations > .panel { margin: 0; }
+  #estimations td.num { font-variant-numeric: tabular-nums; }
+  @media (min-width: 640px) { #estimations td.num { white-space: nowrap; } }
+  @media (max-width: 639px) { #estimations th, #estimations td { padding: 8px 8px; } }
+  th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  td .who { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; white-space: nowrap; }
+  td .who .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+
+  .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px 28px; }
+  .notes li { font-size: 14px; color: var(--muted); }
+  .notes li b { color: var(--fg); font-weight: 600; }
+  ul.plain { margin: 0; padding-left: 18px; display: contents; }
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 16px; }
+  summary { cursor: pointer; font-weight: 500; }
+  details ul { margin: 10px 0 2px; padding-left: 18px; font-size: 13.5px; color: var(--muted); }
+  details li { margin: 3px 0; }
+  footer { font-size: 12.5px; color: var(--faint); }
+
+  [data-p][hidden] { display: none !important; }
+  @media (prefers-reduced-motion: no-preference) {
+    .chip { transition: opacity 0.15s ease; }
+  }
+
+  .back { display: inline-block; align-self: flex-start; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; }
+  .back:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+  .theme-toggle { position: absolute; top: 12px; right: max(16px, env(safe-area-inset-right, 0px)); z-index: 5; width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
+  .theme-toggle:hover { border-color: var(--accent); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .theme-toggle svg { width: 18px; height: 18px; display: block; }
+  .theme-toggle .i-sun { display: none; }
+  :root[data-theme="dark"] .theme-toggle .i-sun { display: block; }
+  :root[data-theme="dark"] .theme-toggle .i-moon { display: none; }
+
+  .grp { display: flex; align-items: center; gap: 12px; margin: 14px 0 0; font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+  .grp::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .toc { display: grid; gap: 8px; margin-top: 6px; }
+  .toc .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; }
+  .toc .g { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); min-width: 150px; }
+  .toc a { font-size: 13px; text-decoration: none; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; color: var(--fg); }
+  .toc a:hover { border-color: var(--accent); }
+  .toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .theme { scroll-margin-top: 16px; }
+  @media (max-width: 560px) { .toc .g { min-width: 0; flex-basis: 100%; } }
+
+  /* Page « état du pays » */
+  .bars { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+  .bar-row { display: grid; grid-template-columns: minmax(120px, 210px) minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; font-size: 13.5px; }
+  .bar-row .lab { color: var(--fg); }
+  .bar-row .lab small { display: block; color: var(--faint); font-size: 11.5px; }
+  .bar-row .track { background: var(--grid); height: 14px; border-radius: 4px; overflow: hidden; }
+  .bar-row .fill { height: 100%; width: var(--w); background: var(--accent); border-radius: 4px; }
+  .bar-row .fill.hi { background: var(--p-LFI); }
+  .bar-row .fill.ref { background: var(--faint); }
+  .bar-row .fill.fc { background: repeating-linear-gradient(135deg, var(--accent) 0 6px, transparent 6px 10px); box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .bar-row .val { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  @media (max-width: 560px) { .bar-row { grid-template-columns: minmax(0, 1fr) auto; } .bar-row .track { grid-column: 1 / -1; grid-row: 2; } }
+  .legend { font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; background: var(--accent); }
+  .legend i.ref { background: var(--faint); }
+  .legend i.fc { background: repeating-linear-gradient(135deg, var(--accent) 0 3px, transparent 3px 5px); box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .prose { max-width: 74ch; font-size: 15.5px; line-height: 1.6; display: flex; flex-direction: column; gap: 10px; }
+  .prose b { font-weight: 600; }
+  .callout { border-left: 3px solid var(--accent); background: var(--panel); border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 14.5px; max-width: 74ch; }
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 10px; counter-reset: st; }
+  .flow .step { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 13.5px; display: flex; flex-direction: column; gap: 4px; counter-increment: st; }
+  .flow .step::before { content: counter(st); font-family: var(--font-title); font-size: 20px; color: var(--accent); line-height: 1; }
+  .flow .step b { font-weight: 600; }
+  .vids { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 14px; }
+  .vid { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+  .vid .meta { font-size: 13px; color: var(--muted); }
+  .vid a.go { align-self: flex-start; margin-top: 4px; font-weight: 600; font-size: 14px; }
+  .glos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 10px; }
+  .glos details { margin: 0; }
+  .glos p { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+  .src-list { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; padding-left: 18px; margin: 0; }
+  .toc.simple { display: flex; flex-wrap: wrap; gap: 8px; }
+  .kpis.k4 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  .cmp td.num, .cmp th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .cmp { min-width: 0; }
+  section[id] { scroll-margin-top: 16px; }
+</style>
+<script>
+(function () {
+  var r = document.documentElement, v = null;
+  try { v = localStorage.getItem('e27-theme'); } catch (e) {}
+  if (v !== 'light' && v !== 'dark') v = r.getAttribute('data-theme');
+  if (v !== 'light' && v !== 'dark') v = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  r.setAttribute('data-theme', v);
+})();
+</script>
+</head>
+<body>
+<button type="button" class="theme-toggle" id="theme-toggle" aria-label="Passer au thème sombre" title="Changer de thème"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+
+<div class="wrap">
+  <a class="back" href="index.html">← Sommaire</a>
+  <header class="top">
+    <p class="eyebrow">Présidentielle 2027 · Repères</p>
+    <h1>Où en est le pays : dette, déficit, budget, économie</h1>
+    <p class="lede">Avant de comparer les programmes, quelques repères communs : combien l'État et les administrations dépensent et encaissent, combien le pays doit, d'où vient l'argent, et comment va l'économie. Chaque chiffre est daté et sourcé ; les prévisions sont distinguées des constats.</p>
+    <p class="stamp">Situation au 11/11/2026 · sources : Insee, Cour des comptes, direction générale du Trésor, Haut Conseil des finances publiques (HCFP), projet de loi de finances 2027 (non voté). Pas de recommandation : ce sont des repères.</p>
+    <nav class="toc simple" aria-label="Sommaire de la page">
+      <a href="#essentiel">L'essentiel</a><a href="#circuit">Comment l'argent circule</a><a href="#deficit">Le déficit</a><a href="#dette">La dette</a><a href="#etat">Le budget de l'État 2027</a><a href="#impots">Qui paie quoi</a><a href="#economie">L'économie réelle</a><a href="#previsions">2026-2027</a><a href="#videos">Vidéos</a><a href="#lexique">Lexique et sources</a>
+    </nav>
+  </header>
+
+  <section id="essentiel" aria-labelledby="h-ess">
+    <div class="sec-head"><h2 id="h-ess">L'essentiel en dix chiffres</h2>
+      <p>Constats de 2025, sauf mention contraire. Le PIB (la richesse produite en un an) est d'environ 2 990 Md€ (calcul : 152,5 Md€ ÷ 5,1 %).</p></div>
+    <div class="kpis k4">
+      <div class="kpi"><span class="k">Déficit public</span><span class="v">5,1<small>% du PIB</small></span><span class="s">152,5 Md€ en 2025 ; 5,8 % en 2024. Insee, Cour des comptes</span></div>
+      <div class="kpi"><span class="k">Dette publique</span><span class="v">115,7<small>% du PIB</small></span><span class="s">3 460,5 Md€ fin 2025, record. Cour des comptes (Insee, mars 2026 : 115,6 %)</span></div>
+      <div class="kpi"><span class="k">Dépenses publiques</span><span class="v">57,3<small>% du PIB</small></span><span class="s">1 694 Md€ selon la Cour des comptes (56,6 % du PIB, autre définition). Insee</span></div>
+      <div class="kpi"><span class="k">Prélèvements obligatoires</span><span class="v">43,6<small>% du PIB</small></span><span class="s">Impôts et cotisations : 1 305 Md€. Insee, Cour</span></div>
+      <div class="kpi"><span class="k">Charge d'intérêts</span><span class="v">≈ 65<small>Md€</small></span><span class="s">3,8 % des dépenses publiques. Insee 64,7 ; Cour 65,7</span></div>
+      <div class="kpi"><span class="k">Chômage</span><span class="v">7,7<small>%</small></span><span class="s">9,4 % en 2017. Insee, 2025</span></div>
+      <div class="kpi"><span class="k">Croissance du PIB</span><span class="v">0,9<small>%</small></span><span class="s">En volume, 2025. HCFP, avis 2026-5</span></div>
+      <div class="kpi"><span class="k">Inflation</span><span class="v">3,0<small>%</small></span><span class="s">Sept. 2026, estimation provisoire ; moins de 1 % fin 2025. Insee</span></div>
+      <div class="kpi"><span class="k">Population</span><span class="v">69,1<small>M</small></span><span class="s">Au 1er janvier 2026 ; +0,25 % sur un an. Insee</span></div>
+      <div class="kpi"><span class="k">Commerce extérieur</span><span class="v">−65,2<small>Md€</small></span><span class="s">Solde FAB/FAB 2025 : 616,4 exportés, 681,5 importés. Insee</span></div>
+    </div>
+    <p class="fc-title">Prévisions et projets (non constatés)</p>
+    <div class="kpis forecast k4">
+      <div class="kpi"><span class="k">Déficit 2026</span><span class="v">5,4<small>%</small></span><span class="s">Gouvernement, sept. 2026 (5,0 % en loi de finances initiale). HCFP juge « plausible »</span></div>
+      <div class="kpi"><span class="k">Déficit 2027</span><span class="v">≈ 5,0<small>%</small></span><span class="s">Projet de loi de finances, non voté. Avec 43 Md€ de mesures ; ≈ 6,5 % sans (Trésor)</span></div>
+      <div class="kpi"><span class="k">Dette fin 2026</span><span class="v">118,5<small>%</small></span><span class="s">Cour des comptes, juin 2026 ; « près de 122 % » en 2027 selon le HCFP, sept. 2026</span></div>
+      <div class="kpi"><span class="k">Croissance</span><span class="v">0,5 → 1,0<small>%</small></span><span class="s">2026 → 2027, hypothèse du gouvernement. 1,0 % jugé « optimiste » par le HCFP</span></div>
+    </div>
+  </section>
+
+  <section id="circuit" aria-labelledby="h-circ">
+    <div class="sec-head"><h2 id="h-circ">Comment l'argent circule</h2>
+      <p>Schéma simplifié pour se repérer (c'est une explication, pas une donnée). Les chiffres de cette page ne sont pas tirés de ce schéma.</p></div>
+    <div class="flow">
+      <div class="step"><b>Les entreprises produisent</b>Biens et services : la valeur ajoutée de toutes les entreprises et administrations forme le PIB (≈ 2 990 Md€).</div>
+      <div class="step"><b>Elles versent des revenus</b>Salaires, profits, intérêts. Ce sont les revenus des ménages, et la base des prélèvements.</div>
+      <div class="step"><b>L'État et la Sécurité sociale prélèvent</b>Impôts et cotisations : <b>43,6 %</b> du PIB. Avec les autres recettes : <b>52,2 %</b> du PIB.</div>
+      <div class="step"><b>Les administrations redistribuent et dépensent</b>Retraites, santé, école, défense, justice, collectivités : <b>57,3 %</b> du PIB.</div>
+      <div class="step"><b>L'écart est emprunté</b>Dépenses − recettes = <b>déficit</b> (5,1 %). Il s'ajoute chaque année au stock de <b>dette</b>, qui porte des intérêts.</div>
+      <div class="step"><b>Le reste du monde</b>La France exporte et importe : en 2025 elle a importé pour 65 Md€ de plus qu'elle n'a exporté.</div>
+    </div>
+    <div class="panels">
+      <figure class="panel"><h3>Qui dépense : trois sphères</h3>
+        <p class="sub">Déficit 2025 par niveau d'administration (% du PIB), Insee</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">État et organismes centraux</div><div class="track" role="img" aria-label="État et organismes centraux : 4,3 %"><div class="fill " style="--w:78.2%"></div></div><div class="val">4,3 %</div></div>
+          <div class="bar-row"><div class="lab">Collectivités locales<small>dont 0,3 pour les communes, départements, régions</small></div><div class="track" role="img" aria-label="Collectivités locales : 0,5 %"><div class="fill " style="--w:9.1%"></div></div><div class="val">0,5 %</div></div>
+          <div class="bar-row"><div class="lab">Sécurité sociale</div><div class="track" role="img" aria-label="Sécurité sociale : 0,2 %"><div class="fill " style="--w:3.6%"></div></div><div class="val">0,2 %</div></div>
+        </div>
+        <p class="note">Total : 5,1 % du PIB. L'État porte l'essentiel du déficit. Pour la Sécurité sociale, le PLFSS prévoit un déficit de 21,8 Md€ en 2026 ramené à 12,7 Md€ en 2027 (Sénat, avis n° 139).</p>
+      </figure>
+      <figure class="panel"><h3>À quoi sert l'argent public</h3>
+        <p class="sub">Dépenses publiques par fonction, 2024 (% du total), Insee Première n° 2093</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Protection sociale (hors santé)<small>retraites, famille, chômage, exclusion</small></div><div class="track" role="img" aria-label="Protection sociale (hors santé) : 41 %"><div class="fill " style="--w:92.2%"></div></div><div class="val">41 %</div></div>
+          <div class="bar-row"><div class="lab">Santé</div><div class="track" role="img" aria-label="Santé : 16 %"><div class="fill " style="--w:34.7%"></div></div><div class="val">16 %</div></div>
+          <div class="bar-row"><div class="lab">Affaires économiques<small>aides aux entreprises, transports…</small></div><div class="track" role="img" aria-label="Affaires économiques : 10 %"><div class="fill " style="--w:22.2%"></div></div><div class="val">10 %</div></div>
+          <div class="bar-row"><div class="lab">Éducation</div><div class="track" role="img" aria-label="Éducation : 9 %"><div class="fill " style="--w:20.0%"></div></div><div class="val">9 %</div></div>
+          <div class="bar-row"><div class="lab">Défense</div><div class="track" role="img" aria-label="Défense : 3 %"><div class="fill " style="--w:7.1%"></div></div><div class="val">3 %</div></div>
+          <div class="bar-row"><div class="lab">Ordre et sécurité publics</div><div class="track" role="img" aria-label="Ordre et sécurité publics : 3 %"><div class="fill " style="--w:6.9%"></div></div><div class="val">3 %</div></div>
+          <div class="bar-row"><div class="lab">Autres fonctions<small>dont charge de la dette ; calcul par différence</small></div><div class="track" role="img" aria-label="Autres fonctions : ≈ 18 %"><div class="fill ref" style="--w:39.1%"></div></div><div class="val">≈ 18 %</div></div>
+        </div>
+        <p class="note">La protection sociale (santé comprise) pèse 57,0 % des dépenses publiques, contre 54,3 % en 2004. La masse salariale des agents publics est passée de 24,2 % à 21,7 % des dépenses.</p>
+      </figure>
+      <figure class="panel"><h3>Comment la protection sociale est financée</h3>
+        <p class="sub">997,8 Md€ de ressources en 2024 (34,2 % du PIB), Drees via Insee</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Cotisations sociales<small>75 % et plus avant les années 1990</small></div><div class="track" role="img" aria-label="Cotisations sociales : 55,6 %"><div class="fill " style="--w:92.7%"></div></div><div class="val">55,6 %</div></div>
+          <div class="bar-row"><div class="lab">Impôts et taxes affectés<small>dont CSG 15,3 % et TVA 5,8 %</small></div><div class="track" role="img" aria-label="Impôts et taxes affectés : 30,0 %"><div class="fill " style="--w:50.0%"></div></div><div class="val">30,0 %</div></div>
+          <div class="bar-row"><div class="lab">Contributions publiques<small>17,7 % en 1959</small></div><div class="track" role="img" aria-label="Contributions publiques : 12,7 %"><div class="fill " style="--w:21.2%"></div></div><div class="val">12,7 %</div></div>
+          <div class="bar-row"><div class="lab">Ressources diverses</div><div class="track" role="img" aria-label="Ressources diverses : 1,7 %"><div class="fill ref" style="--w:2.8%"></div></div><div class="val">1,7 %</div></div>
+        </div>
+        <p class="note">La CSG a été créée en 1991 ; depuis 2018-2019, des cotisations ont été remplacées par de la CSG et de la TVA.</p>
+      </figure>
+    </div>
+  </section>
+
+  <section id="deficit" aria-labelledby="h-def">
+    <div class="sec-head"><h2 id="h-def">Le déficit : plus de dépenses ou moins de recettes ?</h2>
+      <p>Le déficit est l'écart, sur une année, entre ce que dépensent et ce qu'encaissent toutes les administrations. Depuis 2005, l'Insee explique la hausse (+1,6 point) par <b>+3,0 points de dépenses</b> partiellement compensés par <b>+1,4 point de recettes</b>.</p></div>
+    <div class="panels">
+      <figure class="panel"><h3>Déficit public, en % du PIB</h3>
+        <p class="sub">Constats Insee et Cour des comptes ; hachuré = prévision du gouvernement</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Années 2000 (moyenne)<small>2,9 % hors 2009</small></div><div class="track" role="img" aria-label="Années 2000 (moyenne) : 3,4 %"><div class="fill " style="--w:48.6%"></div></div><div class="val">3,4 %</div></div>
+          <div class="bar-row"><div class="lab">Années 2010 (moyenne)</div><div class="track" role="img" aria-label="Années 2010 (moyenne) : 4,3 %"><div class="fill " style="--w:61.4%"></div></div><div class="val">4,3 %</div></div>
+          <div class="bar-row"><div class="lab">2022</div><div class="track" role="img" aria-label="2022 : 4,7 %"><div class="fill " style="--w:67.1%"></div></div><div class="val">4,7 %</div></div>
+          <div class="bar-row"><div class="lab">2024</div><div class="track" role="img" aria-label="2024 : 5,8 %"><div class="fill " style="--w:82.9%"></div></div><div class="val">5,8 %</div></div>
+          <div class="bar-row"><div class="lab">2025<small>constat</small></div><div class="track" role="img" aria-label="2025 : 5,1 %"><div class="fill hi" style="--w:72.9%"></div></div><div class="val">5,1 %</div></div>
+          <div class="bar-row"><div class="lab">2026 (prévision)<small>gouvernement, sept. 2026</small></div><div class="track" role="img" aria-label="2026 (prévision) : 5,4 %"><div class="fill fc" style="--w:77.1%"></div></div><div class="val">5,4 %</div></div>
+          <div class="bar-row"><div class="lab">2027 (projet)<small>PLF, non voté</small></div><div class="track" role="img" aria-label="2027 (projet) : ≈ 5,0 %"><div class="fill fc" style="--w:71.4%"></div></div><div class="val">≈ 5,0 %</div></div>
+          <div class="bar-row"><div class="lab">Zone euro, 2025</div><div class="track" role="img" aria-label="Zone euro, 2025 : 2,9 %"><div class="fill ref" style="--w:41.4%"></div></div><div class="val">2,9 %</div></div>
+        </div>
+        <p class="note">Le déficit à « politique inchangée » de 2027 avoisinerait 6,5 % selon le Trésor, avant les 43 Md€ de mesures du budget.</p>
+      </figure>
+      <figure class="panel"><h3>Dépenses, recettes, solde</h3>
+        <p class="sub">En % du PIB, Insee</p>
+        <div class="tbl-wrap"><table class="compact cmp">
+          <thead><tr><th></th><th class="num">Années 2000</th><th class="num">Années 2010</th><th class="num">2025</th><th class="num">Zone euro 2025</th></tr></thead>
+          <tbody>
+            <tr><td>Dépenses publiques</td><td class="num">54,2</td><td class="num">57,4</td><td class="num">57,3</td><td class="num">49,8</td></tr>
+            <tr><td>Recettes publiques</td><td class="num">50,8</td><td class="num">53,1</td><td class="num">52,2</td><td class="num">46,8</td></tr>
+            <tr><td><b>Solde</b></td><td class="num"><b>−3,4</b></td><td class="num"><b>−4,3</b></td><td class="num"><b>−5,1</b></td><td class="num"><b>−2,9</b></td></tr>
+            <tr><td>dont prélèvements obligatoires</td><td class="num">—</td><td class="num">44,0</td><td class="num">43,6</td><td class="num">—</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">Les dépenses restent hautes en points de PIB alors qu'une partie des hausses de recettes du début des années 2010 a été annulée. Prudence : le classement recette/dépense n'est pas toujours évident (le crédit d'impôt CICE comptait comme une dépense jusqu'en 2018, puis comme une baisse de recettes).</p>
+      </figure>
+    </div>
+    <p class="callout"><b>Prélèvements : une période de baisse puis de hausse.</b> Selon la Cour des comptes, les prélèvements obligatoires ont baissé de 2015 à 2023, puis augmenté en 2024 et surtout en 2025 (+51 Md€, dont 23 Md€ de hausses d'impôts). La dépense, elle, a augmenté de 1,4 % en volume en 2025 : elle n'a pas contribué à réduire le déficit.</p>
+  </section>
+
+  <section id="dette" aria-labelledby="h-dette">
+    <div class="sec-head"><h2 id="h-dette">La dette : le cumul des déficits</h2>
+      <p>La dette est le stock de ce que les administrations ont emprunté et pas encore remboursé ; le déficit est ce qui s'y ajoute chaque année. On la compare au PIB pour tenir compte de la taille de l'économie.</p></div>
+    <div class="panels">
+      <figure class="panel"><h3>Dette publique, en % du PIB</h3>
+        <p class="sub">Au sens de Maastricht ; hachuré = prévision</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Années 2000 (moyenne)</div><div class="track" role="img" aria-label="Années 2000 (moyenne) : 67 %"><div class="fill " style="--w:51.5%"></div></div><div class="val">67 %</div></div>
+          <div class="bar-row"><div class="lab">Années 2010 (moyenne)</div><div class="track" role="img" aria-label="Années 2010 (moyenne) : 95 %"><div class="fill " style="--w:73.1%"></div></div><div class="val">95 %</div></div>
+          <div class="bar-row"><div class="lab">2024</div><div class="track" role="img" aria-label="2024 : 112,6 %"><div class="fill " style="--w:86.6%"></div></div><div class="val">112,6 %</div></div>
+          <div class="bar-row"><div class="lab">2025<small>constat : 3 460,5 Md€</small></div><div class="track" role="img" aria-label="2025 : 115,7 %"><div class="fill hi" style="--w:89.0%"></div></div><div class="val">115,7 %</div></div>
+          <div class="bar-row"><div class="lab">Fin 2026 (prévision)<small>Cour des comptes, juin 2026</small></div><div class="track" role="img" aria-label="Fin 2026 (prévision) : 118,5 %"><div class="fill fc" style="--w:91.2%"></div></div><div class="val">118,5 %</div></div>
+          <div class="bar-row"><div class="lab">2027 (prévision)<small>HCFP, sept. 2026 : « près de 122 % »</small></div><div class="track" role="img" aria-label="2027 (prévision) : ≈ 122 %"><div class="fill fc" style="--w:93.8%"></div></div><div class="val">≈ 122 %</div></div>
+          <div class="bar-row"><div class="lab">Zone euro, 2025</div><div class="track" role="img" aria-label="Zone euro, 2025 : 87,4 %"><div class="fill ref" style="--w:67.2%"></div></div><div class="val">87,4 %</div></div>
+        </div>
+        <p class="note">Dette nette des actifs financiers liquides : 108,5 % en 2025. Les deux prévisions viennent d'auteurs et de dates différents.</p>
+      </figure>
+      <figure class="panel"><h3>Ce que coûte la dette</h3>
+        <p class="sub">Charge d'intérêts de l'ensemble des administrations</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">2025 (constat)<small>2,2 % du PIB, +9 % en un an (Cour)</small></div><div class="track" role="img" aria-label="2025 (constat) : 65,7 Md€"><div class="fill hi" style="--w:69.2%"></div></div><div class="val">65,7 Md€</div></div>
+          <div class="bar-row"><div class="lab">2026 (prévision)<small>Trésor, RESF 2027</small></div><div class="track" role="img" aria-label="2026 (prévision) : 79,2 Md€"><div class="fill fc" style="--w:83.4%"></div></div><div class="val">79,2 Md€</div></div>
+          <div class="bar-row"><div class="lab">2027 (prévision)<small>2,9 % du PIB</small></div><div class="track" role="img" aria-label="2027 (prévision) : 91,2 Md€"><div class="fill fc" style="--w:96.0%"></div></div><div class="val">91,2 Md€</div></div>
+        </div>
+        <p class="note">Selon la Cour, pour qu'elle cesse de croître en proportion du PIB, il faudrait un solde primaire (avant intérêts) à l'équilibre ; il est prévu à −2,5 points de PIB en 2026. Si les prévisions du gouvernement se réalisaient, la dette augmenterait de plus de 160 Md€ en 2026.</p>
+      </figure>
+    </div>
+    <p class="callout"><b>Le patrimoine public.</b> Face à la dette, les administrations détiennent des actifs : leur patrimoine net est évalué à <b>690 Md€</b> en 2024 (23,5 % du PIB, Insee et Banque de France). L'Insee précise que ce n'est pas un indicateur de soutenabilité : beaucoup d'actifs ne sont pas cessibles ; elle dépend de la capacité à produire des recettes futures.</p>
+  </section>
+
+  <section id="etat" aria-labelledby="h-etat">
+    <div class="sec-head"><h2 id="h-etat">Le budget de l'État en 2027</h2>
+      <p>Le budget de l'État n'est qu'une partie des finances publiques (avec la Sécurité sociale et les collectivités). Le projet de loi de finances (PLF) 2027 a été déposé à l'automne 2026 et <b>n'est pas voté</b>. Montants en milliards d'euros.</p></div>
+    <div class="panels">
+      <figure class="panel"><h3>Solde de l'État</h3>
+        <p class="sub">Déficit budgétaire (hors opérations avec le FMI), PLF 2027</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">2025 (exécution)</div><div class="track" role="img" aria-label="2025 (exécution) : −124,2"><div class="fill " style="--w:73.1%"></div></div><div class="val">−124,2</div></div>
+          <div class="bar-row"><div class="lab">2026 (loi de finances initiale)</div><div class="track" role="img" aria-label="2026 (loi de finances initiale) : −134,6"><div class="fill " style="--w:79.2%"></div></div><div class="val">−134,6</div></div>
+          <div class="bar-row"><div class="lab">2026 (révisé)</div><div class="track" role="img" aria-label="2026 (révisé) : −137,2"><div class="fill fc" style="--w:80.7%"></div></div><div class="val">−137,2</div></div>
+          <div class="bar-row"><div class="lab">2027 (projet)</div><div class="track" role="img" aria-label="2027 (projet) : −156,4"><div class="fill fc" style="--w:92.0%"></div></div><div class="val">−156,4</div></div>
+        </div>
+        <p class="note">Le déficit de l'État se creuse de 19,2 Md€ en 2027 par rapport à 2026 : charge de la dette (+9,6), crédits des ministères dont Défense (+8,0), moindres recettes exceptionnelles (−16,9 de recettes non fiscales), partiellement compensés par des recettes fiscales en hausse (+18,0). Le déficit de toutes les administrations (≈ 5 % du PIB) est un autre périmètre.</p>
+      </figure>
+      <figure class="panel"><h3>Où va l'argent de l'État</h3>
+        <p class="sub">Dépenses du budget général 2027 : 474,9 Md€</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Ministères (crédits)<small>328,8 en 2025</small></div><div class="track" role="img" aria-label="Ministères (crédits) : 345,4"><div class="fill " style="--w:95.9%"></div></div><div class="val">345,4</div></div>
+          <div class="bar-row"><div class="lab">Charge de la dette<small>51,6 en 2025 : +41 %</small></div><div class="track" role="img" aria-label="Charge de la dette : 72,9"><div class="fill hi" style="--w:20.3%"></div></div><div class="val">72,9</div></div>
+          <div class="bar-row"><div class="lab">Pensions des agents publics<small>contribution au compte d'affectation spéciale</small></div><div class="track" role="img" aria-label="Pensions des agents publics : 52,3"><div class="fill " style="--w:14.5%"></div></div><div class="val">52,3</div></div>
+          <div class="bar-row"><div class="lab">Remboursements, dégrèvements<small>impôts locaux</small></div><div class="track" role="img" aria-label="Remboursements, dégrèvements : 4,3"><div class="fill ref" style="--w:1.2%"></div></div><div class="val">4,3</div></div>
+        </div>
+        <p class="note">S'y ajoutent 74,0 Md€ de prélèvements sur recettes, reversés aux collectivités et à l'Union européenne (+2,8 Md€ pour l'UE en 2027).</p>
+      </figure>
+    </div>
+    <div class="panels">
+      <figure class="panel"><h3>D'où viennent les recettes</h3>
+        <p class="sub">Budget de l'État, PLF 2027</p>
+        <div class="tbl-wrap"><table class="compact cmp">
+          <tbody>
+            <tr><td>Recettes fiscales nettes</td><td class="num">375,7</td><td class="num">+18,0 vs 2026</td></tr>
+            <tr><td>Recettes non fiscales</td><td class="num">16,7</td><td class="num">−16,9 vs 2026</td></tr>
+            <tr><td>− Prélèvements sur recettes</td><td class="num">−74,0</td><td class="num">collectivités et UE</td></tr>
+            <tr><td><b>Recettes nettes</b></td><td class="num"><b>≈ 318</b></td><td class="num"></td></tr>
+            <tr><td>Dépenses du budget général</td><td class="num">474,9</td><td class="num"></td></tr>
+            <tr><td><b>Déficit emprunté</b></td><td class="num"><b>≈ 156,4</b></td><td class="num">avec comptes spéciaux</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">L'impôt sur le revenu (+5,7) et la part de TVA de l'État (+7,3) tirent la hausse des recettes fiscales. Les recettes non fiscales baissent parce que 13,0 Md€ de recettes exceptionnelles de 2026 ne sont pas reconduits.</p>
+      </figure>
+      <figure class="panel"><h3>Comment l'État finance 2027</h3>
+        <p class="sub">Tableau de financement du PLF</p>
+        <div class="tbl-wrap"><table class="compact cmp">
+          <tbody>
+            <tr><td>Déficit à financer</td><td class="num">156,4</td></tr>
+            <tr><td>Dette arrivant à échéance (amortissements)</td><td class="num">189,2</td></tr>
+            <tr><td>Autres besoins de trésorerie, dette reprise de SNCF Réseau</td><td class="num">−5,9</td></tr>
+            <tr><td><b>Besoin de financement</b></td><td class="num"><b>339,7</b></td></tr>
+            <tr><td>Émissions nettes de dette à moyen et long terme</td><td class="num">340,0</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">L'État doit donc emprunter près de 340 Md€ en 2027 : 156 pour le déficit et 189 pour rembourser des titres arrivant à échéance. Le gouvernement parle de 43 Md€ de mesures de redressement (dont 17 en recettes, effort de 0,9 point de PIB selon le HCFP, ≈ 28 Md€).</p>
+      </figure>
+    </div>
+  </section>
+
+  <section id="impots" aria-labelledby="h-imp">
+    <div class="sec-head"><h2 id="h-imp">Qui paie quoi</h2>
+      <p>Repères de l'Insee et de la direction générale des finances publiques (DGFiP) sur la répartition de l'impôt. Ils décrivent la situation actuelle : ce que proposent les partis est sur les tableaux de bord.</p></div>
+    <div class="kpis k4">
+      <div class="kpi"><span class="k">Impôt sur le revenu</span><span class="v">47<small>%</small></span><span class="s">des 41,5 millions de foyers paient un impôt non nul ; taux moyen 6,5 % (revenus 2024)</span></div>
+      <div class="kpi"><span class="k">10 % des foyers les plus aisés</span><span class="v">14,9<small>%</small></span><span class="s">de leur revenu de référence en impôt sur le revenu, contre 6,5 % en moyenne (revenus 2024)</span></div>
+      <div class="kpi"><span class="k">Les 0,1 % les plus aisés</span><span class="v">13<small>%</small></span><span class="s">de l'impôt sur le revenu pour 3 % des revenus déclarés (2022 ; 40 700 foyers)</span></div>
+      <div class="kpi"><span class="k">Fortune immobilière (IFI)</span><span class="v">2,3<small>Md€</small></span><span class="s">193 600 foyers en 2025 ; l'ISF rapportait 4,2 Md€ en 2017</span></div>
+      <div class="kpi"><span class="k">Impôt sur les sociétés</span><span class="v">69<small>Md€</small></span><span class="s">brut, 1,7 million d'entreprises bénéficiaires (2024) ; taux normal passé de 33,3 % à 25 % (2017-2022)</span></div>
+      <div class="kpi"><span class="k">Impôts de production</span><span class="v">96<small>Md€</small></span><span class="s">3,3 % du PIB en 2024, contre 3,7 % en 2019 avant la réforme</span></div>
+    </div>
+    <div class="prose">
+      <p>L'impôt sur le revenu n'est pas le seul impôt payé : la <b>TVA</b> (sur la consommation) et la <b>CSG-CRDS</b> (sur les revenus d'activité et de remplacement) sont payées par la quasi-totalité des résidents. Côté entreprises, 7,4 millions ont été redevables d'un impôt sur leurs bénéfices en 2024, pour un résultat fiscal de 259 Md€.</p>
+      <p><b>Fraude</b> (estimations prudentes, minorants) : manque à gagner de TVA de 6 à 10 Md€ par an (2010-2020), d'impôt sur les sociétés de 5,5 à 6,3 Md€ (2015-2019) ; fraude à la Sécurité sociale évaluée à 14 Md€ par an par les caisses.</p>
+      <p><b>Redistribution</b> : avant impôts et prestations monétaires, le revenu des 10 % les plus aisés est environ 14 fois celui des 10 % les plus modestes ; après, environ 7 (approche monétaire). En comptant aussi la santé, l'éducation et le logement fournis en nature, il tombe à 3,7. L'Insee insiste sur le fait qu'il n'existe pas une mesure unique de la redistribution.</p>
+    </div>
+  </section>
+
+  <section id="economie" aria-labelledby="h-eco">
+    <div class="sec-head"><h2 id="h-eco">L'économie réelle</h2>
+      <p>Les finances publiques dépendent de l'activité : emploi, salaires, consommation, commerce. Quelques repères de l'Insee et du Trésor.</p></div>
+    <div class="panels">
+      <figure class="panel"><h3>Emploi et chômage</h3>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Taux d'activité des 15-64 ans<small>plus haut depuis 1975</small></div><div class="track" role="img" aria-label="Taux d'activité des 15-64 ans : 75 %"><div class="fill " style="--w:75.0%"></div></div><div class="val">75 %</div></div>
+          <div class="bar-row"><div class="lab">Taux d'emploi des 15-64 ans<small>plus haut depuis 1975</small></div><div class="track" role="img" aria-label="Taux d'emploi des 15-64 ans : 69 %"><div class="fill " style="--w:69.0%"></div></div><div class="val">69 %</div></div>
+          <div class="bar-row"><div class="lab">Chômage 2017</div><div class="track" role="img" aria-label="Chômage 2017 : 9,4 %"><div class="fill ref" style="--w:78.3%"></div></div><div class="val">9,4 %</div></div>
+          <div class="bar-row"><div class="lab">Chômage 2025</div><div class="track" role="img" aria-label="Chômage 2025 : 7,7 %"><div class="fill hi" style="--w:64.2%"></div></div><div class="val">7,7 %</div></div>
+        </div>
+        <p class="note">Plus de deux millions d'emplois créés depuis 2017 selon le Trésor (gouvernement). Alternants et micro-entrepreneurs expliquent la moitié des créations depuis 2019 (Insee). Le chômage a remonté récemment, mais reste inférieur de 2,2 points à son pic de 2015 (Trésor, 2e trimestre 2026).</p>
+      </figure>
+      <figure class="panel"><h3>Prix et pouvoir d'achat</h3>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Inflation fin 2025 – début 2026</div><div class="track" role="img" aria-label="Inflation fin 2025 – début 2026 : < 1 %"><div class="fill ref" style="--w:25.0%"></div></div><div class="val">< 1 %</div></div>
+          <div class="bar-row"><div class="lab">Inflation mai 2026</div><div class="track" role="img" aria-label="Inflation mai 2026 : 2,4 %"><div class="fill " style="--w:60.0%"></div></div><div class="val">2,4 %</div></div>
+          <div class="bar-row"><div class="lab">Inflation août 2026</div><div class="track" role="img" aria-label="Inflation août 2026 : 2,4 %"><div class="fill " style="--w:60.0%"></div></div><div class="val">2,4 %</div></div>
+          <div class="bar-row"><div class="lab">Inflation septembre 2026<small>estimation provisoire</small></div><div class="track" role="img" aria-label="Inflation septembre 2026 : 3,0 %"><div class="fill hi" style="--w:75.0%"></div></div><div class="val">3,0 %</div></div>
+        </div>
+        <p class="note">La hausse vient du prix des hydrocarbures après le conflit au Proche-Orient. Sur vingt ans, le pouvoir d'achat des ménages a augmenté de 28,9 % (+1,3 % par an, 2005-2025), mais il se contracterait légèrement en 2026 comme en 2025 (note de conjoncture de l'Insee, sept. 2026).</p>
+      </figure>
+      <figure class="panel"><h3>Production et commerce</h3>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Industrie dans la valeur ajoutée, 1949</div><div class="track" role="img" aria-label="Industrie dans la valeur ajoutée, 1949 : 28 %"><div class="fill ref" style="--w:93.3%"></div></div><div class="val">28 %</div></div>
+          <div class="bar-row"><div class="lab">Industrie, 2010 et 2025<small>stable depuis 2010</small></div><div class="track" role="img" aria-label="Industrie, 2010 et 2025 : 13,6 %"><div class="fill hi" style="--w:45.3%"></div></div><div class="val">13,6 %</div></div>
+        </div>
+        <p class="note">L'emploi industriel est remonté à 3,2 millions mi-2026. En 2025 la France a exporté 616,4 Md€ et importé 681,5 Md€ (solde −65,2 Md€) ; le solde s'est dégradé début 2026 avec le prix de l'énergie importée.</p>
+      </figure>
+      <figure class="panel"><h3>Population</h3>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Habitants au 1er janvier 2026</div><div class="track" role="img" aria-label="Habitants au 1er janvier 2026 : 69,1 M"><div class="fill " style="--w:86.4%"></div></div><div class="val">69,1 M</div></div>
+          <div class="bar-row"><div class="lab">65 ans ou plus en 2026</div><div class="track" role="img" aria-label="65 ans ou plus en 2026 : 15,3 M"><div class="fill ref" style="--w:19.1%"></div></div><div class="val">15,3 M</div></div>
+          <div class="bar-row"><div class="lab">65 ans ou plus en 2070 (scénario central)</div><div class="track" role="img" aria-label="65 ans ou plus en 2070 (scénario central) : 21,1 M"><div class="fill fc" style="--w:26.4%"></div></div><div class="val">21,1 M</div></div>
+        </div>
+        <p class="note">Population en hausse de 0,25 % en 2025, contre +0,5 % par an en moyenne depuis 1970 ; la hausse vient surtout du solde migratoire depuis 2018. Les naissances baissent depuis quinze ans. Le vieillissement pèse sur le financement des retraites et de la santé.</p>
+      </figure>
+    </div>
+  </section>
+
+  <section id="previsions" aria-labelledby="h-prev">
+    <div class="sec-head"><h2 id="h-prev">2026-2027 : ce qui est prévu, et ce qui est incertain</h2>
+      <p>Les chiffres des deux prochaines années sont des prévisions, révisées plusieurs fois. Dire qui parle et quand est indispensable.</p></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Sujet</th><th>Gouvernement (Trésor, PLF)</th><th>Organismes indépendants</th></tr></thead>
+      <tbody>
+        <tr><td>Déficit 2026</td><td>5,4 % du PIB (5,0 % en loi de finances initiale)</td><td>HCFP (sept. 2026) : « plausible » ; Cour des comptes (juin) évoquait encore 5,0 %</td></tr>
+        <tr><td>Croissance</td><td>0,5 % en 2026, 1,0 % en 2027</td><td>Consensus des prévisionnistes : 0,5 % en 2026 ; HCFP : 1,0 % en 2027 « optimiste »</td></tr>
+        <tr><td>Déficit 2027</td><td>≈ 5,0 % avec 43 Md€ de mesures ; ≈ 6,5 % à politique inchangée</td><td>HCFP : effort de 0,9 point de PIB (≈ 28 Md€) selon sa méthode</td></tr>
+        <tr><td>Dette</td><td>—</td><td>Cour (juin) : 118,5 % fin 2026 ; HCFP (sept.) : près de 122 % en 2027</td></tr>
+        <tr><td>Retour à 3 % en 2029</td><td>Objectif maintenu</td><td>Cour : aucune trajectoire communiquée après 2026 ; HCFP : « très peu vraisemblable » sauf conjoncture très favorable</td></tr>
+        <tr><td>Charge d'intérêts</td><td>79,2 Md€ en 2026, 91,2 Md€ en 2027</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <p class="callout">Le budget 2027 n'est pas adopté, et le HCFP souligne lui-même l'incertitude sur son adoption. Ces chiffres sont le point de départ des estimations de déficit des programmes sur le <a href="economiques.html#trajectoire">tableau de bord économique</a>.</p>
+  </section>
+
+  <section id="videos" aria-labelledby="h-vid">
+    <div class="sec-head"><h2 id="h-vid">Pour aller plus loin : deux vidéos de vulgarisation</h2>
+      <p>Deux vidéos d'un créateur indépendant, signalées par l'auteur de ce dossier. Je n'ai pas pu en vérifier le contenu : les chiffres de cette page viennent uniquement des sources officielles listées plus bas. Ce ne sont pas des sources officielles.</p></div>
+    <div class="vids">
+      <div class="vid"><h3>IMPÔTS : où va vraiment notre argent ?</h3>
+        <p class="meta">Matthias Baccino · YouTube · 43 min · publiée le 4 novembre 2026</p>
+        <p>D'après sa description : que se passerait-il si les Français arrêtaient de payer leurs impôts ; conséquences individuelles et collectives, histoire de France et crise grecque de 2010.</p>
+        <a class="go" href="https://www.youtube.com/watch?v=FrRTmxfNP_k" target="_blank" rel="noopener">Voir sur YouTube ↗</a></div>
+      <div class="vid"><h3>La vérité sur la dette de la France !</h3>
+        <p class="meta">Matthias Baccino · YouTube · 54 min · publiée le 21 octobre 2026</p>
+        <p>D'après le début de sa description : le cas d'une enseignante de 58 ans dont 30 000 € d'assurance vie financent en partie l'État. Le sujet, d'après son titre, est la dette de la France.</p>
+        <a class="go" href="https://www.youtube.com/watch?v=xzhm7CL6XVg" target="_blank" rel="noopener">Voir sur YouTube ↗</a></div>
+    </div>
+  </section>
+
+  <section id="lexique" aria-labelledby="h-lex">
+    <div class="sec-head"><h2 id="h-lex">Lexique, précautions et sources</h2></div>
+    <div class="glos">
+      <details><summary>PIB</summary><p>Produit intérieur brut : la valeur des biens et services produits en France en un an. Sert de point de comparaison (déficit et dette en % du PIB). « En volume » veut dire hors inflation.</p></details>
+      <details><summary>Administrations publiques (APU)</summary><p>L'État et ses organismes (administrations centrales), les collectivités locales et la Sécurité sociale. Le déficit « public » est celui de l'ensemble ; le « budget de l'État » n'en est qu'une partie.</p></details>
+      <details><summary>Déficit, solde primaire</summary><p>Déficit : dépenses moins recettes de l'année. Solde primaire : le même solde avant paiement des intérêts de la dette.</p></details>
+      <details><summary>Dette au sens de Maastricht</summary><p>Dette brute des administrations publiques, définition utilisée en Europe. La dette nette retire les actifs financiers les plus liquides.</p></details>
+      <details><summary>Prélèvements obligatoires</summary><p>Impôts et cotisations sociales obligatoires, rapportés au PIB (43,6 % en 2025).</p></details>
+      <details><summary>PLF et PLFSS</summary><p>Projet de loi de finances (budget de l'État) et projet de loi de financement de la Sécurité sociale. Déposés à l'automne, discutés puis votés en fin d'année.</p></details>
+      <details><summary>HCFP, Cour des comptes</summary><p>Le Haut Conseil des finances publiques et la Cour des comptes sont indépendants du gouvernement ; la direction générale du Trésor et le projet de loi de finances sont des documents du gouvernement.</p></details>
+      <details><summary>Pièges de lecture</summary><p>Dette 2025 : 115,6 % ou 115,7 % selon les publications (Insee, mars 2026 ; Cour des comptes). Dépenses 2025 : 57,3 % (Insee) ou 56,6 % (Cour), définitions différentes. Les prévisions 2026-2027 sont révisées plusieurs fois. Le déficit de la Sécurité sociale n'est pas le déficit public.</p></details>
+    </div>
+    <ul class="src-list">
+      <li>Insee, « 2027 : la statistique publique au service des débats », 15/10/2026 (pages Finances publiques, Emploi, Pouvoir d'achat, Tissu productif, Démographie, Commerce extérieur) : <a href="https://www.insee.fr/fr/statistiques/8996963" target="_blank" rel="noopener">insee.fr</a></li>
+      <li>Cour des comptes, Situation et perspectives des finances publiques, synthèse du 25/06/2026</li>
+      <li>Direction générale du Trésor, Rapport économique, social et financier (RESF), annexe du PLF 2027, 06/10/2026</li>
+      <li>Haut Conseil des finances publiques, avis 2026-5 sur les PLF et PLFSS 2027, septembre 2026</li>
+      <li>Projet de loi de finances pour 2027, n° 3210 (Assemblée nationale), non voté</li>
+      <li>Sénat, avis n° 139 sur le PLFSS 2027, 03/11/2026</li>
+    </ul>
+    <p class="note" style="color: var(--muted); font-size: 12.5px;">Les textes complets sont dans le dossier Election_2027 (<code>Etat_MD/Insee_debats2027</code> et <code>Etat_MD/Finances_publiques</code>). Pour ce que proposent les partis : <a href="economiques.html">orientations économiques</a>, <a href="sociales.html">sociales</a>, <a href="immigration-securite-emploi.html">immigration, sécurité, défense, emploi</a>, <a href="energie-climat-ruralite.html">énergie, environnement, ruralité</a>.</p>
+  </section>
+
+  <footer>Repères de situation, sans recommandation. Chiffres reportés tels quels depuis les sources citées, avec leur date.</footer>
+</div>
+<script>
+(function () {
+  var b = document.getElementById('theme-toggle'), r = document.documentElement;
+  function label() { b.setAttribute('aria-label', r.getAttribute('data-theme') === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre'); }
+  b.addEventListener('click', function () {
+    var n = r.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', n);
+    try { localStorage.setItem('e27-theme', n); } catch (e) {}
+    label();
+  });
+  label();
+})();
+</script>
+</body>
+</html>
