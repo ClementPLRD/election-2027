@@ -221,7 +221,26 @@
   .kpis.k4 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
   .cmp td.num, .cmp th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .cmp { min-width: 0; }
+  .cmp td:first-child, .cmp th:first-child { min-width: 170px; }
+  .cmp th, .cmp td { padding: 8px 10px; }
   section[id] { scroll-margin-top: 16px; }
+  table.pay { min-width: 720px; }
+  @media (max-width: 720px) {
+    table.pay { min-width: 0; }
+    table.pay thead { display: none; }
+    table.pay tr { display: block; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+    table.pay tr:last-child { border-bottom: 0; }
+    table.pay td { display: block; border: 0; padding: 2px 0; text-align: left !important; }
+    table.pay td::before { content: attr(data-label); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 4px; }
+    table.pay td:first-child::before { display: none; }
+    table.pay td:first-child { font-size: 15px; }
+  }
+  table.pay td.num { white-space: normal; text-align: right; }
+  .dots { display: grid; grid-template-columns: repeat(20, 1fr); gap: 4px; max-width: 420px; margin-top: 6px; }
+  .dots i { aspect-ratio: 1; border-radius: 50%; background: var(--grid); }
+  .dots i.on { background: var(--accent); }
+  .legend .sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--grid); }
+  .legend .sw.on { background: var(--accent); }
 </style>
 <script>
 (function () {
@@ -244,7 +263,7 @@
     <p class="lede">Avant de comparer les programmes, quelques repères communs : combien l'État et les administrations dépensent et encaissent, combien le pays doit, d'où vient l'argent, et comment va l'économie. Chaque chiffre est daté et sourcé ; les prévisions sont distinguées des constats.</p>
     <p class="stamp">Situation au 11/11/2026 · sources : Insee, Cour des comptes, direction générale du Trésor, Haut Conseil des finances publiques (HCFP), projet de loi de finances 2027 (non voté). Pas de recommandation : ce sont des repères.</p>
     <nav class="toc simple" aria-label="Sommaire de la page">
-      <a href="#essentiel">L'essentiel</a><a href="#circuit">Comment l'argent circule</a><a href="#deficit">Le déficit</a><a href="#dette">La dette</a><a href="#etat">Le budget de l'État 2027</a><a href="#impots">Qui paie quoi</a><a href="#economie">L'économie réelle</a><a href="#previsions">2026-2027</a><a href="#videos">Vidéos</a><a href="#lexique">Lexique et sources</a>
+      <a href="#essentiel">L'essentiel</a><a href="#circuit">Comment l'argent circule</a><a href="#depenses">Qui dépense quoi</a><a href="#deficit">Le déficit</a><a href="#dette">La dette</a><a href="#detenteurs">Qui détient la dette</a><a href="#croissance">Pourquoi la croissance compte</a><a href="#etat">Le budget de l'État 2027</a><a href="#impots">Qui paie quoi</a><a href="#economie">L'économie réelle</a><a href="#previsions">2026-2027</a><a href="#lexique">Lexique et sources</a>
     </nav>
   </header>
 
@@ -284,15 +303,6 @@
       <div class="step"><b>Le reste du monde</b>La France exporte et importe : en 2025 elle a importé pour 65 Md€ de plus qu'elle n'a exporté.</div>
     </div>
     <div class="panels">
-      <figure class="panel"><h3>Qui dépense : trois sphères</h3>
-        <p class="sub">Déficit 2025 par niveau d'administration (% du PIB), Insee</p>
-        <div class="bars">
-          <div class="bar-row"><div class="lab">État et organismes centraux</div><div class="track" role="img" aria-label="État et organismes centraux : 4,3 %"><div class="fill " style="--w:78.2%"></div></div><div class="val">4,3 %</div></div>
-          <div class="bar-row"><div class="lab">Collectivités locales<small>dont 0,3 pour les communes, départements, régions</small></div><div class="track" role="img" aria-label="Collectivités locales : 0,5 %"><div class="fill " style="--w:9.1%"></div></div><div class="val">0,5 %</div></div>
-          <div class="bar-row"><div class="lab">Sécurité sociale</div><div class="track" role="img" aria-label="Sécurité sociale : 0,2 %"><div class="fill " style="--w:3.6%"></div></div><div class="val">0,2 %</div></div>
-        </div>
-        <p class="note">Total : 5,1 % du PIB. L'État porte l'essentiel du déficit. Pour la Sécurité sociale, le PLFSS prévoit un déficit de 21,8 Md€ en 2026 ramené à 12,7 Md€ en 2027 (Sénat, avis n° 139).</p>
-      </figure>
       <figure class="panel"><h3>À quoi sert l'argent public</h3>
         <p class="sub">Dépenses publiques par fonction, 2024 (% du total), Insee Première n° 2093</p>
         <div class="bars">
@@ -317,6 +327,63 @@
         <p class="note">La CSG a été créée en 1991 ; depuis 2018-2019, des cotisations ont été remplacées par de la CSG et de la TVA.</p>
       </figure>
     </div>
+  </section>
+
+  <section id="depenses" aria-labelledby="h-dep">
+    <div class="sec-head"><h2 id="h-dep">Qui dépense quoi : l'État, les collectivités, la Sécurité sociale</h2>
+      <p>Les « administrations publiques » regroupent trois sphères qui ne dépensent pas pour les mêmes choses : l'<b>État</b> (ministères, police, armée, justice, enseignement, charge de la dette), les <b>collectivités locales</b> (communes, départements, régions) et la <b>Sécurité sociale</b> (retraites, assurance maladie, famille, chômage). Chiffres 2025.</p></div>
+    <div class="panels">
+      <figure class="panel"><h3>Trois sphères, trois logiques</h3>
+        <p class="sub">Dépenses des administrations en 2025 (Md€), Insee Première n° 2106, tableau 4</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Sécurité sociale<small>surtout des prestations sociales</small></div><div class="track" role="img" aria-label="Sécurité sociale : 803 Md€"><div class="fill " style="--w:94.5%"></div></div><div class="val">803 Md€</div></div>
+          <div class="bar-row"><div class="lab">État et organismes centraux<small>État et organismes divers d’administration centrale</small></div><div class="track" role="img" aria-label="État et organismes centraux : 681 Md€"><div class="fill " style="--w:80.1%"></div></div><div class="val">681 Md€</div></div>
+          <div class="bar-row"><div class="lab">Collectivités locales<small>communes, départements, régions…</small></div><div class="track" role="img" aria-label="Collectivités locales : 336 Md€"><div class="fill " style="--w:39.5%"></div></div><div class="val">336 Md€</div></div>
+        </div>
+        <p class="note">Le total consolidé est de 1 714,2 Md€ (57,3 % du PIB) : plus petit que la somme des trois (1 819,9 Md€) parce que les transferts entre sphères (par exemple l'État qui verse des dotations aux collectivités : 63,0 Md€ des administrations centrales vers les autres) ne sont comptés qu'une fois.</p>
+      </figure>
+      <figure class="panel"><h3>Ce que chaque sphère finance</h3>
+        <p class="sub">Principaux postes de dépenses en 2025 (Md€), Insee Première n° 2106</p>
+        <div class="tbl-wrap"><table class="compact cmp">
+          <thead><tr><th></th><th class="num">État et organismes</th><th class="num">Collectivités</th><th class="num">Sécurité sociale</th></tr></thead>
+          <tbody>
+            <tr><td>Prestations sociales (retraites, maladie, aides…)</td><td class="num">132,4</td><td class="num">31,4</td><td class="num">607,2</td></tr>
+            <tr><td>Rémunérations des agents</td><td class="num">184,9</td><td class="num">97,0</td><td class="num">88,2</td></tr>
+            <tr><td>Investissement (formation brute de capital fixe)</td><td class="num">50,7</td><td class="num">70,7</td><td class="num">10,8</td></tr>
+            <tr><td>Charge d'intérêts de la dette</td><td class="num">53,3</td><td class="num">6,0</td><td class="num">5,6</td></tr>
+            <tr><td><b>Dépenses totales</b></td><td class="num"><b>681,1</b></td><td class="num"><b>335,5</b></td><td class="num"><b>803,3</b></td></tr>
+            <tr><td>Recettes totales</td><td class="num">550,8</td><td class="num">319,9</td><td class="num">796,6</td></tr>
+            <tr><td><b>Solde</b></td><td class="num"><b>−130,3</b></td><td class="num"><b>−15,6</b></td><td class="num"><b>−6,7</b></td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">Le déficit est surtout celui de l'État (−128,1 Md€ pour l'État seul). Les collectivités réalisent à elles seules <b>53 %</b> de l'investissement public (70,7 sur 132,2 Md€, calcul). Hors transferts, la Sécurité sociale verse l'essentiel des prestations.</p>
+      </figure>
+    </div>
+    <div class="sec-head"><h3>Zoom sur les collectivités : communes, départements, régions</h3>
+      <p>Dépenses réelles de fonctionnement et d'investissement de 2025 par catégorie, d'après les comptes de gestion analysés par la Cour des comptes (juillet 2026). Le périmètre n'est pas celui de l'Insee ci-dessus (la comptabilité nationale ajoute notamment les syndicats et d'autres organismes locaux) : les deux totaux ne se comparent pas à l'euro près.</p></div>
+    <div class="panels">
+      <figure class="panel"><h3>Qui dépense quoi parmi les collectivités</h3>
+        <p class="sub">Charges de fonctionnement + dépenses d'investissement, 2025 (Md€), calculs sur les tableaux 5, 8 et 11 de la Cour</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Bloc communal<small>communes et intercommunalités : 131,4 + 54,0</small></div><div class="track" role="img" aria-label="Bloc communal : 185 Md€"><div class="fill " style="--w:92.7%"></div></div><div class="val">185 Md€</div></div>
+          <div class="bar-row"><div class="lab">Départements<small>67,0 + 11,3</small></div><div class="track" role="img" aria-label="Départements : 78 Md€"><div class="fill " style="--w:39.1%"></div></div><div class="val">78 Md€</div></div>
+          <div class="bar-row"><div class="lab">Régions<small>25,5 + 13,8</small></div><div class="track" role="img" aria-label="Régions : 39 Md€"><div class="fill " style="--w:19.6%"></div></div><div class="val">39 Md€</div></div>
+        </div>
+        <p class="note">Les communes seules ont 86,8 Md€ de charges de fonctionnement (tableau 6). Le bloc communal investit le plus (54,0 Md€) ; les départements dépensent surtout en fonctionnement (action sociale).</p>
+      </figure>
+      <figure class="panel"><h3>Ce qui différencie les trois niveaux</h3>
+        <div class="tbl-wrap"><table class="compact cmp">
+          <thead><tr><th></th><th class="num">Bloc communal</th><th class="num">Départements</th><th class="num">Régions</th></tr></thead>
+          <tbody>
+            <tr><td>Épargne brute (Md€)</td><td class="num">26,9</td><td class="num">7,0</td><td class="num">6,4</td></tr>
+            <tr><td>Dette financière fin 2025 (Md€)</td><td class="num">128,7</td><td class="num">35,4</td><td class="num">39,2</td></tr>
+            <tr><td>Années d'épargne pour la rembourser</td><td class="num">4,8</td><td class="num">5,0</td><td class="num">6,1</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">Départements : <b>21,4 Md€</b> d'allocations individuelles de solidarité en 2025 (RSA 10,5, APA 7,3, PCH 3,6). Régions : lycées et transport express régional (TER) parmi leurs charges. Au total, la dette des trois catégories est d'environ 203 Md€ (calcul), soit environ 6 % de la dette publique : l'essentiel de la dette est celle de l'État.</p>
+      </figure>
+    </div>
+    <p class="callout"><b>Pourquoi cette séparation compte.</b> Une mesure « d'économie » ou de hausse n'a pas les mêmes effets selon la sphère : l'État porte le déficit et la charge de la dette, les départements portent les aides sociales de proximité, les collectivités portent plus de la moitié de l'investissement public. L'État verse aux collectivités des dotations et une part de TVA (74,0 Md€ de prélèvements sur recettes en 2027), ce qui lie leurs budgets.</p>
   </section>
 
   <section id="deficit" aria-labelledby="h-def">
@@ -384,6 +451,73 @@
     <p class="callout"><b>Le patrimoine public.</b> Face à la dette, les administrations détiennent des actifs : leur patrimoine net est évalué à <b>690 Md€</b> en 2024 (23,5 % du PIB, Insee et Banque de France). L'Insee précise que ce n'est pas un indicateur de soutenabilité : beaucoup d'actifs ne sont pas cessibles ; elle dépend de la capacité à produire des recettes futures.</p>
   </section>
 
+  <section id="detenteurs" aria-labelledby="h-det">
+    <div class="sec-head"><h2 id="h-det">Qui détient la dette</h2>
+      <p>La dette de l'État est surtout faite de titres (obligations, bons) vendus sur les marchés : on parle de <b>dette négociable</b>. Elle s'élevait à <b>2 921 Md€</b> au 31 octobre 2026 (Agence France Trésor). Ceux qui détiennent ces titres sont les créanciers de l'État, qui leur verse des intérêts.</p></div>
+    <div class="panels">
+      <figure class="panel"><h3>Qui possède les titres de l'État</h3>
+        <p class="sub">Dette négociable de l'État par groupe de porteurs, 2<sup>e</sup> trimestre 2026, en valeur de marché (Banque de France, via l'AFT)</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Non-résidents<small>investisseurs établis hors de France</small></div><div class="track" role="img" aria-label="Non-résidents : 59,7 %"><div class="fill hi" style="--w:91.8%"></div></div><div class="val">59,7 %</div></div>
+          <div class="bar-row"><div class="lab">Autres résidents français<small>détail non donné dans le graphique</small></div><div class="track" role="img" aria-label="Autres résidents français : 18,7 %"><div class="fill " style="--w:28.8%"></div></div><div class="val">18,7 %</div></div>
+          <div class="bar-row"><div class="lab">Établissements de crédit français<small>banques</small></div><div class="track" role="img" aria-label="Établissements de crédit français : 10,5 %"><div class="fill " style="--w:16.2%"></div></div><div class="val">10,5 %</div></div>
+          <div class="bar-row"><div class="lab">Compagnies d'assurance françaises<small>assureurs</small></div><div class="track" role="img" aria-label="Compagnies d'assurance françaises : 9,2 %"><div class="fill " style="--w:14.2%"></div></div><div class="val">9,2 %</div></div>
+          <div class="bar-row"><div class="lab">OPCVM français<small>fonds de placement</small></div><div class="track" role="img" aria-label="OPCVM français : 2,0 %"><div class="fill " style="--w:3.1%"></div></div><div class="val">2,0 %</div></div>
+        </div>
+        <p class="note">Les non-résidents regroupent des investisseurs de toute nature établis à l'étranger ; la source ne donne pas le détail par pays.</p>
+      </figure>
+      <figure class="panel"><h3>La part des non-résidents augmente</h3>
+        <p class="sub">En % de la dette négociable de l'État (Banque de France, via l'AFT)</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Décembre 2022</div><div class="track" role="img" aria-label="Décembre 2022 : 49,8 %"><div class="fill ref" style="--w:76.6%"></div></div><div class="val">49,8 %</div></div>
+          <div class="bar-row"><div class="lab">Décembre 2023</div><div class="track" role="img" aria-label="Décembre 2023 : 53,6 %"><div class="fill " style="--w:82.5%"></div></div><div class="val">53,6 %</div></div>
+          <div class="bar-row"><div class="lab">Décembre 2024</div><div class="track" role="img" aria-label="Décembre 2024 : 54,6 %"><div class="fill " style="--w:84.0%"></div></div><div class="val">54,6 %</div></div>
+          <div class="bar-row"><div class="lab">Décembre 2025</div><div class="track" role="img" aria-label="Décembre 2025 : 56,1 %"><div class="fill " style="--w:86.3%"></div></div><div class="val">56,1 %</div></div>
+          <div class="bar-row"><div class="lab">Juin 2026</div><div class="track" role="img" aria-label="Juin 2026 : 59,7 %"><div class="fill hi" style="--w:91.8%"></div></div><div class="val">59,7 %</div></div>
+        </div>
+        <p class="note">Elle est passée d'environ la moitié fin 2022 à près de 60 % mi-2026. Le champ est la dette négociable de l'État (2 921 Md€), plus étroit que la dette publique de 3 460,5 Md€ fin 2025, qui inclut aussi la Sécurité sociale, les collectivités et d'autres dettes non négociables.</p>
+      </figure>
+    </div>
+    <div class="prose">
+      <p><b>Ce que cela veut dire.</b> Détenir la dette, c'est être payé en intérêts : une partie de la charge d'intérêts (65,7 Md€ en 2025) revient donc à des épargnants et institutions français (banques, assureurs, fonds), et une partie, croissante, à des investisseurs étrangers. Ces derniers sont sensibles aux conditions de marché : le HCFP rappelle que les taux auxquels la France emprunte sont aujourd'hui supérieurs à la croissance.</p>
+      <p><b>Durée de vie moyenne de la dette négociable :</b> 8 ans et 139 jours au 31 octobre 2026 (AFT) : l'État renouvelle donc chaque année une partie de ses emprunts, aux taux du moment (en 2027 : 189,2 Md€ de dette arrivant à échéance).</p>
+    </div>
+  </section>
+
+  <section id="croissance" aria-labelledby="h-cro">
+    <div class="sec-head"><h2 id="h-cro">Pourquoi la croissance compte</h2>
+      <p>La croissance (hausse du PIB) n'est pas un but en soi, mais elle joue sur presque tout ce qui précède : les recettes, les dépenses, le poids de la dette, l'emploi et les revenus. Trois mécanismes, avec les chiffres du dossier.</p></div>
+    <div class="flow">
+      <div class="step"><b>Elle fait grossir le PIB, donc rétrécit la dette en proportion</b>La dette est comparée au PIB. Si le PIB augmente plus vite que la dette, le ratio baisse sans rembourser un euro.</div>
+      <div class="step"><b>Elle fait rentrer des recettes</b>Impôts et cotisations suivent l'activité, la masse salariale surtout. Mais ils augmentent aujourd'hui moins vite que le PIB : élasticité de <b>0,7</b> en 2026 et <b>0,8</b> en 2027 (HCFP, Trésor).</div>
+      <div class="step"><b>Elle protège l'emploi et les revenus</b>Quand l'activité ralentit, les recettes baissent et les dépenses de chômage augmentent. Le Trésor attribue la révision du déficit 2026 (de 5,0 % à 5,4 %) pour l'essentiel à la dégradation de la conjoncture (−0,4 point de solde conjoncturel).</div>
+      <div class="step"><b>Elle se compare au coût de l'emprunt</b>Si les taux d'intérêt dépassent la croissance, la dette grossit d'elle-même (« effet boule de neige »). C'est la situation actuelle selon le HCFP.</div>
+    </div>
+    <div class="panels">
+      <figure class="panel"><h3>La croissance prévue est faible</h3>
+        <p class="sub">Croissance du PIB en volume, % par an</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">2025 (constat)</div><div class="track" role="img" aria-label="2025 (constat) : 0,9 %"><div class="fill hi" style="--w:60.0%"></div></div><div class="val">0,9 %</div></div>
+          <div class="bar-row"><div class="lab">2026 (prévision)<small>consensus des prévisionnistes : 0,5 %</small></div><div class="track" role="img" aria-label="2026 (prévision) : 0,5 %"><div class="fill fc" style="--w:33.3%"></div></div><div class="val">0,5 %</div></div>
+          <div class="bar-row"><div class="lab">2027 (prévision)<small>jugée « optimiste » par le HCFP</small></div><div class="track" role="img" aria-label="2027 (prévision) : 1,0 %"><div class="fill fc" style="--w:66.7%"></div></div><div class="val">1,0 %</div></div>
+          <div class="bar-row"><div class="lab">Croissance potentielle estimée<small>rythme soutenable à long terme (HCFP)</small></div><div class="track" role="img" aria-label="Croissance potentielle estimée : 1,2 %"><div class="fill ref" style="--w:80.0%"></div></div><div class="val">1,2 %</div></div>
+        </div>
+        <p class="note">La croissance potentielle est le rythme que l'économie peut tenir durablement avec ses ressources actuelles (travail, capital, productivité). La croissance prévue est inférieure à ce potentiel en 2026 et en 2027.</p>
+      </figure>
+      <figure class="panel"><h3>Quel déficit laisserait la dette stable ?</h3>
+        <p class="sub">En % du PIB ; calcul simplifié (déficit stabilisant = dette × croissance nominale ÷ (1 + croissance nominale))</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Déficit prévu 2026</div><div class="track" role="img" aria-label="Déficit prévu 2026 : 5,4 %"><div class="fill fc" style="--w:90.0%"></div></div><div class="val">5,4 %</div></div>
+          <div class="bar-row"><div class="lab">Déficit qui stabiliserait la dette en 2026<small>dette 118,5 %, PIB en valeur +2,0 %</small></div><div class="track" role="img" aria-label="Déficit qui stabiliserait la dette en 2026 : ≈ 2,3 %"><div class="fill ref" style="--w:38.3%"></div></div><div class="val">≈ 2,3 %</div></div>
+          <div class="bar-row"><div class="lab">Déficit prévu 2027</div><div class="track" role="img" aria-label="Déficit prévu 2027 : ≈ 5,0 %"><div class="fill fc" style="--w:83.3%"></div></div><div class="val">≈ 5,0 %</div></div>
+          <div class="bar-row"><div class="lab">Déficit qui stabiliserait la dette en 2027<small>dette ≈ 122 %, PIB en valeur +2,7 %</small></div><div class="track" role="img" aria-label="Déficit qui stabiliserait la dette en 2027 : ≈ 3,2 %"><div class="fill ref" style="--w:53.3%"></div></div><div class="val">≈ 3,2 %</div></div>
+        </div>
+        <p class="note">Plus la croissance est forte, plus le déficit « supportable » est élevé. Calcul de la Cour des comptes pour 2025 : pour stabiliser la dette à son niveau de 2024, le déficit aurait dû être de 62,9 Md€ au lieu de 152,5 Md€, soit <b>89,6 Md€ (3,0 points de PIB)</b> d'effort supplémentaire. Hors ajustements divers : ce n'est pas une prévision.</p>
+      </figure>
+    </div>
+    <p class="callout"><b>Un levier, pas une solution toute faite.</b> La Cour des comptes note que certaines réformes (retraites, assurance chômage) et certains investissements publics (réseaux de transport, efficacité énergétique) peuvent soutenir la croissance potentielle, mais aussi que les efforts de consolidation sont difficiles. Les partis divergent sur la façon de la soutenir (baisse des impôts de production, investissement public, relance de la demande…) : voir les <a href="economiques.html">orientations économiques</a>.</p>
+  </section>
+
   <section id="etat" aria-labelledby="h-etat">
     <div class="sec-head"><h2 id="h-etat">Le budget de l'État en 2027</h2>
       <p>Le budget de l'État n'est qu'une partie des finances publiques (avec la Sécurité sociale et les collectivités). Le projet de loi de finances (PLF) 2027 a été déposé à l'automne 2026 et <b>n'est pas voté</b>. Montants en milliards d'euros.</p></div>
@@ -442,19 +576,49 @@
 
   <section id="impots" aria-labelledby="h-imp">
     <div class="sec-head"><h2 id="h-imp">Qui paie quoi</h2>
-      <p>Repères de l'Insee et de la direction générale des finances publiques (DGFiP) sur la répartition de l'impôt. Ils décrivent la situation actuelle : ce que proposent les partis est sur les tableaux de bord.</p></div>
-    <div class="kpis k4">
-      <div class="kpi"><span class="k">Impôt sur le revenu</span><span class="v">47<small>%</small></span><span class="s">des 41,5 millions de foyers paient un impôt non nul ; taux moyen 6,5 % (revenus 2024)</span></div>
-      <div class="kpi"><span class="k">10 % des foyers les plus aisés</span><span class="v">14,9<small>%</small></span><span class="s">de leur revenu de référence en impôt sur le revenu, contre 6,5 % en moyenne (revenus 2024)</span></div>
-      <div class="kpi"><span class="k">Les 0,1 % les plus aisés</span><span class="v">13<small>%</small></span><span class="s">de l'impôt sur le revenu pour 3 % des revenus déclarés (2022 ; 40 700 foyers)</span></div>
-      <div class="kpi"><span class="k">Fortune immobilière (IFI)</span><span class="v">2,3<small>Md€</small></span><span class="s">193 600 foyers en 2025 ; l'ISF rapportait 4,2 Md€ en 2017</span></div>
-      <div class="kpi"><span class="k">Impôt sur les sociétés</span><span class="v">69<small>Md€</small></span><span class="s">brut, 1,7 million d'entreprises bénéficiaires (2024) ; taux normal passé de 33,3 % à 25 % (2017-2022)</span></div>
-      <div class="kpi"><span class="k">Impôts de production</span><span class="v">96<small>Md€</small></span><span class="s">3,3 % du PIB en 2024, contre 3,7 % en 2019 avant la réforme</span></div>
+      <p>Il y a trois grandes façons de payer pour les services publics et la protection sociale : sur ce que l'on <b>gagne</b>, sur ce que l'on <b>achète</b>, et sur ce que l'on <b>possède</b> ; les entreprises paient aussi sur leurs bénéfices et leur production. Voici les principaux prélèvements, avec leur assiette, qui les paie et un ordre de grandeur. Ce sont des repères sur la situation actuelle ; ce que proposent les partis est dans les tableaux de bord.</p></div>
+    <div class="tbl-wrap"><table class="pay">
+      <thead><tr><th>Prélèvement</th><th>Sur quoi</th><th>Qui paie</th><th class="num">Repère</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Prélèvement"><b>Impôt sur le revenu</b></td><td data-label="Sur quoi">Les revenus des ménages, avec un barème qui augmente par tranches</td><td data-label="Qui paie">Les foyers fiscaux : <b>47 %</b> d'entre eux paient (sur 41,5 millions)</td><td data-label="Repère" class="num">taux moyen 6,5 %</td></tr>
+        <tr><td data-label="Prélèvement"><b>CSG et CRDS</b></td><td data-label="Sur quoi">Les revenus d'activité, les pensions, les allocations chômage et d'autres revenus, dès le premier euro</td><td data-label="Qui paie">Presque tous les résidents</td><td data-label="Repère" class="num">≈ 153 Md€ pour la CSG affectée à la protection sociale (calcul : 15,3 % de 997,8)</td></tr>
+        <tr><td data-label="Prélèvement"><b>Cotisations sociales</b></td><td data-label="Sur quoi">Les salaires bruts</td><td data-label="Qui paie">Les salariés et surtout les employeurs</td><td data-label="Repère" class="num">55,6 % des ressources de la protection sociale (≈ 555 Md€, calcul)</td></tr>
+        <tr><td data-label="Prélèvement"><b>TVA</b></td><td data-label="Sur quoi">Ce que l'on achète (consommation)</td><td data-label="Qui paie">Les consommateurs, via les prix</td><td data-label="Repère" class="num">dont ≈ 58 Md€ affectés à la protection sociale (5,8 %, calcul)</td></tr>
+        <tr><td data-label="Prélèvement"><b>Impôt sur les sociétés</b></td><td data-label="Sur quoi">Les bénéfices des sociétés (taux normal 25 % depuis 2022, 33,3 % en 2017)</td><td data-label="Qui paie">1,7 million d'entreprises bénéficiaires (2024)</td><td data-label="Repère" class="num">69 Md€ bruts</td></tr>
+        <tr><td data-label="Prélèvement"><b>Impôts de production</b></td><td data-label="Sur quoi">La production des entreprises, qu'elles gagnent de l'argent ou non</td><td data-label="Qui paie">Les entreprises</td><td data-label="Repère" class="num">96 Md€ (3,3 % du PIB ; 3,7 % en 2019)</td></tr>
+        <tr><td data-label="Prélèvement"><b>Impôt sur la fortune immobilière</b></td><td data-label="Sur quoi">Le patrimoine immobilier net au-delà de 1,3 M€</td><td data-label="Qui paie">193 600 foyers (2025)</td><td data-label="Repère" class="num">2,3 Md€ (l'ISF : 4,2 Md€ en 2017)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="panels">
+      <figure class="panel"><h3>L'impôt sur le revenu : qui le paie ?</h3>
+        <p class="sub">100 foyers fiscaux (chaque point = un foyer), revenus 2024, Insee et DGFiP</p>
+        <div class="dots" role="img" aria-label="Sur 100 foyers fiscaux, 47 paient un impôt sur le revenu non nul et 53 n'en paient pas">
+          <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i>
+        </div>
+        <div class="legend"><span><i class="sw on"></i>47 paient un impôt sur le revenu</span><span><i class="sw"></i>53 n'en paient pas (revenus faibles, réductions ou crédits d'impôt)</span></div>
+        <p class="note">Ces 53 foyers paient en revanche la TVA, la CSG et les cotisations. En moyenne, un foyer déclare 20 200 € par part et paie 1 350 € d'impôt net par part, soit 6,5 % de son revenu de référence.</p>
+      </figure>
+      <figure class="panel"><h3>Une charge qui augmente avec le revenu</h3>
+        <p class="sub">Part de leurs revenus payée en impôt sur le revenu, revenus 2024, DGFiP</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Ensemble des foyers (moyenne)</div><div class="track" role="img" aria-label="Ensemble des foyers (moyenne) : 6,5 %"><div class="fill ref" style="--w:40.6%"></div></div><div class="val">6,5 %</div></div>
+          <div class="bar-row"><div class="lab">10 % de foyers les plus aisés (moyenne)<small>67 310 € de revenu moyen par part</small></div><div class="track" role="img" aria-label="10 % de foyers les plus aisés (moyenne) : 14,9 %"><div class="fill hi" style="--w:93.1%"></div></div><div class="val">14,9 %</div></div>
+        </div>
+        <p class="note">Lecture : un foyer sur dix, celui qui a les revenus les plus élevés, paie en moyenne 14,9 % de son revenu en impôt sur le revenu, contre 6,5 % pour l'ensemble des foyers.</p>
+      </figure>
+      <figure class="panel"><h3>Les très hauts revenus : une petite minorité, une part importante de l'impôt</h3>
+        <p class="sub">Les 40 700 foyers les plus aisés (0,1 % des foyers), 2022, DGFiP</p>
+        <div class="bars">
+          <div class="bar-row"><div class="lab">Part des revenus déclarés<small>revenu moyen : 1 million d'euros</small></div><div class="track" role="img" aria-label="Part des revenus déclarés : 3 %"><div class="fill ref" style="--w:20.0%"></div></div><div class="val">3 %</div></div>
+          <div class="bar-row"><div class="lab">Part de l'impôt sur le revenu payé<small>impôt moyen : 260 000 €</small></div><div class="track" role="img" aria-label="Part de l'impôt sur le revenu payé : 13 %"><div class="fill hi" style="--w:86.7%"></div></div><div class="val">13 %</div></div>
+        </div>
+        <p class="note">Lecture : sur 100 € de revenus déclarés en France, 3 € vont à ces foyers ; sur 100 € d'impôt sur le revenu perçus, 13 € viennent d'eux. Leur taux moyen d'imposition a baissé, de 29,2 % en 2003 à 25,7 % en 2022 (dernière tranche de 48,09 % à 45 %).</p>
+      </figure>
     </div>
     <div class="prose">
-      <p>L'impôt sur le revenu n'est pas le seul impôt payé : la <b>TVA</b> (sur la consommation) et la <b>CSG-CRDS</b> (sur les revenus d'activité et de remplacement) sont payées par la quasi-totalité des résidents. Côté entreprises, 7,4 millions ont été redevables d'un impôt sur leurs bénéfices en 2024, pour un résultat fiscal de 259 Md€.</p>
+      <p><b>Entreprises.</b> 7,4 millions d'entreprises ont été redevables d'un impôt sur leurs bénéfices en 2024 (résultat fiscal de 259 Md€), à l'impôt sur les sociétés ou, pour les entrepreneurs individuels, à l'impôt sur le revenu.</p>
       <p><b>Fraude</b> (estimations prudentes, minorants) : manque à gagner de TVA de 6 à 10 Md€ par an (2010-2020), d'impôt sur les sociétés de 5,5 à 6,3 Md€ (2015-2019) ; fraude à la Sécurité sociale évaluée à 14 Md€ par an par les caisses.</p>
-      <p><b>Redistribution</b> : avant impôts et prestations monétaires, le revenu des 10 % les plus aisés est environ 14 fois celui des 10 % les plus modestes ; après, environ 7 (approche monétaire). En comptant aussi la santé, l'éducation et le logement fournis en nature, il tombe à 3,7. L'Insee insiste sur le fait qu'il n'existe pas une mesure unique de la redistribution.</p>
+      <p><b>Redistribution</b> : avant impôts et prestations monétaires, le revenu des 10 % les plus aisés est environ 14 fois celui des 10 % les plus modestes ; après, environ 7. En comptant aussi la santé, l'éducation et le logement fournis en nature, il tombe à 3,7. L'Insee insiste sur le fait qu'il n'existe pas une mesure unique de la redistribution.</p>
     </div>
   </section>
 
@@ -515,21 +679,6 @@
     <p class="callout">Le budget 2027 n'est pas adopté, et le HCFP souligne lui-même l'incertitude sur son adoption. Ces chiffres sont le point de départ des estimations de déficit des programmes sur le <a href="economiques.html#trajectoire">tableau de bord économique</a>.</p>
   </section>
 
-  <section id="videos" aria-labelledby="h-vid">
-    <div class="sec-head"><h2 id="h-vid">Pour aller plus loin : deux vidéos de vulgarisation</h2>
-      <p>Deux vidéos d'un créateur indépendant, signalées par l'auteur de ce dossier. Je n'ai pas pu en vérifier le contenu : les chiffres de cette page viennent uniquement des sources officielles listées plus bas. Ce ne sont pas des sources officielles.</p></div>
-    <div class="vids">
-      <div class="vid"><h3>IMPÔTS : où va vraiment notre argent ?</h3>
-        <p class="meta">Matthias Baccino · YouTube · 43 min · publiée le 4 novembre 2026</p>
-        <p>D'après sa description : que se passerait-il si les Français arrêtaient de payer leurs impôts ; conséquences individuelles et collectives, histoire de France et crise grecque de 2010.</p>
-        <a class="go" href="https://www.youtube.com/watch?v=FrRTmxfNP_k" target="_blank" rel="noopener">Voir sur YouTube ↗</a></div>
-      <div class="vid"><h3>La vérité sur la dette de la France !</h3>
-        <p class="meta">Matthias Baccino · YouTube · 54 min · publiée le 21 octobre 2026</p>
-        <p>D'après le début de sa description : le cas d'une enseignante de 58 ans dont 30 000 € d'assurance vie financent en partie l'État. Le sujet, d'après son titre, est la dette de la France.</p>
-        <a class="go" href="https://www.youtube.com/watch?v=xzhm7CL6XVg" target="_blank" rel="noopener">Voir sur YouTube ↗</a></div>
-    </div>
-  </section>
-
   <section id="lexique" aria-labelledby="h-lex">
     <div class="sec-head"><h2 id="h-lex">Lexique, précautions et sources</h2></div>
     <div class="glos">
@@ -538,6 +687,8 @@
       <details><summary>Déficit, solde primaire</summary><p>Déficit : dépenses moins recettes de l'année. Solde primaire : le même solde avant paiement des intérêts de la dette.</p></details>
       <details><summary>Dette au sens de Maastricht</summary><p>Dette brute des administrations publiques, définition utilisée en Europe. La dette nette retire les actifs financiers les plus liquides.</p></details>
       <details><summary>Prélèvements obligatoires</summary><p>Impôts et cotisations sociales obligatoires, rapportés au PIB (43,6 % en 2025).</p></details>
+      <details><summary>Dette négociable</summary><p>La partie de la dette de l'État faite de titres (obligations, bons) échangeables sur les marchés : 2 921 Md€ au 31/10/2026 (Agence France Trésor). La dette publique est plus large : elle ajoute notamment celle de la Sécurité sociale et des collectivités.</p></details>
+      <details><summary>Croissance potentielle, élasticité, effet boule de neige</summary><p>Croissance potentielle : rythme que l'économie peut tenir durablement. Élasticité des prélèvements : de combien ils varient quand le PIB varie de 1 % (0,7-0,8 aujourd'hui). Effet boule de neige : la dette grossit d'elle-même quand le taux d'intérêt dépasse la croissance.</p></details>
       <details><summary>PLF et PLFSS</summary><p>Projet de loi de finances (budget de l'État) et projet de loi de financement de la Sécurité sociale. Déposés à l'automne, discutés puis votés en fin d'année.</p></details>
       <details><summary>HCFP, Cour des comptes</summary><p>Le Haut Conseil des finances publiques et la Cour des comptes sont indépendants du gouvernement ; la direction générale du Trésor et le projet de loi de finances sont des documents du gouvernement.</p></details>
       <details><summary>Pièges de lecture</summary><p>Dette 2025 : 115,6 % ou 115,7 % selon les publications (Insee, mars 2026 ; Cour des comptes). Dépenses 2025 : 57,3 % (Insee) ou 56,6 % (Cour), définitions différentes. Les prévisions 2026-2027 sont révisées plusieurs fois. Le déficit de la Sécurité sociale n'est pas le déficit public.</p></details>
@@ -549,6 +700,9 @@
       <li>Haut Conseil des finances publiques, avis 2026-5 sur les PLF et PLFSS 2027, septembre 2026</li>
       <li>Projet de loi de finances pour 2027, n° 3210 (Assemblée nationale), non voté</li>
       <li>Sénat, avis n° 139 sur le PLFSS 2027, 03/11/2026</li>
+      <li>Insee, Insee Première n° 2106, « Le compte des administrations publiques en 2025 », mai 2026 (dépenses par sphère)</li>
+      <li>Cour des comptes, « Les finances publiques locales : résultats 2025 et perspectives 2026 », juillet 2026 (tableaux 5, 8, 11)</li>
+      <li>Agence France Trésor, « Principaux chiffres dette » (détention par groupe de porteurs, source Banque de France, 2<sup>e</sup> trimestre 2026) et encours au 31/10/2026 : <a href="https://www.aft.gouv.fr/fr/principaux-chiffres-dette" target="_blank" rel="noopener">aft.gouv.fr</a></li>
     </ul>
     <p class="note" style="color: var(--muted); font-size: 12.5px;">Les textes complets sont dans le dossier Election_2027 (<code>Etat_MD/Insee_debats2027</code> et <code>Etat_MD/Finances_publiques</code>). Pour ce que proposent les partis : <a href="economiques.html">orientations économiques</a>, <a href="sociales.html">sociales</a>, <a href="immigration-securite-emploi.html">immigration, sécurité, défense, emploi</a>, <a href="energie-climat-ruralite.html">énergie, environnement, ruralité</a>.</p>
   </section>
